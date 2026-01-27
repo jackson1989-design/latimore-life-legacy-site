@@ -710,68 +710,8 @@ form {
         padding: 3rem 1.5rem;
     }
 }
-/* My Story image sizing fix */
-.story-images {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  max-width: 420px;
-}
-
-.story-images img {
-  width: 100%;
-  max-height: 260px;
-  object-fit: cover;
-  border-radius: 12px;
-}
-/* FORCE My Story images to behave */
-.story .story-images {
-  max-width: 360px;
-}
-
-.story .story-images img {
-  width: 100% !important;
-  max-height: 220px !important;
-  object-fit: cover !important;
-  display: block;
-}
-/* FINAL FIX: lock the left column width */
-.story-content {
-  grid-template-columns: 360px 1fr !important;
-  align-items: start;
-}
-
-.story-images {
-  width: 360px !important;
-  justify-self: start;
-}/* Desktop: make the My Story photo column smaller */
-.story-content{
-  grid-template-columns: 320px 1fr !important;
-}
-
-.story .story-images{
-  width: 320px !important;
-  max-width: 320px !important;
-  justify-self: start;
-}
-/* FINAL My Story layout lock */
-.story-content {
-  display: grid;
-  grid-template-columns: 360px 1fr;
-  gap: 40px;
-  align-items: flex-start;
-}
-
-.story-images {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.story-images img {
-  width: 100%;
-  height: 180px;          /* KEY: fixed visual height */
-  object-fit: cover;      /* crops cleanly */
-  border-radius: 10px;
-  display: block;
-}
+<div class="story-images">
+  <img class="story-hero" src="./assets/about/team.jpg" alt="Team photo">
+  <img class="story-middle" src="./assets/about/hospital.jpg" alt="Hospital recovery">
+  <img src="./assets/about/article.jpg" alt="News article">
+</div>
