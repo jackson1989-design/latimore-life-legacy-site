@@ -710,8 +710,3 @@ form {
         padding: 3rem 1.5rem;
     }
 }
-<div class="story-images">
-  <img class="story-hero" src="./assets/about/team.jpg" alt="Team photo">
-  <img class="story-middle" src="./assets/about/hospital.jpg" alt="Hospital recovery">
-  <img src="./assets/about/article.jpg" alt="News article">
-</div>
