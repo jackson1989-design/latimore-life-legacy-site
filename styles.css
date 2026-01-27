@@ -754,3 +754,24 @@ form {
   max-width: 320px !important;
   justify-self: start;
 }
+/* FINAL My Story layout lock */
+.story-content {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.story-images {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.story-images img {
+  width: 100%;
+  height: 180px;          /* KEY: fixed visual height */
+  object-fit: cover;      /* crops cleanly */
+  border-radius: 10px;
+  display: block;
+}
