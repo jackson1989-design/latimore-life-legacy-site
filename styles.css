@@ -724,3 +724,14 @@ form {
   object-fit: cover;
   border-radius: 12px;
 }
+/* FORCE My Story images to behave */
+.story .story-images {
+  max-width: 360px;
+}
+
+.story .story-images img {
+  width: 100% !important;
+  max-height: 220px !important;
+  object-fit: cover !important;
+  display: block;
+}
