@@ -735,3 +735,13 @@ form {
   object-fit: cover !important;
   display: block;
 }
+/* FINAL FIX: lock the left column width */
+.story-content {
+  grid-template-columns: 360px 1fr !important;
+  align-items: start;
+}
+
+.story-images {
+  width: 360px !important;
+  justify-self: start;
+}
