@@ -744,4 +744,13 @@ form {
 .story-images {
   width: 360px !important;
   justify-self: start;
+}/* Desktop: make the My Story photo column smaller */
+.story-content{
+  grid-template-columns: 320px 1fr !important;
+}
+
+.story .story-images{
+  width: 320px !important;
+  max-width: 320px !important;
+  justify-self: start;
 }
