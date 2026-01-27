@@ -72,6 +72,14 @@ body {
     color: var(--white);
 }
 
+/* Added logo image styling to accommodate uploaded logo */
+.logo-image {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
 .mobile-menu-btn {
     display: none;
     background: none;
