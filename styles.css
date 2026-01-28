@@ -765,3 +765,37 @@ form {
     margin: 0 auto 2rem;
   }
 }
+.services {
+  padding: 4rem 1.5rem;
+  background: #0e1a2b;
+  color: #ffffff;
+}
+
+.services-title {
+  font-family: 'Crimson Pro', serif;
+  font-size: 2.3rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.services-subtitle {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 2.5rem;
+  opacity: 0.85;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.service-card {
+  background: #13233c;
+  border-radius: 14px;
+  padding: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.08);
+}
