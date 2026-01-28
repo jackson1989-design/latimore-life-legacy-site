@@ -834,3 +834,12 @@ form {
 .story-content {
   grid-template-columns: 240px 1fr !important;
 }
+/* 3rd image: force it to match the stack */
+.story-images img.story-article{
+  height: 120px !important;
+  width: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  border-radius: 10px;
+  display: block;
+}
