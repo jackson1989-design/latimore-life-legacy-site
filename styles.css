@@ -710,136 +710,58 @@ form {
         padding: 3rem 1.5rem;
     }
 }
-/* ===============================
-   MY STORY — FINAL IMAGE FIX
-   =============================== */
+/* ===========================
+   MY STORY – FINAL, STABLE IMAGE LAYOUT
+   =========================== */
 
 .story-content {
   display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 42px;
+  grid-template-columns: 240px 1fr;
+  gap: 36px;
   align-items: flex-start;
 }
 
 .story-images {
+  width: 240px;
   display: flex;
   flex-direction: column;
-  gap: 18px; /* spacing between images */
+  gap: 14px;
 }
 
-/* Base image style */
 .story-images img {
   width: 100%;
-  border-radius: 12px;
+  border-radius: 10px;
   display: block;
+}
+
+/* TOP – show full face */
+.story-images img.story-hero {
+  height: 120px;
+  object-fit: contain;
+  object-position: center top;
+  background: rgba(255,255,255,0.08);
+  padding: 4px;
+}
+
+/* MIDDLE */
+.story-images img.story-middle {
+  height: 150px;
   object-fit: cover;
 }
 
-/* TOP IMAGE — show full face */
-.story-images img.story-hero {
-  height: 200px;
-  object-position: top center; /* FIXES forehead cut */
+/* THIRD (article image) */
+.story-images img.story-article {
+  height: 120px;
+  object-fit: cover;
 }
 
-/* MIDDLE IMAGE — slightly taller */
-.story-images img.story-middle {
-  height: 230px;
-  object-position: center;
-}
-
-/* BOTTOM IMAGE */
-.story-images img:not(.story-hero):not(.story-middle) {
-  height: 180px;
-  object-position: center;
-}
-
-/* Mobile safety */
+/* Mobile */
 @media (max-width: 968px) {
   .story-content {
     grid-template-columns: 1fr;
   }
 
   .story-images {
-    max-width: 360px;
     margin: 0 auto 2rem;
   }
-}
-/* === HARD RESET: My Story image sizing === */
-.story-images {
-  width: 280px !important;
-  max-width: 280px !important;
-  gap: 12px !important;
-}
-
-/* TOP IMAGE – show full face, SMALL */
-.story-images img.story-hero {
-  height: 160px !important;
-  object-fit: contain !important;
-  object-position: center top !important;
-  background: rgba(255,255,255,0.08);
-  padding: 4px;
-}
-
-/* MIDDLE IMAGE – slightly taller */
-.story-images img.story-middle {
-  height: 180px !important;
-  object-fit: cover !important;
-  object-position: center center !important;
-}
-
-/* BOTTOM IMAGE */
-.story-images img {
-  width: 100% !important;
-  border-radius: 10px;
-  display: block;
-}
-/* ===========================
-   FINAL HARD LOCK – STORY IMAGES
-   =========================== */
-
-/* Lock the left column */
-.story-images {
-  width: 240px !important;
-  max-width: 240px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 12px !important;
-}
-
-/* TOP image – small, no crop */
-.story-images img.story-hero {
-  height: 120px !important;
-  width: 100% !important;
-  object-fit: contain !important;
-  object-position: center top !important;
-  background: rgba(255,255,255,0.08);
-  padding: 4px;
-}
-
-/* MIDDLE image – controlled */
-.story-images img.story-middle {
-  height: 150px !important;
-  width: 100% !important;
-  object-fit: cover !important;
-}
-
-/* BOTTOM image – controlled */
-.story-images img:not(.story-hero):not(.story-middle) {
-  height: 120px !important;
-  width: 100% !important;
-  object-fit: cover !important;
-}
-
-/* Text column gets the space */
-.story-content {
-  grid-template-columns: 240px 1fr !important;
-}
-/* 3rd image: force it to match the stack */
-.story-images img.story-article{
-  height: 120px !important;
-  width: 100% !important;
-  object-fit: cover !important;
-  object-position: center center !important;
-  border-radius: 10px;
-  display: block;
 }
