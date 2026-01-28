@@ -764,3 +764,32 @@ form {
     margin: 0 auto 2rem;
   }
 }
+/* === HARD RESET: My Story image sizing === */
+.story-images {
+  width: 280px !important;
+  max-width: 280px !important;
+  gap: 12px !important;
+}
+
+/* TOP IMAGE – show full face, SMALL */
+.story-images img.story-hero {
+  height: 160px !important;
+  object-fit: contain !important;
+  object-position: center top !important;
+  background: rgba(255,255,255,0.08);
+  padding: 4px;
+}
+
+/* MIDDLE IMAGE – slightly taller */
+.story-images img.story-middle {
+  height: 180px !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+
+/* BOTTOM IMAGE */
+.story-images img {
+  width: 100% !important;
+  border-radius: 10px;
+  display: block;
+}
