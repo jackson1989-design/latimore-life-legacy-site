@@ -793,3 +793,44 @@ form {
   border-radius: 10px;
   display: block;
 }
+/* ===========================
+   FINAL HARD LOCK – STORY IMAGES
+   =========================== */
+
+/* Lock the left column */
+.story-images {
+  width: 240px !important;
+  max-width: 240px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+/* TOP image – small, no crop */
+.story-images img.story-hero {
+  height: 120px !important;
+  width: 100% !important;
+  object-fit: contain !important;
+  object-position: center top !important;
+  background: rgba(255,255,255,0.08);
+  padding: 4px;
+}
+
+/* MIDDLE image – controlled */
+.story-images img.story-middle {
+  height: 150px !important;
+  width: 100% !important;
+  object-fit: cover !important;
+}
+
+/* BOTTOM image – controlled */
+.story-images img:not(.story-hero):not(.story-middle) {
+  height: 120px !important;
+  width: 100% !important;
+  object-fit: cover !important;
+}
+
+/* Text column gets the space */
+.story-content {
+  grid-template-columns: 240px 1fr !important;
+}
