@@ -710,3 +710,57 @@ form {
         padding: 3rem 1.5rem;
     }
 }
+/* ===============================
+   MY STORY — FINAL IMAGE FIX
+   =============================== */
+
+.story-content {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 42px;
+  align-items: flex-start;
+}
+
+.story-images {
+  display: flex;
+  flex-direction: column;
+  gap: 18px; /* spacing between images */
+}
+
+/* Base image style */
+.story-images img {
+  width: 100%;
+  border-radius: 12px;
+  display: block;
+  object-fit: cover;
+}
+
+/* TOP IMAGE — show full face */
+.story-images img.story-hero {
+  height: 200px;
+  object-position: top center; /* FIXES forehead cut */
+}
+
+/* MIDDLE IMAGE — slightly taller */
+.story-images img.story-middle {
+  height: 230px;
+  object-position: center;
+}
+
+/* BOTTOM IMAGE */
+.story-images img:not(.story-hero):not(.story-middle) {
+  height: 180px;
+  object-position: center;
+}
+
+/* Mobile safety */
+@media (max-width: 968px) {
+  .story-content {
+    grid-template-columns: 1fr;
+  }
+
+  .story-images {
+    max-width: 360px;
+    margin: 0 auto 2rem;
+  }
+}
