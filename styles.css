@@ -816,3 +816,37 @@ form {
   opacity: 0.75;
   margin-bottom: .5rem;
 }
+/* Make buttons look "on" by default (mobile-friendly) */
+.btn,
+.btn-primary,
+a.btn,
+button.btn {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .08s ease, filter .15s ease, box-shadow .15s ease;
+}
+
+/* If your Quote button is the dark one */
+.btn-secondary,
+a.btn-secondary {
+  background: #0E1A2B;           /* navy */
+  color: #FFFFFF;
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 10px 22px rgba(0,0,0,.18);
+}
+
+/* Keep a clear pressed state */
+.btn:active,
+a.btn:active,
+button.btn:active {
+  transform: translateY(1px);
+  filter: brightness(0.95);
+}
+
+/* Make keyboard focus look good too */
+.btn:focus-visible,
+a.btn:focus-visible,
+button.btn:focus-visible {
+  outline: 3px solid rgba(201,162,77,.55); /* gold */
+  outline-offset: 3px;
+}
