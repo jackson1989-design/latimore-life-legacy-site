@@ -889,3 +889,27 @@ button.btn:focus-visible {
 .story-card:hover .story-overlay{
   opacity: 1;
 }
+/* ===== FORCE STORY IMAGE FIX (OVERRIDES ALL PRIOR RULES) ===== */
+
+.story .story-images img {
+  width: 100% !important;
+  max-width: 100% !important;
+  display: block !important;
+  border-radius: 12px;
+}
+
+/* Team + Hospital photos */
+.story .story-images img.story-hero,
+.story .story-images img.story-middle {
+  height: 220px !important;
+  object-fit: cover !important;
+  object-position: center 20% !important;
+}
+
+/* Newspaper article */
+.story .story-images img.story-article {
+  height: 220px !important;
+  object-fit: contain !important;
+  background: #ffffff !important;
+  padding: 10px !important;
+}
