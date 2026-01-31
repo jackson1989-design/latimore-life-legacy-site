@@ -1,100 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Latimore Life & Legacy - Financial Protection for Pennsylvania Families</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Latimore Life & Legacy - Financial Protection for Pennsylvania Families</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <div class="logo-icon">L</div>
-                <span>Latimore Life & Legacy</span>
-            </a>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-            <!-- Accessible mobile toggle: NO inline onclick -->
-            <button class="mobile-menu-btn" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation menu">☰</button>
+  <!-- Navigation -->
+  <nav class="nav" role="navigation" aria-label="Primary">
+    <div class="nav-container container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon" aria-hidden="true">L</span>
+        <span class="logo-text">Latimore Life & Legacy</span>
+      </a>
 
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li>
-                  <a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus"
-                     target="_blank" rel="noopener noreferrer"
-                     class="btn-primary-small"
-                     aria-label="Book consultation (opens in new tab)">
-                    Book Consultation
-                  </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+      <button class="mobile-menu-btn" aria-controls="navLinks" aria-expanded="false" aria-label="Toggle navigation menu">☰</button>
 
+      <ul id="navLinks" class="nav-links" role="menubar">
+        <li role="none"><a role="menuitem" href="index.html">Home</a></li>
+        <li role="none"><a role="menuitem" href="about.html">About</a></li>
+        <li role="none"><a role="menuitem" href="products.html">Products</a></li>
+        <li role="none"><a role="menuitem" href="services.html">Services</a></li>
+        <li role="none"><a role="menuitem" href="contact.html">Contact</a></li>
+        <li role="none">
+          <a role="menuitem"
+             href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus"
+             target="_blank" rel="noopener noreferrer"
+             class="btn-primary-small"
+             aria-label="Book consultation (opens in new tab)">
+            Book Consultation
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container hero-content">
-            <div class="hero-text">
-                <h1>Protecting What Matters Most to <span class="gold-text">Pennsylvania Families</span></h1>
-                <p class="hero-subtitle">Independent insurance consultant serving Schuylkill, Luzerne & Northumberland Counties with life insurance, annuities, and financial protection strategies.</p>
-                
-                <div class="credentials">
-                    <div class="badge">✓ PA Licensed (DOI #1268820)</div>
-                    <div class="badge">✓ MBA Candidate</div>
-                    <div class="badge">✓ 3 Counties Served</div>
-                </div>
-                
-                <div class="cta-buttons">
-                    <a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" rel="noopener noreferrer" class="btn btn-primary" aria-label="Book free consultation (opens in new tab)">
-                        📅 Book Free Consultation
-                    </a>
-                    <a href="https://agents.ethoslife.com/invite/29ad1" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" aria-label="Get instant quote (opens in new tab)">
-                        Get Instant Quote →
-                    </a>
-                </div>
-            </div>
-            
-            <div class="hero-image">
-                <img src="jackson-headshot.jpg" alt="Founder and CEO portrait, smiling in an office setting" class="profile-photo" loading="eager" width="800" height="800">
-                <div class="profile-card">
-                    <h3>Jackson M. Latimore Sr.</h3>
-                    <p class="title">CEO & Founder</p>
-                    <p class="subtitle">Independent Financial Consultant</p>
-                </div>
-            </div>
+      <div class="container hero-content">
+        <div class="hero-text">
+          <h1>Protecting What Matters Most to <span class="gold-text">Pennsylvania Families</span></h1>
+          <p class="hero-subtitle">Independent insurance consultant serving Schuylkill, Luzerne & Northumberland Counties with life insurance, annuities, and financial protection strategies.</p>
+
+          <div class="credentials">
+            <span class="badge">✓ PA Licensed (DOI #1268820)</span>
+            <span class="badge">✓ MBA Candidate</span>
+            <span class="badge">✓ 3 Counties Served</span>
+          </div>
+
+          <div class="cta-buttons">
+            <a class="btn btn-primary" href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" rel="noopener noreferrer" aria-label="Book free consultation (opens in new tab)">
+              📅 Book Free Consultation
+            </a>
+            <a class="btn btn-secondary" href="https://agents.ethoslife.com/invite/29ad1" target="_blank" rel="noopener noreferrer" aria-label="Get instant quote (opens in new tab)">
+              Get Instant Quote →
+            </a>
+          </div>
         </div>
+
+        <div class="hero-image">
+          <img class="profile-photo" src="jackson-headshot.jpg" alt="Founder and CEO portrait, smiling in an office setting" loading="eager" width="800" height="800" />
+          <div class="profile-card">
+            <h3>Jackson M. Latimore Sr.</h3>
+            <p class="title">CEO & Founder</p>
+            <p class="subtitle">Independent Financial Consultant</p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- ... rest of your page content (keep all other sections as before) ... -->
+    <!-- (Keep the rest of your content below; you can paste your other sections here) -->
+  </main>
 
-    <!-- Footer (kept as in your original file) -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>Latimore Life & Legacy</h4>
-                    <p>Protection-first strategies for working families, pre-retirees, and local organizations across Central Pennsylvania.</p>
-                    <div class="social-links">
-                        <a href="https://www.instagram.com/jacksonlatimore.global" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in new tab)">Instagram</a>
-                        <a href="https://www.linkedin.com/in/startwithjacksongfi" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)">LinkedIn</a>
-                    </div>
-                </div>
-                <!-- other footer columns... -->
-            </div>
-
-            <div class="footer-bottom">
-                <p class="disclosure">Licensed in Pennsylvania (DOI #1268820, NIPR #21638507). Independent contractor affiliated with Global Financial Impact. For educational purposes only; not tax or legal advice. Product availability and terms vary by carrier and underwriting.</p>
-                <p>&copy; 2026 Latimore Life & Legacy LLC. All rights reserved.</p>
-            </div>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Latimore Life & Legacy</h4>
+          <p>Protection-first strategies for working families, pre-retirees, and local organizations across Central Pennsylvania.</p>
+          <div class="social-links">
+            <a href="https://www.instagram.com/jacksonlatimore.global" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in new tab)">Instagram</a>
+            <a href="https://www.linkedin.com/in/startwithjacksongfi" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)">LinkedIn</a>
+          </div>
         </div>
-    </footer>
+        <!-- other footer columns... -->
+      </div>
 
-    <!-- Load external JS file (make sure main.js is saved at js/main.js) -->
-    <script src="js/main.js"></script>
+      <div class="footer-bottom">
+        <p class="disclosure">Licensed in Pennsylvania (DOI #1268820, NIPR #21638507). Independent contractor affiliated with Global Financial Impact. For educational purposes only; not tax or legal advice. Product availability and terms vary by carrier and underwriting.</p>
+        <p>&copy; 2026 Latimore Life & Legacy LLC. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
