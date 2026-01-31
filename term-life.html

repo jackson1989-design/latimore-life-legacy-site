@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Term Life Insurance | Latimore Life & Legacy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Learn how term life insurance provides affordable, time-specific protection for families and individuals.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        <a href="index.html" class="logo-main">Latimore Life & Legacy LLC</a>
+        <span class="logo-sub">Independent Contractor in Affiliation with Global Financial Impact</span>
+      </div>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li class="dropdown">
+            <a href="about.html">About</a>
+            <ul class="dropdown-menu">
+              <li><a href="founder.html">Founder Story</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="services.html" class="active">Services</a>
+            <ul class="dropdown-menu">
+              <li><a href="term-life.html">Term Life Insurance</a></li>
+              <li><a href="whole-life.html">Whole Life Insurance</a></li>
+              <li><a href="final-expense.html">Final Expense</a></li>
+              <li><a href="key-person.html">Key Person Insurance</a></li>
+              <li><a href="institutional.html">Institutional Risk Solutions</a></li>
+            </ul>
+          </li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <h1>Term Life Insurance</h1>
+
+        <h2>What It Is</h2>
+        <p>Term life insurance provides affordable, time-specific protection designed to safeguard your family during critical financial years.</p>
+
+        <h2>Who It’s For</h2>
+        <ul>
+          <li>Young families</li>
+          <li>Homeowners</li>
+          <li>Individuals with dependents</li>
+          <li>Clients seeking budget-friendly coverage</li>
+        </ul>
+
+        <h2>How It Works</h2>
+        <p>You select a coverage amount and a term length. Premiums are typically fixed for the duration of the term, and coverage is designed to protect your beneficiaries during that period.</p>
+
+        <h2>Why It Matters</h2>
+        <p>Term coverage provides essential financial security during the years when your family may be most financially vulnerable.</p>
+
+        <p class="disclosure">
+          Latimore Life &amp; Legacy LLC operates as an independent contractor in affiliation with Global Financial Impact.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Latimore Life &amp; Legacy LLC. All rights reserved.</p>
+    </div>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </footer>
+</body>
+</html>
