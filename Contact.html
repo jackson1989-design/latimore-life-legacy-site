@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact | Latimore Life & Legacy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Contact Latimore Life & Legacy to schedule a consultation and learn more about independent life insurance solutions.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        <a href="index.html" class="logo-main">Latimore Life & Legacy LLC</a>
+        <span class="logo-sub">Independent Contractor in Affiliation with Global Financial Impact</span>
+      </div>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li class="dropdown">
+            <a href="about.html">About</a>
+            <ul class="dropdown-menu">
+              <li><a href="founder.html">Founder Story</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="services.html">Services</a>
+            <ul class="dropdown-menu">
+              <li><a href="term-life.html">Term Life Insurance</a></li>
+              <li><a href="whole-life.html">Whole Life Insurance</a></li>
+              <li><a href="final-expense.html">Final Expense</a></li>
+              <li><a href="key-person.html">Key Person Insurance</a></li>
+              <li><a href="institutional.html">Institutional Risk Solutions</a></li>
+            </ul>
+          </li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <h1>Contact</h1>
+        <p>We’re here to help you protect what matters most.</p>
+
+        <form class="contact-form">
+          <div class="form-row">
+            <label for="name">Name</label>
+            <input id="name" type="text" name="name" required>
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" required>
+          </div>
+          <div class="form-row">
+            <label for="phone">Phone</label>
+            <input id="phone" type="tel" name="phone">
+          </div>
+          <div class="form-row">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn-primary">Submit</button>
+        </form>
+
+        <p class="disclosure">
+          Latimore Life &amp; Legacy LLC operates as an independent contractor in affiliation with Global Financial Impact.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Latimore Life &amp; Legacy LLC. All rights reserved.</p>
+    </div>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </footer>
+</body>
+</html>
