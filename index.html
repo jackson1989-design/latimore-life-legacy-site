@@ -11,134 +11,71 @@
   <header class="site-header">
     <div class="container header-inner">
       <div class="logo">
-        <span class="logo-main">Latimore Life & Legacy LLC</span>
+        <a href="index.html" class="logo-main">Latimore Life & Legacy LLC</a>
         <span class="logo-sub">Independent Contractor in Affiliation with Global Financial Impact</span>
       </div>
       <nav class="nav">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#founder">Founder Story</a>
-        <a href="#contact">Contact</a>
+        <ul class="nav-list">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li class="dropdown">
+            <a href="about.html">About</a>
+            <ul class="dropdown-menu">
+              <li><a href="founder.html">Founder Story</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="services.html">Services</a>
+            <ul class="dropdown-menu">
+              <li><a href="term-life.html">Term Life Insurance</a></li>
+              <li><a href="whole-life.html">Whole Life Insurance</a></li>
+              <li><a href="final-expense.html">Final Expense</a></li>
+              <li><a href="key-person.html">Key Person Insurance</a></li>
+              <li><a href="institutional.html">Institutional Risk Solutions</a></li>
+            </ul>
+          </li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
       </nav>
     </div>
   </header>
 
   <main>
-    <!-- HOME -->
-    <section id="home" class="section hero">
-      <div class="container hero-inner">
-        <div class="hero-text">
-          <h1>Protecting Today. Securing Tomorrow.</h1>
-          <p>Independent, education-first life insurance and legacy-planning solutions for families, individuals, and institutions.</p>
-          <p class="disclosure">
-            Latimore Life &amp; Legacy LLC operates as an independent contractor in affiliation with Global Financial Impact.
-          </p>
-          <a href="#contact" class="btn-primary">Schedule a Consultation</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="section">
+    <section class="section hero">
       <div class="container">
-        <h2>Who We Are</h2>
-        <p>Latimore Life &amp; Legacy LLC is an independent life insurance and legacy-planning firm serving individuals, families, and institutions across Pennsylvania.</p>
-
-        <h3>Our Mission</h3>
-        <p>To deliver clarity, confidence, and continuity through disciplined financial protection and legacy planning.</p>
-
-        <h3>Our Vision</h3>
-        <p>To be a trusted regional leader in independent life insurance and legacy planning.</p>
-
-        <h3>Our Values</h3>
-        <p>Integrity, education, stewardship, empathy, excellence, and legacy.</p>
-
-        <h3>Independence Statement</h3>
-        <p>Latimore Life &amp; Legacy LLC operates as an independent contractor in affiliation with Global Financial Impact.</p>
-      </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="services" class="section section-alt">
-      <div class="container">
-        <h2>Our Services</h2>
-        <p>We provide a full suite of life insurance and legacy-planning solutions.</p>
-
-        <div class="service-grid">
-          <article class="service-card">
-            <h3>Term Life Insurance</h3>
-            <p>Affordable, time-specific protection designed to safeguard your family during critical financial years.</p>
-          </article>
-
-          <article class="service-card">
-            <h3>Whole Life Insurance</h3>
-            <p>Permanent coverage with long-term value, stability, and legacy-building potential.</p>
-          </article>
-
-          <article class="service-card">
-            <h3>Final Expense Insurance</h3>
-            <p>Simple, accessible coverage designed to ease financial burdens for loved ones.</p>
-          </article>
-
-          <article class="service-card">
-            <h3>Key Person Insurance</h3>
-            <p>Strategic protection for school districts, municipalities, and small institutions.</p>
-          </article>
-
-          <article class="service-card">
-            <h3>Institutional Risk Solutions</h3>
-            <p>Structured, compliant, and transparent planning for long-term organizational stability.</p>
-          </article>
-        </div>
-
+        <h1>Protecting Today. Securing Tomorrow.</h1>
+        <p>Independent, education-first life insurance and legacy-planning solutions for families, individuals, and institutions.</p>
         <p class="disclosure">
           Latimore Life &amp; Legacy LLC operates as an independent contractor in affiliation with Global Financial Impact.
         </p>
+        <a href="contact.html" class="btn-primary">Schedule a Consultation</a>
       </div>
     </section>
 
-    <!-- FOUNDER STORY -->
-    <section id="founder" class="section">
+    <section class="section">
       <div class="container">
-        <h2>Founder Story</h2>
-        <p>Latimore Life &amp; Legacy was founded by Jackson Montgomery Latimore following a life-altering cardiac event that reshaped his understanding of preparation, protection, and continuity.</p>
-        <p>This experience became the foundation of the firm’s philosophy: life continues, families continue, and the work of protecting them must continue as well.</p>
-
-        <h3>The Beat Goes On</h3>
-        <p>This internal guiding principle represents resilience, responsibility, and long-term stewardship. It informs the firm’s tone, mission, and long-term vision.</p>
+        <h2>Our Mission</h2>
+        <p>To help clients protect what matters most through clarity, education, and long-term financial stewardship.</p>
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="section section-alt">
+    <section class="section section-alt">
       <div class="container">
-        <h2>Contact</h2>
-        <p>We’re here to help you protect what matters most.</p>
+        <h2>What We Do</h2>
+        <p>Latimore Life &amp; Legacy provides independent, multi-carrier life insurance and legacy-planning solutions designed to support families, individuals, and institutions.</p>
+      </div>
+    </section>
 
-        <form class="contact-form">
-          <div class="form-row">
-            <label for="name">Name</label>
-            <input id="name" type="text" name="name" required>
-          </div>
-          <div class="form-row">
-            <label for="email">Email</label>
-            <input id="email" type="email" name="email" required>
-          </div>
-          <div class="form-row">
-            <label for="phone">Phone</label>
-            <input id="phone" type="tel" name="phone">
-          </div>
-          <div class="form-row">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="4" required></textarea>
-          </div>
-          <button type="submit" class="btn-primary">Submit</button>
-        </form>
+    <section class="section">
+      <div class="container">
+        <h2>Why Independence Matters</h2>
+        <p>As an independent contractor in affiliation with Global Financial Impact, we provide unbiased recommendations, multi-carrier access, and education-first guidance focused on your needs.</p>
+      </div>
+    </section>
 
-        <p class="disclosure">
-          Latimore Life &amp; Legacy LLC operates as an independent contractor in affiliation with Global Financial Impact.
-        </p>
+    <section class="section section-alt">
+      <div class="container">
+        <h2>Our Core Values</h2>
+        <p>Integrity. Education. Stewardship. Empathy. Excellence. Legacy.</p>
       </div>
     </section>
   </main>
