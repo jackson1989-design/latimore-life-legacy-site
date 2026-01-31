@@ -14,14 +14,16 @@
                 <div class="logo-icon">L</div>
                 <span>Latimore Life & Legacy</span>
             </a>
-            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <!-- Accessible mobile toggle: aria attributes added -->
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation menu">☰</button>
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="products.html">Products</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" class="btn-primary-small">Book Consultation</a></li>
+                <!-- External link: rel and aria-label added for security & clarity -->
+                <li><a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" rel="noopener noreferrer" class="btn-primary-small" aria-label="Book consultation (opens in new tab)">Book Consultation</a></li>
             </ul>
         </div>
     </nav>
@@ -40,17 +42,19 @@
                 </div>
                 
                 <div class="cta-buttons">
-                    <a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" class="btn btn-primary">
+                    <!-- External CTAs: rel & aria-label included -->
+                    <a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" rel="noopener noreferrer" class="btn btn-primary" aria-label="Book free consultation (opens in new tab)">
                         📅 Book Free Consultation
                     </a>
-                    <a href="https://agents.ethoslife.com/invite/29ad1" target="_blank" class="btn btn-secondary">
+                    <a href="https://agents.ethoslife.com/invite/29ad1" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" aria-label="Get instant quote (opens in new tab)">
                         Get Instant Quote →
                     </a>
                 </div>
             </div>
             
             <div class="hero-image">
-                <img src="jackson-headshot.jpg" alt="Jackson M. Latimore Sr." class="profile-photo">
+                <!-- Improved alt text + loading and dimensions to reduce layout shift -->
+                <img src="jackson-headshot.jpg" alt="Founder and CEO portrait, smiling in an office setting" class="profile-photo" loading="eager" width="800" height="800">
                 <div class="profile-card">
                     <h3>Jackson M. Latimore Sr.</h3>
                     <p class="title">CEO & Founder</p>
@@ -73,11 +77,11 @@
                 <div class="feature">
                     <div class="feature-icon">🎓</div>
                     <h3>Education-Focused</h3>
-                    <p>MBA in Economics for Global Managers, MPA, BA Political Science - bringing academic rigor to financial planning</p>
+                    <p>Master Business Administration, Master Public Administration, BA Political Science - bringing academic rigor to financial planning</p>
                 </div>
                 <div class="feature">
-                    <div class="feature-icon">🤝</div>
-                    <h3>Independent Advisor</h3>
+                    <div class="feature-icon">🫱🏼‍🫲🏿</div>
+                    <h3>Independent Contractor - Global Financial Impact</h3>
                     <p>Multiple carrier appointments mean I find the best solution for YOU, not what pays me most</p>
                 </div>
                 <div class="feature">
@@ -136,13 +140,14 @@
         <div class="container">
             <div class="story-content">
                 <div class="story-image">
-                    <img src="community.jpg" alt="Jackson coaching youth sports">
+                    <!-- Improved alt text (non-identifying, descriptive) -->
+                    <img src="community.jpg" alt="Coach leading youth sports practice">
                 </div>
                 <div class="story-text">
                     <h2>My Story: Why Protection Matters</h2>
                     <h3 class="story-subhead">December 7, 2010 - East Stroudsburg University</h3>
                     
-                    <p>During a college basketball game, my heart stopped. I went into sudden cardiac arrest on the court at ESU's Koehler Fieldhouse. I was 22 years old.</p>
+                    <p>During a college fitness course, my heart stopped. I went into sudden cardiac arrest on the court at ESU's Koehler Fieldhouse. I was 22 years old.</p>
                     
                     <p>I survived because two athletic trainers, Wendy Dietrich and Colleen Shotwell, along with EMT Douglas Shaffer, had immediate access to an Automated External Defibrillator (AED). They shocked my heart back to life and administered CPR until the ambulance arrived.</p>
                     
@@ -150,7 +155,7 @@
                     
                     <p class="story-highlight">That experience taught me that preparedness is everything. Financial protection isn't about selling policies - it's about ensuring families have what they need when the unexpected happens.</p>
                     
-                    <p>Today, I'm a first-generation college graduate with a Master of Public Administration, a Bachelor's in Political Science, and I'm completing my MBA in Economics for Global Managers. I'm a father to Jackson Jr., Corinne, and Jaclyn. I coach youth sports and serve families in the same Pennsylvania counties where I grew up.</p>
+                    <p>Today, I'm a first-generation college graduate with a Master of Public Administration, a Bachelor's in Political Science, and I'm completing my Master Business Administration. I'm a father to Corinne, Jaclyn, & Jackson Jr. I coach youth sports and serve families in the same Pennsylvania counties where I grew up.</p>
                     
                     <p><strong>Latimore Life & Legacy exists to help families prepare financially, just as that AED prepared the gym to save my life.</strong></p>
                     
@@ -169,13 +174,13 @@
             <h2>Ready to Protect Your Family's Future?</h2>
             <p>Let's discuss your financial protection strategy - no pressure, no obligation.</p>
             <div class="cta-buttons">
-                <a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" class="btn btn-primary">
+                <a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" rel="noopener noreferrer" class="btn btn-primary" aria-label="Book free consultation (opens in new tab)">
                     📅 Book Free Consultation
                 </a>
-                <a href="tel:5709001266" class="btn btn-secondary">
-                    📞 Call (570) 900-1266
+                <a href="tel:(856)895-1457" class="btn btn-secondary">
+                    📞 Call (856)895-1457
                 </a>
-                <a href="https://agents.ethoslife.com/invite/29ad1" target="_blank" class="btn btn-secondary">
+                <a href="https://agents.ethoslife.com/invite/29ad1" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" aria-label="Get instant quote (opens in new tab)">
                     Get Instant Quote
                 </a>
             </div>
@@ -190,8 +195,8 @@
                     <h4>Latimore Life & Legacy</h4>
                     <p>Protection-first strategies for working families, pre-retirees, and local organizations across Central Pennsylvania.</p>
                     <div class="social-links">
-                        <a href="https://www.instagram.com/jacksonlatimore.global" target="_blank">Instagram</a>
-                        <a href="https://www.linkedin.com/in/startwithjacksongfi" target="_blank">LinkedIn</a>
+                        <a href="https://www.instagram.com/jacksonlatimore.global" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in new tab)">Instagram</a>
+                        <a href="https://www.linkedin.com/in/startwithjacksongfi" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)">LinkedIn</a>
                     </div>
                 </div>
                 
@@ -205,16 +210,16 @@
                 
                 <div class="footer-col">
                     <h4>Contact</h4>
-                    <p><strong>Phone:</strong> (570) 900-1266</p>
+                    <p><strong>Phone:</strong> (856)895-1457</p>
                     <p><strong>Email:</strong> jackson1989@latimorelegacy.com</p>
                     <p><strong>Service Area:</strong> Schuylkill, Luzerne & Northumberland Counties, PA</p>
                 </div>
                 
                 <div class="footer-col">
                     <h4>Get Started</h4>
-                    <a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" class="footer-cta">Book Consultation</a>
-                    <a href="https://agents.ethoslife.com/invite/29ad1" target="_blank" class="footer-cta">Instant Quote</a>
-                    <a href="https://hihello.me/p/1ac94c21-813c-48c0-a270-49f5b2cc31e7" target="_blank" class="footer-cta">Save My Contact</a>
+                    <a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" rel="noopener noreferrer" class="footer-cta" aria-label="Book consultation (opens in new tab)">Book Consultation</a>
+                    <a href="https://agents.ethoslife.com/invite/29ad1" target="_blank" rel="noopener noreferrer" class="footer-cta" aria-label="Instant quote (opens in new tab)">Instant Quote</a>
+                    <a href="https://hihello.me/p/1ac94c21-813c-48c0-a270-49f5b2cc31e7" target="_blank" rel="noopener noreferrer" class="footer-cta" aria-label="Save contact (opens in new tab)">Save My Contact</a>
                 </div>
             </div>
             
@@ -225,10 +230,17 @@
         </div>
     </footer>
 
+    <!-- Update toggleMenu to set aria-expanded state -->
     <script>
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
+
+            const btn = document.querySelector('.mobile-menu-btn');
+            if (btn) {
+                const expanded = navLinks.classList.contains('active');
+                btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+            }
         }
     </script>
 </body>
