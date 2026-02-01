@@ -1,59 +1,144 @@
-<section class="services-menu">
-  <div class="container">
-    <h2 class="services-title">
-      A Comprehensive Menu of Services to Build and Protect Your Legacy
-    </h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <p class="services-subtitle">
-      We provide value across your entire financial life — from wealth accumulation
-      to legacy protection.
-    </p>
+  <title>Services | Latimore Life & Legacy</title>
+  <meta
+    name="description"
+    content="A comprehensive menu of financial protection, life insurance, and legacy planning services for Pennsylvania families and businesses."
+  />
 
-    <div class="services-grid">
-      <div class="service-item">
-        <img src="./assets/icons/wealth.svg" alt="Tax-Advantaged Wealth Accumulation">
-        <h3>Tax-Advantaged Wealth Accumulation</h3>
-      </div>
+  <!-- Styles -->
+  <link rel="stylesheet" href="./styles.css" />
 
-      <div class="service-item">
-        <img src="./assets/icons/shield.svg" alt="Asset Protection and Rollovers">
-        <h3>Asset Protection & Qualified Plan Rollovers</h3>
-      </div>
+  <!-- SEO -->
+  <link
+    rel="canonical"
+    href="https://jackson1989-design.github.io/latimore-life-legacy-site/services.html"
+  />
+</head>
 
-      <div class="service-item">
-        <img src="./assets/icons/education.svg" alt="College Education Funds">
-        <h3>College Education Funds</h3>
-      </div>
+<body>
 
-      <div class="service-item">
-        <img src="./assets/icons/debt.svg" alt="Debt Management and Consolidation">
-        <h3>Debt Management & Consolidation</h3>
-      </div>
+  <!-- ================= HEADER / NAV ================= -->
+  <header class="nav">
+    <div class="nav-container">
+      <a href="./index.html" class="logo">
+        <img src="./logo.png" alt="Latimore Life & Legacy LLC Logo" class="logo-image" />
+      </a>
 
-      <div class="service-item">
-        <img src="./assets/icons/heart.svg" alt="Life Insurance and Living Benefits">
-        <h3>Life Insurance, Living Benefits & Final Expense</h3>
-      </div>
+      <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle navigation">☰</button>
 
-      <div class="service-item">
-        <img src="./assets/icons/estate.svg" alt="Estate and Legacy Planning">
-        <h3>Estate & Legacy Planning</h3>
-      </div>
-
-      <div class="service-item">
-        <img src="./assets/icons/growth.svg" alt="Indexed Growth Accounts">
-        <h3>Indexed Growth (Roth, SEP & Traditional IRA)</h3>
-      </div>
-
-      <div class="service-item">
-        <img src="./assets/icons/home.svg" alt="Mortgage Protection">
-        <h3>Mortgage Protection</h3>
-      </div>
-
-      <div class="service-item">
-        <img src="./assets/icons/business.svg" alt="Business Owner Strategies">
-        <h3>Business Owner Strategies</h3>
-      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./products.html">Products</a></li>
+        <li><a href="./services.html" class="active">Services</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+        <li>
+          <a
+            href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary-small"
+          >
+            Book Consultation
+          </a>
+        </li>
+      </ul>
     </div>
-  </div>
-</section>
+  </header>
+
+  <!-- ================= MAIN ================= -->
+  <main>
+
+    <!-- SERVICES MENU -->
+    <section class="services-menu">
+      <div class="container">
+        <h1 class="services-title">
+          A Comprehensive Menu of Services to Build and Protect Your Legacy
+        </h1>
+
+        <p class="services-subtitle">
+          We provide value across your entire financial life — from wealth accumulation
+          to legacy protection.
+        </p>
+
+        <div class="services-grid">
+
+          <div class="service-item">
+            <img src="./assets/icons/wealth.svg" alt="Tax-Advantaged Wealth Accumulation">
+            <h3>Tax-Advantaged Wealth Accumulation</h3>
+          </div>
+
+          <div class="service-item">
+            <img src="./assets/icons/shield.svg" alt="Asset Protection and Rollovers">
+            <h3>Asset Protection &amp; Qualified Plan Rollovers</h3>
+          </div>
+
+          <div class="service-item">
+            <img src="./assets/icons/education.svg" alt="College Education Funds">
+            <h3>College Education Funds</h3>
+          </div>
+
+          <div class="service-item">
+            <img src="./assets/icons/debt.svg" alt="Debt Management and Consolidation">
+            <h3>Debt Management &amp; Consolidation</h3>
+          </div>
+
+          <div class="service-item">
+            <img src="./assets/icons/heart.svg" alt="Life Insurance and Living Benefits">
+            <h3>Life Insurance, Living Benefits &amp; Final Expense</h3>
+          </div>
+
+          <div class="service-item">
+            <img src="./assets/icons/estate.svg" alt="Estate and Legacy Planning">
+            <h3>Estate &amp; Legacy Planning</h3>
+          </div>
+
+          <div class="service-item">
+            <img src="./assets/icons/growth.svg" alt="Indexed Growth Accounts">
+            <h3>Indexed Growth (Roth, SEP &amp; Traditional IRA)</h3>
+          </div>
+
+          <div class="service-item">
+            <img src="./assets/icons/home.svg" alt="Mortgage Protection">
+            <h3>Mortgage Protection</h3>
+          </div>
+
+          <div class="service-item">
+            <img src="./assets/icons/business.svg" alt="Business Owner Strategies">
+            <h3>Business Owner Strategies</h3>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="container">
+      <p>
+        &copy; <span id="year"></span> Latimore Life &amp; Legacy LLC.
+        Protecting Today. Securing Tomorrow.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ================= SCRIPTS ================= -->
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Analytics -->
+  <script defer src="./js/analytics.js"></script>
+
+</body>
+</html>
