@@ -69,3 +69,44 @@
 }
 
 /* ... keep everything you already have ... */
+.services-menu {
+  padding: 4rem 0;
+  background: #ffffff;
+  text-align: center;
+}
+
+.services-title {
+  font-size: 2.4rem;
+  color: var(--primary-slate);
+  margin-bottom: 1rem;
+}
+
+.services-subtitle {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  color: var(--dark-gray);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+}
+
+.service-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.service-item img {
+  width: 90px;
+  height: 90px;
+  margin-bottom: 1rem;
+}
+
+.service-item h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-slate);
+}
