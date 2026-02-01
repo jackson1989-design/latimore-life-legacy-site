@@ -1,6 +1,6 @@
 /* ============================================
    LATIMORE LIFE & LEGACY LLC - BRAND STYLES
-   Version: 3.3.0 (Corrected)
+   Version: 3.4.0 (Clean Professional - No Emojis)
    Tagline: "Protecting Today. Securing Tomorrow."
    Hashtag: #TheBeatGoesOn
    ============================================ */
@@ -73,12 +73,12 @@ a:hover {
 }
 
 /* ============================================
-   NAVIGATION
+   NAVIGATION - SMALLER LOGO
    ============================================ */
 
 .nav {
     background-color: var(--primary-slate);
-    padding: 1rem 0;
+    padding: 0.75rem 0;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -97,45 +97,12 @@ a:hover {
 .logo {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    color: var(--white);
 }
 
-.logo-shield {
-    width: 50px;
-    height: 60px;
-}
-
-.logo-svg {
-    width: 100%;
-    height: 100%;
-}
-
-/* Heartbeat Animation */
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; }
-}
-
-.heartbeat {
-    animation: pulse 2s ease-in-out infinite;
-}
-
-.logo-text {
-    display: flex;
-    flex-direction: column;
-}
-
-.logo-name {
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-}
-
-.logo-subtitle {
-    font-size: 0.8rem;
-    color: var(--accent-gold);
-    letter-spacing: 1px;
+.logo-image {
+    height: 50px; /* Professional header size */
+    width: auto;
+    display: block;
 }
 
 .mobile-menu-btn {
@@ -157,25 +124,25 @@ a:hover {
 .nav-links a {
     color: var(--white);
     font-weight: 500;
-    padding: 0.5rem 1rem;
-    transition: color 0.3s ease;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
 }
 
 .nav-links a:hover {
-    color: var(--accent-gold);
+    border-bottom-color: var(--accent-gold);
 }
 
 .btn-primary-small {
     background-color: var(--accent-gold);
-    color: var(--primary-slate);
-    padding: 0.5rem 1.5rem;
+    color: var(--white);
+    padding: 0.5rem 1rem;
     border-radius: 5px;
     font-weight: 600;
 }
 
 .btn-primary-small:hover {
     background-color: var(--white);
-    color: var(--primary-slate);
+    color: var(--accent-gold);
 }
 
 /* ============================================
@@ -183,10 +150,9 @@ a:hover {
    ============================================ */
 
 .hero {
-    background: linear-gradient(135deg, var(--primary-slate) 0%, #1a2530 100%);
+    background: linear-gradient(135deg, var(--primary-slate) 0%, #1a252f 100%);
     color: var(--white);
     padding: 4rem 0;
-    min-height: 600px;
 }
 
 .hero-content {
@@ -196,20 +162,11 @@ a:hover {
     align-items: center;
 }
 
-.hero-text h1 {
-    margin-bottom: 1rem;
-}
-
-.gold-text {
-    color: var(--accent-gold);
-}
-
 .hero-tagline {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: var(--accent-gold);
     font-weight: 600;
     margin-bottom: 1rem;
-    font-style: italic;
 }
 
 .hero-subtitle {
@@ -218,11 +175,15 @@ a:hover {
     opacity: 0.9;
 }
 
+.gold-text {
+    color: var(--accent-gold);
+}
+
 .credentials {
     display: flex;
     gap: 1rem;
-    margin-bottom: 2rem;
     flex-wrap: wrap;
+    margin-bottom: 2rem;
 }
 
 .badge {
@@ -241,65 +202,60 @@ a:hover {
 }
 
 .btn {
-    padding: 1rem 2rem;
+    padding: 0.75rem 1.5rem;
     border-radius: 5px;
     font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
     display: inline-block;
-    border: none;
+    transition: all 0.3s ease;
 }
 
 .btn-primary {
     background-color: var(--accent-gold);
-    color: var(--primary-slate);
+    color: var(--white);
 }
 
 .btn-primary:hover {
     background-color: var(--white);
-    color: var(--primary-slate);
+    color: var(--accent-gold);
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(196, 154, 108, 0.3);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 .btn-secondary {
     background-color: transparent;
     color: var(--white);
-    border: 2px solid var(--accent-gold);
+    border: 2px solid var(--white);
 }
 
 .btn-secondary:hover {
-    background-color: var(--accent-gold);
+    background-color: var(--white);
     color: var(--primary-slate);
 }
 
 .hero-image {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+    position: relative;
 }
 
 .profile-photo {
     width: 100%;
     max-width: 400px;
     border-radius: 10px;
-    border: 3px solid var(--accent-gold);
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
 .profile-card {
-    background-color: var(--white);
-    color: var(--primary-slate);
+    background-color: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
     padding: 1.5rem;
     border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    margin-top: 1rem;
+    border: 1px solid rgba(196, 154, 108, 0.3);
 }
 
 .profile-card h2 {
+    color: var(--white);
+    font-size: 1.5rem;
     margin-bottom: 0.5rem;
-    color: var(--primary-slate);
 }
 
 .profile-card .title {
@@ -309,38 +265,25 @@ a:hover {
 }
 
 .profile-card .subtitle {
-    color: var(--dark-gray);
-    font-size: 0.9rem;
+    color: var(--white);
+    opacity: 0.8;
+    margin-bottom: 0;
 }
 
 /* ============================================
-   SECTIONS
+   WHY CHOOSE - TEXT ICONS INSTEAD OF EMOJIS
    ============================================ */
 
-section {
+.why-choose {
     padding: 4rem 0;
+    background-color: var(--light-gray);
 }
 
 .section-title {
     text-align: center;
-    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
     color: var(--primary-slate);
-}
-
-.section-subtitle {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 3rem;
-    color: var(--dark-gray);
-    font-size: 1.1rem;
-}
-
-/* ============================================
-   WHY CHOOSE SECTION
-   ============================================ */
-
-.why-choose {
-    background-color: var(--light-gray);
 }
 
 .features-grid {
@@ -353,32 +296,54 @@ section {
     background-color: var(--white);
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     transition: transform 0.3s ease;
 }
 
 .feature:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
 }
 
-.feature-icon {
-    font-size: 2.5rem;
+.feature-icon-text {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    background-color: rgba(196, 154, 108, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    display: inline-block;
     margin-bottom: 1rem;
+    letter-spacing: 1px;
 }
 
 .feature h3 {
     color: var(--primary-slate);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .feature p {
     color: var(--dark-gray);
+    margin-bottom: 0;
 }
 
 /* ============================================
-   SERVICES SECTION
+   SERVICES - TEXT LABELS INSTEAD OF EMOJIS
    ============================================ */
+
+.services {
+    padding: 4rem 0;
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--dark-gray);
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .services-grid {
     display: grid;
@@ -388,22 +353,28 @@ section {
 }
 
 .service-card {
-    background-color: var(--white);
-    border: 2px solid var(--light-gray);
-    border-radius: 10px;
+    background-color: var(--light-gray);
     padding: 2rem;
+    border-radius: 10px;
+    border-left: 4px solid var(--accent-gold);
     transition: all 0.3s ease;
 }
 
 .service-card:hover {
-    border-color: var(--accent-gold);
-    box-shadow: 0 10px 30px rgba(196, 154, 108, 0.2);
-    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    border-left-width: 8px;
 }
 
-.service-icon {
-    font-size: 3rem;
+.service-icon-text {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--white);
+    background-color: var(--primary-slate);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    display: inline-block;
     margin-bottom: 1rem;
+    letter-spacing: 0.5px;
 }
 
 .service-card h3 {
@@ -412,15 +383,15 @@ section {
 }
 
 .service-card p {
+    margin-bottom: 1rem;
     color: var(--dark-gray);
-    margin-bottom: 0.75rem;
 }
 
 .card-link {
-    display: inline-block;
-    margin-top: 1rem;
     color: var(--accent-gold);
     font-weight: 600;
+    display: inline-block;
+    margin-top: 1rem;
 }
 
 .card-link:hover {
@@ -432,47 +403,85 @@ section {
 }
 
 /* ============================================
-   STORY SECTION
+   FOUNDER STORY - WITH PHOTO GALLERY
    ============================================ */
 
 .story {
+    padding: 4rem 0;
     background-color: var(--light-gray);
 }
 
-.story-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: start;
-}
-
-.story-image img {
-    width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-}
-
-.story-text h2 {
+.section-title-center {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
     color: var(--primary-slate);
-    margin-bottom: 0.5rem;
 }
 
-.story-subhead {
+.story-date {
+    text-align: center;
+    font-size: 1.3rem;
     color: var(--accent-gold);
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 3rem;
 }
 
-.story-text p {
+.story-photos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.story-photo-container {
+    background-color: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.story-photo-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.photo-caption {
+    padding: 1rem;
+    text-align: center;
+    color: var(--primary-slate);
+    font-weight: 600;
+    font-style: italic;
+    margin-bottom: 0;
+}
+
+.story-text-centered {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.story-intro {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-slate);
     margin-bottom: 1.5rem;
-    line-height: 1.8;
 }
 
 .story-highlight {
+    font-size: 1.1rem;
+    color: var(--accent-gold);
+    padding: 1.5rem;
     background-color: rgba(196, 154, 108, 0.1);
-    padding: 1rem;
     border-left: 4px solid var(--accent-gold);
-    margin: 1.5rem 0;
+    margin: 2rem 0;
+}
+
+.story-closing {
+    font-size: 1.1rem;
+    color: var(--primary-slate);
+    text-align: center;
+    margin: 2rem 0;
 }
 
 /* ============================================
@@ -480,14 +489,15 @@ section {
    ============================================ */
 
 .cta-section {
-    background: linear-gradient(135deg, var(--primary-slate) 0%, #1a2530 100%);
+    background: linear-gradient(135deg, var(--primary-slate) 0%, #1a252f 100%);
     color: var(--white);
+    padding: 4rem 0;
     text-align: center;
 }
 
 .cta-section h2 {
+    font-size: 2.5rem;
     margin-bottom: 1rem;
-    color: var(--white);
 }
 
 .cta-subtext {
@@ -497,7 +507,7 @@ section {
 }
 
 /* ============================================
-   FOOTER
+   FOOTER WITH QR CODE
    ============================================ */
 
 .footer {
@@ -508,7 +518,7 @@ section {
 
 .footer-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
 }
@@ -519,21 +529,26 @@ section {
 }
 
 .footer-tagline {
-    color: var(--accent-gold);
-    font-weight: 600;
-    margin-bottom: 1rem;
     font-style: italic;
+    margin-bottom: 1rem;
+    color: var(--accent-gold);
 }
 
-.footer-col p,
+.footer-col p {
+    margin-bottom: 0.75rem;
+    opacity: 0.9;
+}
+
 .footer-col a {
-    color: var(--white);
     display: block;
+    color: var(--white);
     margin-bottom: 0.5rem;
+    opacity: 0.9;
 }
 
 .footer-col a:hover {
     color: var(--accent-gold);
+    opacity: 1;
 }
 
 .social-links {
@@ -543,79 +558,108 @@ section {
 }
 
 .footer-cta {
-    background-color: var(--accent-gold);
-    color: var(--primary-slate);
-    padding: 0.75rem 1.5rem;
+    background-color: rgba(196, 154, 108, 0.2);
+    padding: 0.5rem 1rem;
     border-radius: 5px;
-    font-weight: 600;
-    display: inline-block;
-    margin-bottom: 0.5rem;
+    border: 1px solid var(--accent-gold);
+    text-align: center;
+    margin-bottom: 0.75rem;
 }
 
 .footer-cta:hover {
+    background-color: var(--accent-gold);
+    color: var(--white);
+}
+
+/* QR CODE STYLING */
+.qr-code-container {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.qr-code {
+    width: 120px;
+    height: 120px;
+    display: block;
+    margin: 0 auto 0.5rem;
     background-color: var(--white);
-    color: var(--primary-slate);
+    padding: 0.5rem;
+    border-radius: 8px;
+}
+
+.qr-caption {
+    font-size: 0.85rem;
+    color: var(--accent-gold);
+    font-weight: 600;
+    margin-bottom: 0;
 }
 
 .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    padding-top: 1rem;
+    border-top: 1px solid rgba(196, 154, 108, 0.3);
+    padding-top: 2rem;
     text-align: center;
 }
 
 .disclosure {
     font-size: 0.8rem;
-    opacity: 0.8;
+    opacity: 0.7;
     margin-bottom: 1rem;
-    line-height: 1.6;
+    line-height: 1.4;
 }
 
 /* ============================================
    RESPONSIVE DESIGN
    ============================================ */
 
-@media (max-width: 968px) {
-    .hero-content,
-    .story-content {
-        grid-template-columns: 1fr;
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
     }
     
     .nav-links {
-        position: fixed;
-        top: 70px;
-        right: -100%;
-        width: 70%;
-        height: calc(100vh - 70px);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
         background-color: var(--primary-slate);
         flex-direction: column;
-        padding: 2rem;
-        transition: right 0.3s ease;
-        box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+        gap: 0;
+        padding: 1rem 0;
+        display: none;
     }
     
     .nav-links.active {
-        right: 0;
+        display: flex;
     }
     
-    .mobile-menu-btn {
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .nav-links a {
         display: block;
+        padding: 1rem;
+    }
+    
+    .hero-content {
+        grid-template-columns: 1fr;
     }
     
     h1 {
         font-size: 2rem;
     }
     
-    h2 {
-        font-size: 1.75rem;
+    .logo-image {
+        height: 40px; /* Smaller on mobile */
     }
     
-    .features-grid,
-    .services-grid {
+    .story-photos {
         grid-template-columns: 1fr;
     }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 480px) {
     .container {
         padding: 0 1rem;
     }
@@ -624,12 +668,8 @@ section {
         font-size: 1.75rem;
     }
     
-    .hero {
-        padding: 2rem 0;
-    }
-    
-    section {
-        padding: 2rem 0;
+    .section-title {
+        font-size: 2rem;
     }
     
     .cta-buttons {
@@ -640,8 +680,4 @@ section {
         width: 100%;
         text-align: center;
     }
-    
-    .credentials {
-        flex-direction: column;
-    }
-  }
+}
