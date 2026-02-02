@@ -33,12 +33,11 @@
       <button
         class="mobile-menu-btn"
         type="button"
-        onclick="toggleMenu()"
         aria-label="Toggle navigation menu"
         aria-controls="navLinks"
         aria-expanded="false"
       >
-        ☰
+        Menu
       </button>
 
       <ul class="nav-links" id="navLinks" role="menubar">
@@ -92,7 +91,7 @@
               target="_blank"
               rel="noopener noreferrer"
               class="btn btn-secondary"
-            >Get Instant Quote</a>
+             data-track-name="quote_form_open" data-track-label="instant_quote" data-track-name="quote_form_open" data-track-label="home_hero_quote">Get Instant Quote</a>
           </div>
         </div>
 
@@ -247,7 +246,7 @@
           <p class="story-closing"><strong>Latimore Life &amp; Legacy exists to help families and organizations prepare — because preparedness is everything.</strong></p>
 
           <div class="cta-buttons">
-            <a href="./about.html" class="btn btn-secondary">Read Full Bio</a>
+            <a href="./about.html" class="btn btn-secondary" data-track-name="quote_form_open" data-track-label="instant_quote">Read Full Bio</a>
             <a href="./contact.html" class="btn btn-primary">Work With Me</a>
           </div>
         </div>
@@ -268,13 +267,13 @@
             rel="noopener noreferrer"
             class="btn btn-primary"
           >Book Free Consultation</a>
-          <a href="tel:8568951457" class="btn btn-secondary">Call (856) 895-1457</a>
+          <a href="tel:8568951457" class="btn btn-secondary" data-track-name="quote_form_open" data-track-label="instant_quote">Call (856) 895-1457</a>
           <a
             href="https://agents.ethoslife.com/invite/29ad1"
             target="_blank"
             rel="noopener noreferrer"
             class="btn btn-secondary"
-          >Get Instant Quote</a>
+           data-track-name="quote_form_open" data-track-label="instant_quote" data-track-name="quote_form_open" data-track-label="home_hero_quote">Get Instant Quote</a>
         </div>
       </div>
     </section>
@@ -319,6 +318,7 @@
           <a href="https://agents.ethoslife.com/invite/29ad1" target="_blank" rel="noopener noreferrer" class="footer-cta">Instant Quote</a>
           <a href="https://hihello.me/p/1ac94c21-813c-48c0-a270-49f5b2cc31e7" target="_blank" rel="noopener noreferrer" class="footer-cta">Save My Contact</a>
 
+          <button type="button" class="footer-cta export-analytics" data-export-analytics>Export Activity</button>
           <div class="qr-code-container">
             <!-- If this still breaks, confirm the file exists and matches case exactly. -->
             <img src="./QRCode.png" alt="QR Code - Quick contact for Latimore Life & Legacy" class="qr-code" loading="lazy" />
@@ -340,31 +340,9 @@
   </footer>
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-  <script>
-    function toggleMenu() {
-      const navLinks = document.getElementById("navLinks");
-      const menuBtn = document.querySelector(".mobile-menu-btn");
-      if (!navLinks || !menuBtn) return;
 
-      navLinks.classList.toggle("is-open");
-      menuBtn.setAttribute("aria-expanded", navLinks.classList.contains("is-open") ? "true" : "false");
-    }
-
-    // Close mobile menu after clicking a link (helps UX)
-    (function bindNavClose() {
-      const navLinks = document.getElementById("navLinks");
-      const menuBtn = document.querySelector(".mobile-menu-btn");
-      if (!navLinks || !menuBtn) return;
-
-      navLinks.addEventListener("click", (e) => {
-        const target = e.target;
-        if (!(target instanceof Element)) return;
-        if (target.tagName.toLowerCase() !== "a") return;
-
-        navLinks.classList.remove("is-open");
-        menuBtn.setAttribute("aria-expanded", "false");
-      });
-    })();
-  </script>
+  <script src="./js/config.js" defer></script>
+  <script src="./js/analytics.js" defer></script>
+  <script src="./js/main.js" defer></script>
 </body>
 </html>
