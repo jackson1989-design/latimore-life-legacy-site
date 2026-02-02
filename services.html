@@ -7,17 +7,11 @@
   <title>Services | Latimore Life & Legacy</title>
   <meta
     name="description"
-    content="A comprehensive menu of financial protection, life insurance, and legacy planning services for Pennsylvania families and businesses."
+    content="Comprehensive insurance and legacy planning services for families and business owners in Pennsylvania."
   />
 
-  <!-- Styles -->
+  <!-- Styles (blue theme) -->
   <link rel="stylesheet" href="./styles.css" />
-
-  <!-- SEO -->
-  <link
-    rel="canonical"
-    href="https://jackson1989-design.github.io/latimore-life-legacy-site/services.html"
-  />
 </head>
 
 <body>
@@ -26,10 +20,12 @@
   <header class="nav">
     <div class="nav-container">
       <a href="./index.html" class="logo">
-        <img src="./logo.png" alt="Latimore Life & Legacy LLC Logo" class="logo-image" />
+        <img src="./logo.png" alt="Latimore Life & Legacy LLC" class="logo-image" />
       </a>
 
-      <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle navigation">☰</button>
+      <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle navigation">
+        ☰
+      </button>
 
       <ul class="nav-links" id="navLinks">
         <li><a href="./index.html">Home</a></li>
@@ -54,7 +50,7 @@
   <!-- ================= MAIN ================= -->
   <main>
 
-    <!-- SERVICES MENU -->
+    <!-- SERVICES MENU (CONTENT GOES HERE) -->
     <section class="services-menu">
       <div class="container">
         <h1 class="services-title">
@@ -69,47 +65,38 @@
         <div class="services-grid">
 
           <div class="service-item">
-            <img src="./assets/icons/wealth.svg" alt="Tax-Advantaged Wealth Accumulation">
             <h3>Tax-Advantaged Wealth Accumulation</h3>
           </div>
 
           <div class="service-item">
-            <img src="./assets/icons/shield.svg" alt="Asset Protection and Rollovers">
             <h3>Asset Protection &amp; Qualified Plan Rollovers</h3>
           </div>
 
           <div class="service-item">
-            <img src="./assets/icons/education.svg" alt="College Education Funds">
             <h3>College Education Funds</h3>
           </div>
 
           <div class="service-item">
-            <img src="./assets/icons/debt.svg" alt="Debt Management and Consolidation">
             <h3>Debt Management &amp; Consolidation</h3>
           </div>
 
           <div class="service-item">
-            <img src="./assets/icons/heart.svg" alt="Life Insurance and Living Benefits">
             <h3>Life Insurance, Living Benefits &amp; Final Expense</h3>
           </div>
 
           <div class="service-item">
-            <img src="./assets/icons/estate.svg" alt="Estate and Legacy Planning">
             <h3>Estate &amp; Legacy Planning</h3>
           </div>
 
           <div class="service-item">
-            <img src="./assets/icons/growth.svg" alt="Indexed Growth Accounts">
             <h3>Indexed Growth (Roth, SEP &amp; Traditional IRA)</h3>
           </div>
 
           <div class="service-item">
-            <img src="./assets/icons/home.svg" alt="Mortgage Protection">
             <h3>Mortgage Protection</h3>
           </div>
 
           <div class="service-item">
-            <img src="./assets/icons/business.svg" alt="Business Owner Strategies">
             <h3>Business Owner Strategies</h3>
           </div>
 
@@ -130,6 +117,8 @@
   </footer>
 
   <!-- ================= SCRIPTS ================= -->
+
+  <!-- Nav toggle -->
   <script>
     function toggleMenu() {
       document.getElementById("navLinks").classList.toggle("active");
@@ -137,7 +126,7 @@
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 
-  <!-- Analytics -->
+  <!-- ✅ ANALYTICS (GOES HERE — LAST) -->
   <script defer src="./js/analytics.js"></script>
 
 </body>
