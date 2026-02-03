@@ -33,6 +33,7 @@ body {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    overflow: visible; /* allows dropdown to render cleanly */
 }
 
 .nav-container {
@@ -42,6 +43,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    position: relative; /* CRITICAL: anchors mobile dropdown */
 }
 
 .logo {
@@ -77,7 +80,9 @@ body {
 .nav-links a {
     color: var(--white);
     text-decoration: none;
-    transition: color 0.3s;
+    transition: color 0.3s, background 0.3s;
+    display: inline-block;
+    padding: 0.35rem 0;
 }
 
 .nav-links a:hover {
@@ -90,6 +95,12 @@ body {
     padding: 0.5rem 1rem;
     border-radius: 5px;
     font-weight: 600;
+    text-decoration: none;
+}
+
+.btn-primary-small:hover {
+    background: var(--gold-light);
+    color: var(--navy);
 }
 
 .btn-quote-small {
@@ -99,6 +110,11 @@ body {
     border-radius: 5px;
     font-weight: 700;
     box-shadow: 0 0 15px rgba(197, 162, 77, 0.4);
+    text-decoration: none;
+}
+
+.btn-quote-small:hover {
+    filter: brightness(1.03);
 }
 
 .mobile-menu-btn {
@@ -108,6 +124,16 @@ body {
     color: var(--white);
     font-size: 1.5rem;
     cursor: pointer;
+
+    padding: 0.5rem 0.75rem; /* better tap target */
+    border-radius: 8px;
+    line-height: 1;
+}
+
+.mobile-menu-btn:focus,
+.mobile-menu-btn:focus-visible {
+    outline: 2px solid var(--gold-light);
+    outline-offset: 3px;
 }
 
 /* Hero */
@@ -532,41 +558,69 @@ body {
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
+    /* NAV (fixed + polished) */
     .nav-links {
         display: none;
         flex-direction: column;
         position: absolute;
-        top: 100%;
+        top: calc(100% + 0.5rem);
         left: 0;
         right: 0;
         background: var(--navy);
-        padding: 1rem;
+        padding: 0.75rem;
+        border-radius: 12px;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+        gap: 0.25rem;
     }
-    
+
     .nav-links.active {
         display: flex;
     }
-    
+
+    .nav-links li {
+        width: 100%;
+    }
+
+    .nav-links a {
+        width: 100%;
+        padding: 0.75rem;
+        border-radius: 10px;
+        display: block;
+    }
+
+    .nav-links a:hover {
+        background: rgba(255,255,255,0.08);
+        color: var(--gold-light);
+    }
+
+    .nav-links .btn-primary-small,
+    .nav-links .btn-quote-small {
+        width: 100%;
+        text-align: center;
+        padding: 0.85rem 0.75rem;
+    }
+
     .mobile-menu-btn {
         display: block;
     }
-    
+
+    /* Layout */
     .hero-content {
         grid-template-columns: 1fr;
     }
-    
+
     .hero h1 {
         font-size: 2rem;
     }
-    
+
     .services-grid-ten {
         grid-template-columns: 1fr;
     }
-    
+
     .story-images {
         grid-template-columns: 1fr;
     }
-    
+
     .about-intro,
     .story-with-images,
     .contact-grid {
@@ -801,104 +855,8 @@ body {
     .comparison-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .edu-section h2 {
         font-size: 1.5rem;
     }
-}
-/* ==============================
-   NAV: mobile dropdown stability + a11y
-   Paste at END of styles.css
-   ============================== */
-
-/* Anchor absolute dropdown to the nav container */
-.nav-container {
-  position: relative; /* critical: makes mobile dropdown anchor correctly */
-}
-
-/* Make nav links more tappable and consistent */
-.nav-links a {
-  display: inline-block;
-  padding: 0.35rem 0; /* desktop baseline */
-}
-
-/* Improve mobile menu button tap target + focus */
-.mobile-menu-btn {
-  padding: 0.5rem 0.75rem;
-  border-radius: 8px;
-  line-height: 1;
-}
-
-.mobile-menu-btn:focus,
-.mobile-menu-btn:focus-visible {
-  outline: 2px solid var(--gold-light);
-  outline-offset: 3px;
-}
-
-/* Ensure nav CTAs look right in the nav */
-.nav .btn-primary-small,
-.nav .btn-quote-small {
-  text-decoration: none;
-  border: none;
-}
-
-.nav .btn-primary-small:hover {
-  background: var(--gold-light);
-  color: var(--navy);
-}
-
-.nav .btn-quote-small:hover {
-  filter: brightness(1.03);
-}
-
-/* Mobile dropdown: clean stacking, spacing, tap targets */
-@media (max-width: 768px) {
-  .nav {
-    overflow: visible; /* ensure dropdown can render outside nav */
-  }
-
-  .nav-links {
-    /* keep your existing behavior but make it consistent */
-    display: none;
-    flex-direction: column;
-    gap: 0.25rem;
-
-    position: absolute;
-    top: calc(100% + 0.5rem); /* small offset under nav */
-    left: 0;
-    right: 0;
-
-    background: var(--navy);
-    border-radius: 12px;
-    padding: 0.75rem;
-
-    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-
-  .nav-links li {
-    width: 100%;
-  }
-
-  .nav-links a {
-    width: 100%;
-    padding: 0.75rem 0.75rem; /* big tap targets */
-    border-radius: 10px;
-  }
-
-  .nav-links a:hover {
-    background: rgba(255,255,255,0.08);
-    color: var(--gold-light);
-  }
-
-  /* Keep CTA buttons clearly differentiated */
-  .nav-links .btn-primary-small,
-  .nav-links .btn-quote-small {
-    width: 100%;
-    text-align: center;
-    padding: 0.85rem 0.75rem;
-  }
 }
