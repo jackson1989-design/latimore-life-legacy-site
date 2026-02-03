@@ -913,3 +913,9 @@ body {
   margin-bottom: 1.5rem;
   color: var(--navy);
 }
+.services-grid-ten {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    margin: 3rem 0;
+}
