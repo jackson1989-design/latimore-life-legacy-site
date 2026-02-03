@@ -806,3 +806,99 @@ body {
         font-size: 1.5rem;
     }
 }
+/* ==============================
+   NAV: mobile dropdown stability + a11y
+   Paste at END of styles.css
+   ============================== */
+
+/* Anchor absolute dropdown to the nav container */
+.nav-container {
+  position: relative; /* critical: makes mobile dropdown anchor correctly */
+}
+
+/* Make nav links more tappable and consistent */
+.nav-links a {
+  display: inline-block;
+  padding: 0.35rem 0; /* desktop baseline */
+}
+
+/* Improve mobile menu button tap target + focus */
+.mobile-menu-btn {
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  line-height: 1;
+}
+
+.mobile-menu-btn:focus,
+.mobile-menu-btn:focus-visible {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 3px;
+}
+
+/* Ensure nav CTAs look right in the nav */
+.nav .btn-primary-small,
+.nav .btn-quote-small {
+  text-decoration: none;
+  border: none;
+}
+
+.nav .btn-primary-small:hover {
+  background: var(--gold-light);
+  color: var(--navy);
+}
+
+.nav .btn-quote-small:hover {
+  filter: brightness(1.03);
+}
+
+/* Mobile dropdown: clean stacking, spacing, tap targets */
+@media (max-width: 768px) {
+  .nav {
+    overflow: visible; /* ensure dropdown can render outside nav */
+  }
+
+  .nav-links {
+    /* keep your existing behavior but make it consistent */
+    display: none;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    position: absolute;
+    top: calc(100% + 0.5rem); /* small offset under nav */
+    left: 0;
+    right: 0;
+
+    background: var(--navy);
+    border-radius: 12px;
+    padding: 0.75rem;
+
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links a {
+    width: 100%;
+    padding: 0.75rem 0.75rem; /* big tap targets */
+    border-radius: 10px;
+  }
+
+  .nav-links a:hover {
+    background: rgba(255,255,255,0.08);
+    color: var(--gold-light);
+  }
+
+  /* Keep CTA buttons clearly differentiated */
+  .nav-links .btn-primary-small,
+  .nav-links .btn-quote-small {
+    width: 100%;
+    text-align: center;
+    padding: 0.85rem 0.75rem;
+  }
+}
