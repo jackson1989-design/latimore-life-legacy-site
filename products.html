@@ -1,97 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products - Latimore Life & Legacy</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <nav class="nav">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <div class="logo-icon">L</div>
-                <span>Latimore Life & Legacy</span>
-            </a>
-            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="education.html">Education</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" class="btn-primary-small">Book Consultation</a></li>
-            </ul>
-        </div>
-    </nav>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <section class="page-header">
-        <div class="container">
-            <h1>Financial Protection Products</h1>
-            <p class="page-subtitle">Life insurance, annuities, and protection strategies</p>
-        </div>
-    </section>
+  <title>Products | Life Insurance &amp; Annuities | Latimore Life &amp; Legacy LLC</title>
 
-    <section class="products-content">
-        <div class="container">
-            
-            <div class="product-category">
-                <h2>Life Insurance</h2>
-                
-                <div class="product-item">
-                    <h3>Term Life Insurance</h3>
-                    <p>Maximum protection for minimum cost. Ideal for young families, mortgage protection, and temporary needs (10-30 year terms).</p>
-                    <a href="https://agents.ethoslife.com/invite/29ad1" target="_blank" class="btn btn-secondary">Get Instant Quote</a>
-                </div>
-                
-                <div class="product-item">
-                    <h3>Whole Life Insurance</h3>
-                    <p>Permanent coverage with guaranteed cash value growth. Level premiums, predictable guarantees, dividend potential with mutual companies.</p>
-                </div>
-                
-                <div class="product-item">
-                    <h3>Indexed Universal Life (IUL)</h3>
-                    <p>Permanent protection with market-linked growth potential and downside protection. Flexible premiums, tax-free policy loans, living benefits riders.</p>
-                </div>
-            </div>
+  <!-- Primary SEO -->
+  <link rel="canonical" href="https://jackson1989-design.github.io/latimore-life-legacy-site/products.html" />
+  <meta
+    name="description"
+    content="Explore protection-first products from Latimore Life & Legacy LLC: term life, whole life, indexed universal life (IUL), fixed annuities, and fixed index annuities (FIA) for Pennsylvania families and local organizations."
+  />
+  <meta name="robots" content="index,follow" />
 
-            <div class="product-category">
-                <h2>Annuities</h2>
-                
-                <div class="product-item">
-                    <h3>Fixed Annuities</h3>
-                    <p>Guaranteed interest rates and principal protection. Safe-money accumulation vehicle for conservative savers.</p>
-                </div>
-                
-                <div class="product-item">
-                    <h3>Fixed Index Annuities (FIA)</h3>
-                    <p>Market-linked growth potential with downside protection. No direct market risk, guaranteed income options, tax-deferred growth.</p>
-                </div>
-            </div>
+  <!-- OpenGraph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Latimore Life & Legacy LLC" />
+  <meta property="og:title" content="Products | Life Insurance & Annuities | Latimore Life & Legacy LLC" />
+  <meta
+    property="og:description"
+    content="Term, whole, and indexed universal life (IUL) plus fixed and fixed index annuities (FIA). Protection-first strategies for Schuylkill, Luzerne & Northumberland Counties, PA."
+  />
+  <meta property="og:url" content="https://jackson1989-design.github.io/latimore-life-legacy-site/products.html" />
+  <meta property="og:image" content="https://jackson1989-design.github.io/latimore-life-legacy-site/jackson-headshot.jpg" />
 
-            <div class="cta-section-inline">
-                <h3>Ready to Explore Your Options?</h3>
-                <div class="cta-buttons">
-                    <a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" class="btn btn-primary">Book Free Consultation</a>
-                    <a href="contact.html" class="btn btn-secondary">Contact Me</a>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Products | Life Insurance & Annuities | Latimore Life & Legacy LLC" />
+  <meta
+    name="twitter:description"
+    content="Explore term life, whole life, IUL, fixed annuities, and FIA solutions built around protection-first planning."
+  />
+  <meta name="twitter:image" content="https://jackson1989-design.github.io/latimore-life-legacy-site/jackson-headshot.jpg" />
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-bottom">
-                <p>&copy; 2026 Latimore Life & Legacy LLC | PA DOI #1268820 | (856) 895-1457</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
+  <!-- Schema (Products page: itemized solution menu) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Products | Latimore Life & Legacy LLC",
+    "url": "https://jackson1989-design.github.io/latimore-life-legacy-site/products.html",
+    "about": [
+      { "@type": "Thing", "name": "Life insurance" },
+      { "@type": "Thing", "name": "Annuities" },
+      { "@type": "Thing", "name": "Indexed Universal Life (IUL)" },
+      { "@type": "Thing", "name": "Fixed Index Annuities (FIA)" }
+    ],
+    "provider": {
+      "@type": "InsuranceAgency",
+      "name": "Latimore Life & Legacy LLC",
+      "url": "https://jackson1989-design.github.io/latimore-life-legacy-site/",
+      "telephone": "+1-856-895-1457",
+      "email": "jackson1989@latimorelegacy.com",
+      "areaServed": [
+        "Schuylkill County, PA",
+        "Luzerne County, PA",
+        "Northumberland County, PA"
+      ],
+      "sameAs": [
+        "https://www.instagram.com/jacksonlatimore.global",
+        "https://www.linkedin.com/in/startwithjacksongfi"
+      ]
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "name": "Financial Protection Products",
+      "itemListOrder": "https://schema.org/ItemListOrderAscending",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Term Life Insurance",
+          "url": "https://jackson1989-design.github.io/latimore-life-legacy-site/products.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Whole Life Insurance",
+          "url": "https://jackson1989-design.github.io/latimore-life-legacy-site/products.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Indexed Universal Life (IUL)",
+          "url": "https://jackson1989-design.github.io/latimore-life-legacy-site/products.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Fixed Annuities",
+          "url": "https://jackson1989-design.github.io/latimore-life-legacy-site/products.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "Fixed Index Annuities (FIA)",
+          "url": "https://jackson1989-design.github.io/latimore-life-legacy-site/products.html"
         }
-    </script>
+      ]
+    }
+  }
+  </script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">L</div>
+        <span>Latimore Life &amp; Legacy</span>
+      </a>
+
+      <button
+        class="mobile-menu-btn"
+        type="button"
+        onclick="toggleMenu()"
+        aria-controls="navLinks"
+        aria-expanded="false"
+        aria-label="Toggle navigation menu"
+      >
+        Menu
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li>
+          <a
+            href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary-small"
+          >Book Consultation</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="page-header">
+    <div class="container">
+      <h1>Financial Protection Products</h1>
+      <p class="page-subtitle">Life insurance, annuities, and protection strategies</p>
+    </div>
+  </section>
+
+  <section class="products-content">
+    <div class="container">
+
+      <div class="product-category">
+        <h2>Life Insurance</h2>
+
+        <div class="product-item">
+          <h3>Term Life Insurance</h3>
+          <p>Maximum protection for minimum cost. Ideal for young families, mortgage protection, and temporary needs (10-30 year terms).</p>
+          <a
+            href="https://agents.ethoslife.com/invite/29ad1"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-secondary"
+          >Get Instant Quote</a>
+        </div>
+
+        <div class="product-item">
+          <h3>Whole Life Insurance</h3>
+          <p>Permanent coverage with guaranteed cash value growth. Level premiums, predictable guarantees, dividend potential with mutual companies.</p>
+        </div>
+
+        <div class="product-item">
+          <h3>Indexed Universal Life (IUL)</h3>
+          <p>Permanent protection with market-linked growth potential and downside protection. Flexible premiums, tax-free policy loans, living benefits riders.</p>
+        </div>
+      </div>
+
+      <div class="product-category">
+        <h2>Annuities</h2>
+
+        <div class="product-item">
+          <h3>Fixed Annuities</h3>
+          <p>Guaranteed interest rates and principal protection. Safe-money accumulation vehicle for conservative savers.</p>
+        </div>
+
+        <div class="product-item">
+          <h3>Fixed Index Annuities (FIA)</h3>
+          <p>Market-linked growth potential with downside protection. No direct market risk, guaranteed income options, tax-deferred growth.</p>
+        </div>
+      </div>
+
+      <div class="cta-section-inline">
+        <h3>Ready to Explore Your Options?</h3>
+        <div class="cta-buttons">
+          <a
+            href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary"
+          >Book Free Consultation</a>
+          <a href="contact.html" class="btn btn-secondary">Contact Me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Latimore Life &amp; Legacy LLC | PA DOI #1268820 | (856) 895-1457</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById('navLinks');
+      const btn = document.querySelector('.mobile-menu-btn');
+
+      navLinks.classList.toggle('active');
+
+      const expanded = navLinks.classList.contains('active');
+      btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    }
+  </script>
 </body>
 </html>
