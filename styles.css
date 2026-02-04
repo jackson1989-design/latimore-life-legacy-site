@@ -61,3 +61,9 @@
     grid-template-columns: repeat(5, 1fr);
   }
 }
+.about-content,
+.products-content,
+.services-detailed,
+.contact-content {
+    padding: 4rem 0;
+}
