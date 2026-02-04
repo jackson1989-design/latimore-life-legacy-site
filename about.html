@@ -1,30 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  ...
-  <link rel="stylesheet" href="styles.css" />
-  <script defer src="js/nav.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Jackson M. Latimore Sr. - Latimore Life & Legacy</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-  <nav class="nav">
-    <div class="nav-container">
-      <a href="index.html" class="logo">
-        <div class="logo-icon">L</div>
-        <span>Latimore Life &amp; Legacy</span>
-      </a>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">L</div>
+                <span>Latimore Life & Legacy</span>
+            </a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" class="btn-primary-small">Book Consultation</a></li>
+            </ul>
+        </div>
+    </nav>
 
-      <button
-        class="mobile-menu-btn"
-        id="menuBtn"
-        type="button"
-        aria-controls="navLinks"
-        aria-expanded="false"
-        aria-label="Toggle navigation menu"
-      >
-        Menu
-      </button>
+    <section class="page-header">
+        <div class="container">
+            <h1>About Jackson M. Latimore Sr.</h1>
+            <p class="page-subtitle">Father | Survivor | Leader</p>
+        </div>
+    </section>
 
-      <ul class="nav-links" id="navLinks">
-        ...
-      </ul>
-    </div>
-  </nav>
+    <section class="about-content">
+        <div class="container">
+            <div class="about-intro">
+                <img src="jackson-headshot.jpg" alt="Jackson M. Latimore Sr." class="about-photo">
+                <div class="about-text">
+                    <h2>The Man Behind the Mission</h2>
+                    <p>I'm Jackson M. Latimore Sr., founder and CEO of Latimore Life & Legacy LLC. I help Pennsylvania families, professionals, and local organizations build financial protection strategies that actually work when life throws curveballs.</p>
+                    
+                    <p>I'm not your typical insurance agent. I'm a father to three children - Jackson Jr., Corinne, and Jaclyn. I'm a youth sports coach. I'm a survivor of sudden cardiac arrest who understands vulnerability firsthand.</p>
+                </div>
+            </div>
+
+            <div class="credentials-section">
+                <h2>Education & Professional Credentials</h2>
+                
+                <div class="credential-block">
+                    <h3>Master of Business Administration (In Progress)</h3>
+                    <p><strong>Focus Areas:</strong> Legal Aspects of Business Decisions, Business Research and Decision Making, Accounting For Management</p>
+                </div>
+                
+                <div class="credential-block">
+                    <h3>Master of Public Administration</h3>
+                    <p>East Stroudsburg University of Pennsylvania</p>
+                    <p><strong>Focus Areas:</strong> Budgeting & Finance, Organizational Leadership, Organizational Behavior, Organizational Control Systems, Public Personnel Administration</p>
+                </div>
+                
+                <div class="credential-block">
+                    <h3>Bachelor of Arts in Political Science</h3>
+                    <p>East Stroudsburg University of Pennsylvania</p>
+                    <p><strong>Focus Areas:</strong> Administrative Law, Business Law, Budgeting & Finance, Emergency Management Intern Monroe County</p>
+                </div>
+                
+                <div class="license-info">
+                    <p><strong>Pennsylvania Insurance License:</strong> DOI #1268820 | NIPR #21638507</p>
+                    <p><strong>Professional Affiliation:</strong> Independent Contractor with <a href="https://www.globalfinancialimpact.com" target="_blank" style="color: var(--gold); text-decoration: none;">Global Financial Impact</a></p>
+                </div>
+            </div>
+
+            <div class="story-section">
+                <h2>December 7, 2010: The Day That Changed Everything</h2>
+                
+                <div class="story-with-images">
+                    <div class="story-images-side">
+                        <img src="hospital-recovery.jpg" alt="Recovering at Pocono Medical Center">
+                        <p class="caption">Recovering at Pocono Medical Center, December 2010</p>
+                    </div>
+                    
+                    <div class="story-text-main">
+                        <p>During a college basketball game, my heart stopped. I went into sudden cardiac arrest on the court at ESU's Koehler Fieldhouse. I was 22 years old.</p>
+                        
+                        <p>I survived because two athletic trainers, Wendy Dietrich and Colleen Shotwell, along with EMT Douglas Shaffer, had immediate access to an Automated External Defibrillator (AED). They shocked my heart back to life and administered CPR until the ambulance arrived.</p>
+                        
+                        <p>That AED was there because of the Gregory W. Moyer Defibrillator Fund - a nonprofit created after Greg Moyer, a 15-year-old Notre Dame basketball player, died of sudden cardiac arrest in 2000. His family's advocacy placed AEDs in schools and public buildings throughout Monroe County, including ESU.</p>
+                        
+                        <p><strong>Their preparation saved my life.</strong></p>
+                    </div>
+                </div>
+                
+                <div class="news-coverage">
+                    <img src="news-headline.jpg" alt="Pocono Record coverage" class="news-image">
+                    <p class="news-caption">Local news coverage: "Defibrillator saves basketball player at ESU"</p>
+                </div>
+                
+                <div class="story-lesson">
+                    <h3>What I Learned</h3>
+                    <p>That experience taught me that preparedness is everything. Financial protection isn't about selling policies - it's about ensuring families have what they need when the unexpected happens.</p>
+                    
+                    <p>Today, I have three children. I coach youth sports in the same Pennsylvania counties where I grew up. And I help families build financial safety nets so they're prepared when life throws its worst at them.</p>
+                </div>
+            </div>
+
+            <div class="mission">
+                <h2>My Mission</h2>
+                <p>Latimore Life & Legacy exists to help families prepare financially, just as that AED prepared the gym to save my life. I work with working families, professionals, and business owners across Schuylkill, Luzerne, and Northumberland Counties.</p>
+                
+                <p>I bring the analytical skills of my MBA training, the public service mindset from my MPA, and the lived experience of someone who knows vulnerability isn't theoretical.</p>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" class="btn btn-primary">Work With Me</a>
+                <a href="contact.html" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+                <div class="footer-bottom">
+                    <div class="social-links" style="justify-content: center; margin-bottom: 1rem;">
+                        <a href="https://www.facebook.com/LatimoreLegacyLLC" target="_blank">Facebook</a>
+                        <a href="https://www.instagram.com/jacksonlatimore.global" target="_blank">Instagram</a>
+                        <a href="https://www.linkedin.com/in/startwithjacksongfi" target="_blank">LinkedIn</a>
+                    </div>
+                    <p>&copy; 2026 Latimore Life & Legacy LLC | PA DOI #1268820 | (856) 895-1457</p>
+                </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

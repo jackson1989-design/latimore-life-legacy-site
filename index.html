@@ -1,581 +1,225 @@
-import React, { useState, useEffect } from 'react';
-import { Users, UserPlus, TrendingUp, DollarSign, Calendar, Phone, Mail, Filter, Search, Plus, Edit2, Trash2, Eye, CheckCircle, Clock, AlertCircle } from 'lucide-react';
-
-export default function GFICRM() {
-  const [activeTab, setActiveTab] = useState('dashboard');
-  const [leads, setLeads] = useState([]);
-  const [agents, setAgents] = useState([]);
-  const [activities, setActivities] = useState([]);
-  const [showAddModal, setShowAddModal] = useState(false);
-  const [modalType, setModalType] = useState('');
-
-  // Load data from storage on mount
-  useEffect(() => {
-    loadData();
-  }, []);
-
-  const loadData = async () => {
-    try {
-      const leadsData = await window.storage.get('crm-leads');
-      const agentsData = await window.storage.get('crm-agents');
-      const activitiesData = await window.storage.get('crm-activities');
-      
-      if (leadsData) setLeads(JSON.parse(leadsData.value));
-      if (agentsData) setAgents(JSON.parse(agentsData.value));
-      if (activitiesData) setActivities(JSON.parse(activitiesData.value));
-    } catch (error) {
-      // Initialize with sample data if nothing exists
-      const sampleLeads = [
-        { id: 1, name: 'John Smith', email: 'john@email.com', phone: '215-555-0100', status: 'new', product: 'life-insurance', value: 50000, createdDate: '2025-11-10', lastContact: '2025-11-15' },
-        { id: 2, name: 'Sarah Johnson', email: 'sarah@email.com', phone: '215-555-0101', status: 'contacted', product: 'annuity', value: 150000, createdDate: '2025-11-12', lastContact: '2025-11-16' },
-        { id: 3, name: 'Mike Davis', email: 'mike@email.com', phone: '215-555-0102', status: 'qualified', product: 'life-insurance', value: 75000, createdDate: '2025-11-08', lastContact: '2025-11-14' }
-      ];
-      
-      const sampleAgents = [
-        { id: 1, name: 'Agent Recruit 1', email: 'recruit1@email.com', phone: '215-555-0200', status: 'interested', source: 'facebook', createdDate: '2025-11-14', licensed: false },
-        { id: 2, name: 'Agent Recruit 2', email: 'recruit2@email.com', phone: '215-555-0201', status: 'licensed', source: 'referral', createdDate: '2025-11-10', licensed: true }
-      ];
-
-      setLeads(sampleLeads);
-      setAgents(sampleAgents);
-      
-      await window.storage.set('crm-leads', JSON.stringify(sampleLeads));
-      await window.storage.set('crm-agents', JSON.stringify(sampleAgents));
-    }
-  };
-
-  const saveLeads = async (updatedLeads) => {
-    setLeads(updatedLeads);
-    await window.storage.set('crm-leads', JSON.stringify(updatedLeads));
-  };
-
-  const saveAgents = async (updatedAgents) => {
-    setAgents(updatedAgents);
-    await window.storage.set('crm-agents', JSON.stringify(updatedAgents));
-  };
-
-  const addLead = async (leadData) => {
-    const newLead = {
-      id: Date.now(),
-      ...leadData,
-      createdDate: new Date().toISOString().split('T')[0],
-      lastContact: new Date().toISOString().split('T')[0]
-    };
-    await saveLeads([...leads, newLead]);
-  };
-
-  const addAgent = async (agentData) => {
-    const newAgent = {
-      id: Date.now(),
-      ...agentData,
-      createdDate: new Date().toISOString().split('T')[0],
-      licensed: false
-    };
-    await saveAgents([...agents, newAgent]);
-  };
-
-  const updateLeadStatus = async (leadId, newStatus) => {
-    const updated = leads.map(lead =>
-      lead.id === leadId ? { ...lead, status: newStatus, lastContact: new Date().toISOString().split('T')[0] } : lead
-    );
-    await saveLeads(updated);
-  };
-
-  const deleteLead = async (leadId) => {
-    await saveLeads(leads.filter(lead => lead.id !== leadId));
-  };
-
-  // Dashboard metrics
-  const metrics = {
-    totalLeads: leads.length,
-    newLeads: leads.filter(l => l.status === 'new').length,
-    activeLeads: leads.filter(l => l.status === 'contacted' || l.status === 'qualified').length,
-    closedLeads: leads.filter(l => l.status === 'closed').length,
-    totalAgents: agents.length,
-    activeAgents: agents.filter(a => a.licensed).length,
-    pipelineValue: leads.reduce((sum, l) => sum + (l.value || 0), 0),
-    conversionRate: leads.length > 0 ? ((leads.filter(l => l.status === 'closed').length / leads.length) * 100).toFixed(1) : 0
-  };
-
-  const getStatusColor = (status) => {
-    const colors = {
-      new: 'bg-blue-100 text-blue-800',
-      contacted: 'bg-yellow-100 text-yellow-800',
-      qualified: 'bg-purple-100 text-purple-800',
-      closed: 'bg-green-100 text-green-800',
-      lost: 'bg-red-100 text-red-800',
-      interested: 'bg-blue-100 text-blue-800',
-      licensed: 'bg-green-100 text-green-800',
-      inactive: 'bg-gray-100 text-gray-800'
-    };
-    return colors[status] || 'bg-gray-100 text-gray-800';
-  };
-
-  const AddLeadModal = ({ onClose, onAdd }) => {
-    const [formData, setFormData] = useState({
-      name: '',
-      email: '',
-      phone: '',
-      product: 'life-insurance',
-      value: '',
-      status: 'new',
-      notes: ''
-    });
-
-    const handleSubmit = () => {
-      onAdd(formData);
-      onClose();
-    };
-
-    return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-        <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-          <div className="p-6 border-b">
-            <h3 className="text-2xl font-bold text-gray-900">Add New Lead</h3>
-          </div>
-          <div className="p-6 space-y-4">
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
-                <input
-                  type="text"
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-600 focus:border-transparent"
-                  value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Email *</label>
-                <input
-                  type="email"
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-600 focus:border-transparent"
-                  value={formData.email}
-                  onChange={(e) => setFormData({...formData, email: e.target.value})}
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Phone *</label>
-                <input
-                  type="tel"
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-600 focus:border-transparent"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Product Interest</label>
-                <select
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-600 focus:border-transparent"
-                  value={formData.product}
-                  onChange={(e) => setFormData({...formData, product: e.target.value})}
-                >
-                  <option value="life-insurance">Life Insurance</option>
-                  <option value="annuity">Annuity</option>
-                  <option value="business">Business Solutions</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Estimated Value ($)</label>
-                <input
-                  type="number"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-600 focus:border-transparent"
-                  value={formData.value}
-                  onChange={(e) => setFormData({...formData, value: parseInt(e.target.value) || 0})}
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Status</label>
-                <select
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-600 focus:border-transparent"
-                  value={formData.status}
-                  onChange={(e) => setFormData({...formData, status: e.target.value})}
-                >
-                  <option value="new">New</option>
-                  <option value="contacted">Contacted</option>
-                  <option value="qualified">Qualified</option>
-                  <option value="closed">Closed</option>
-                  <option value="lost">Lost</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">Notes</label>
-              <textarea
-                rows="3"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-600 focus:border-transparent"
-                value={formData.notes}
-                onChange={(e) => setFormData({...formData, notes: e.target.value})}
-              />
-            </div>
-          </div>
-          <div className="p-6 border-t flex justify-end gap-4">
-            <button
-              onClick={onClose}
-              className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              Cancel
-            </button>
-            <button
-              onClick={handleSubmit}
-              className="px-6 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
-            >
-              Add Lead
-            </button>
-          </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latimore Life & Legacy - Financial Protection for Pennsylvania Families</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">L</div>
+                <span>Latimore Life & Legacy</span>
+            </a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" class="btn-primary-small">Book Consultation</a></li>
+                <li><a href="https://agents.ethoslife.com/invite/29ad1" target="_blank" class="btn-quote-small">Get Quote</a></li>
+            </ul>
         </div>
-      </div>
-    );
-  };
+    </nav>
 
-  const AddAgentModal = ({ onClose, onAdd }) => {
-    const [formData, setFormData] = useState({
-      name: '',
-      email: '',
-      phone: '',
-      source: 'website',
-      status: 'interested',
-      notes: ''
-    });
-
-    const handleSubmit = () => {
-      onAdd(formData);
-      onClose();
-    };
-
-    return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-        <div className="bg-white rounded-xl max-w-2xl w-full">
-          <div className="p-6 border-b">
-            <h3 className="text-2xl font-bold text-gray-900">Add Agent Recruit</h3>
-          </div>
-          <div className="p-6 space-y-4">
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
-                <input
-                  type="text"
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-600 focus:border-transparent"
-                  value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Email *</label>
-                <input
-                  type="email"
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-600 focus:border-transparent"
-                  value={formData.email}
-                  onChange={(e) => setFormData({...formData, email: e.target.value})}
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Phone *</label>
-                <input
-                  type="tel"
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-600 focus:border-transparent"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Source</label>
-                <select
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-600 focus:border-transparent"
-                  value={formData.source}
-                  onChange={(e) => setFormData({...formData, source: e.target.value})}
-                >
-                  <option value="website">Website</option>
-                  <option value="facebook">Facebook</option>
-                  <option value="referral">Referral</option>
-                  <option value="indeed">Indeed</option>
-                  <option value="linkedin">LinkedIn</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Protecting What Matters Most to <span class="gold-text">Pennsylvania Families</span></h1>
+                <p class="hero-tagline">Father | Survivor | Leader</p>
+                <p class="hero-subtitle">Independent insurance consultant serving Schuylkill, Luzerne & Northumberland Counties with life insurance, annuities, and financial protection strategies.</p>
+                
+                <div class="credentials">
+                    <div class="badge">✓ PA Licensed (DOI #1268820)</div>
+                    <div class="badge">✓ Global Financial Impact</div>
+                    <div class="badge">✓ MBA Candidate</div>
+                    <div class="badge">✓ 3 Counties Served</div>
+                </div>
+                
+                <div class="cta-buttons">
+                    <a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" class="btn btn-primary">
+                        Book Free Consultation
+                    </a>
+                    <a href="https://agents.ethoslife.com/invite/29ad1" target="_blank" class="btn btn-quote">
+                        Get Instant Quote
+                    </a>
+                </div>
             </div>
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">Notes</label>
-              <textarea
-                rows="3"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-600 focus:border-transparent"
-                value={formData.notes}
-                onChange={(e) => setFormData({...formData, notes: e.target.value})}
-              />
+            
+            <div class="hero-image">
+                <img src="jackson-headshot.jpg" alt="Jackson M. Latimore Sr." class="profile-photo">
+                <div class="profile-card">
+                    <h3>Jackson M. Latimore Sr.</h3>
+                    <p class="title">CEO & Founder</p>
+                    <p class="subtitle">In affiliation with Global Financial Impact</p>
+                </div>
             </div>
-          </div>
-          <div className="p-6 border-t flex justify-end gap-4">
-            <button
-              onClick={onClose}
-              className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              Cancel
-            </button>
-            <button
-              onClick={handleSubmit}
-              className="px-6 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
-            >
-              Add Recruit
-            </button>
-          </div>
         </div>
-      </div>
-    );
-  };
+    </section>
 
-  return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex justify-between items-center">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">Global Financial Impact CRM</h1>
-              <p className="text-gray-600">Agent Business Management System</p>
+    <!-- Services Grid - 10 Services -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Comprehensive Financial Protection</h2>
+            <p class="section-subtitle">10 strategies to build, protect, and transfer wealth</p>
+            
+            <div class="services-grid-ten">
+                <div class="service-card-compact">
+                    <h3>Tax-Advantaged Wealth Accumulation</h3>
+                    <p>Build wealth using tax-deferred and tax-free growth strategies</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>Asset Protection & Plan Rollovers</h3>
+                    <p>Protect wealth and roll over 401(k), 403(b), pension plans strategically</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>College Education Funding</h3>
+                    <p>Strategic funding for higher education without crippling debt</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>Debt Management</h3>
+                    <p>Consolidation strategies to eliminate high-interest debt</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>Life Insurance & Living Benefits</h3>
+                    <p>Income replacement, critical illness, and final expense coverage</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>Estate & Legacy Planning</h3>
+                    <p>Wealth transfer strategies and estate tax solutions</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>Indexed Growth Strategies</h3>
+                    <p>Market-linked growth with downside protection</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>Mortgage Protection</h3>
+                    <p>Ensure your family keeps the home if something happens to you</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>Business & Key-Person Insurance</h3>
+                    <p>Protect your business from loss of critical personnel</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>Retirement Income Strategies</h3>
+                    <p>Guaranteed lifetime income with annuities and safe-money vehicles</p>
+                </div>
             </div>
-            <div className="flex gap-3">
-              <button
-                onClick={() => {
-                  setModalType('lead');
-                  setShowAddModal(true);
-                }}
-                className="bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors flex items-center gap-2"
-              >
-                <Plus size={18} />
-                Add Lead
-              </button>
-              <button
-                onClick={() => {
-                  setModalType('agent');
-                  setShowAddModal(true);
-                }}
-                className="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors flex items-center gap-2"
-              >
-                <UserPlus size={18} />
-                Add Recruit
-              </button>
-            </div>
-          </div>
         </div>
-      </header>
+    </section>
 
-      {/* Navigation Tabs */}
-      <div className="bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex space-x-8">
-            {['dashboard', 'leads', 'agents', 'activities'].map(tab => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`py-4 px-2 border-b-2 font-medium text-sm capitalize transition-colors ${
-                  activeTab === tab
-                    ? 'border-emerald-600 text-emerald-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                }`}
-              >
-                {tab}
-              </button>
-            ))}
-          </nav>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {activeTab === 'dashboard' && (
-          <div className="space-y-6">
-            {/* Metrics Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-white rounded-xl shadow-md p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
-                    <Users className="text-emerald-600" size={24} />
-                  </div>
-                  <span className="text-sm font-semibold text-gray-500">TOTAL LEADS</span>
+    <!-- My Story with Images -->
+    <section class="story">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">My Story: Why Protection Matters</h2>
+            
+            <div class="story-images">
+                <div class="story-image-item">
+                    <img src="hospital-recovery.jpg" alt="Jackson recovering in hospital">
+                    <p>December 2010 - Pocono Medical Center</p>
                 </div>
-                <div className="text-3xl font-bold text-gray-900">{metrics.totalLeads}</div>
-                <div className="text-sm text-emerald-600 mt-2">{metrics.newLeads} new this week</div>
-              </div>
-
-              <div className="bg-white rounded-xl shadow-md p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center">
-                    <TrendingUp className="text-teal-600" size={24} />
-                  </div>
-                  <span className="text-sm font-semibold text-gray-500">ACTIVE PIPELINE</span>
+                <div class="story-image-item">
+                    <img src="news-headline.jpg" alt="Pocono Record coverage">
+                    <p>Local news coverage of the life-saving event</p>
                 </div>
-                <div className="text-3xl font-bold text-gray-900">{metrics.activeLeads}</div>
-                <div className="text-sm text-gray-600 mt-2">{metrics.conversionRate}% conversion rate</div>
-              </div>
-
-              <div className="bg-white rounded-xl shadow-md p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                    <DollarSign className="text-purple-600" size={24} />
-                  </div>
-                  <span className="text-sm font-semibold text-gray-500">PIPELINE VALUE</span>
-                </div>
-                <div className="text-3xl font-bold text-gray-900">${(metrics.pipelineValue / 1000).toFixed(0)}K</div>
-                <div className="text-sm text-gray-600 mt-2">Estimated premium value</div>
-              </div>
-
-              <div className="bg-white rounded-xl shadow-md p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center">
-                    <UserPlus className="text-cyan-600" size={24} />
-                  </div>
-                  <span className="text-sm font-semibold text-gray-500">AGENT TEAM</span>
-                </div>
-                <div className="text-3xl font-bold text-gray-900">{metrics.totalAgents}</div>
-                <div className="text-sm text-cyan-600 mt-2">{metrics.activeAgents} licensed & active</div>
-              </div>
             </div>
+            
+            <div class="story-text-center">
+                <p>During a college basketball game on December 7, 2010, my heart stopped. I went into sudden cardiac arrest at East Stroudsburg University. I was 22 years old.</p>
+                
+                <p>I survived because athletic trainers had immediate access to an AED - placed there by the Gregory W. Moyer Defibrillator Fund after 15-year-old Greg Moyer died of cardiac arrest in 2000.</p>
+                
+                <p class="story-highlight">That experience taught me that preparedness is everything. Financial protection isn't about selling policies - it's about ensuring families have what they need when the unexpected happens.</p>
+                
+                <div class="cta-buttons">
+                    <a href="about.html" class="btn btn-secondary">Read Full Story</a>
+                    <a href="contact.html" class="btn btn-primary">Work With Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            {/* Recent Activity */}
-            <div className="grid lg:grid-cols-2 gap-6">
-              <div className="bg-white rounded-xl shadow-md p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Recent Leads</h3>
-                <div className="space-y-3">
-                  {leads.slice(0, 5).map(lead => (
-                    <div key={lead.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                      <div>
-                        <div className="font-semibold text-gray-900">{lead.name}</div>
-                        <div className="text-sm text-gray-600">{lead.product.replace('-', ' ')}</div>
-                      </div>
-                      <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(lead.status)}`}>
-                        {lead.status}
-                      </span>
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Protect Your Family's Future?</h2>
+            <p>Let's discuss your financial protection strategy</p>
+            <div class="cta-buttons">
+                <a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" class="btn btn-primary">
+                    Book Free Consultation
+                </a>
+                <a href="tel:8568951457" class="btn btn-secondary">
+                    Call (856) 895-1457
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Latimore Life & Legacy</h4>
+                    <p>Protection-first strategies for working families, professionals, and local organizations across Central Pennsylvania.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/LatimoreLegacyLLC" target="_blank">Facebook</a>
+                        <a href="https://www.instagram.com/jacksonlatimore.global" target="_blank">Instagram</a>
+                        <a href="https://www.linkedin.com/in/startwithjacksongfi" target="_blank">LinkedIn</a>
                     </div>
-                  ))}
                 </div>
-              </div>
-
-              <div className="bg-white rounded-xl shadow-md p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Agent Recruits</h3>
-                <div className="space-y-3">
-                  {agents.slice(0, 5).map(agent => (
-                    <div key={agent.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                      <div>
-                        <div className="font-semibold text-gray-900">{agent.name}</div>
-                        <div className="text-sm text-gray-600">{agent.source}</div>
-                      </div>
-                      <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(agent.status)}`}>
-                        {agent.status}
-                      </span>
-                    </div>
-                  ))}
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="about.html">About Jackson</a>
+                    <a href="products.html">Products</a>
+                    <a href="services.html">Services</a>
+                    <a href="contact.html">Contact</a>
                 </div>
-              </div>
+                
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p><strong>Phone:</strong> (856) 895-1457</p>
+                    <p><strong>Email:</strong> jackson1989@latimorelegacy.com</p>
+                    <p><strong>Service Area:</strong> Schuylkill, Luzerne & Northumberland Counties, PA</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Get Started</h4>
+                    <a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" class="footer-cta">Book Consultation</a>
+                    <a href="https://agents.ethoslife.com/invite/29ad1" target="_blank" class="footer-cta">Instant Quote</a>
+                    <a href="https://hihello.me/p/1ac94c21-813c-48c0-a270-49f5b2cc31e7" target="_blank" class="footer-cta">Save My Contact</a>
+                </div>
             </div>
-          </div>
-        )}
-
-        {activeTab === 'leads' && (
-          <div className="space-y-6">
-            <div className="bg-white rounded-xl shadow-md overflow-hidden">
-              <div className="p-6 border-b">
-                <h2 className="text-xl font-bold text-gray-900">Lead Pipeline</h2>
-              </div>
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Name</th>
-                      <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Contact</th>
-                      <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Product</th>
-                      <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Value</th>
-                      <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Status</th>
-                      <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Last Contact</th>
-                      <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-200">
-                    {leads.map(lead => (
-                      <tr key={lead.id} className="hover:bg-gray-50">
-                        <td className="px-6 py-4">
-                          <div className="font-semibold text-gray-900">{lead.name}</div>
-                        </td>
-                        <td className="px-6 py-4">
-                          <div className="text-sm text-gray-600">{lead.email}</div>
-                          <div className="text-sm text-gray-600">{lead.phone}</div>
-                        </td>
-                        <td className="px-6 py-4">
-                          <div className="text-sm text-gray-900 capitalize">{lead.product.replace('-', ' ')}</div>
-                        </td>
-                        <td className="px-6 py-4">
-                          <div className="text-sm font-semibold text-gray-900">${lead.value?.toLocaleString()}</div>
-                        </td>
-                        <td className="px-6 py-4">
-                          <select
-                            value={lead.status}
-                            onChange={(e) => updateLeadStatus(lead.id, e.target.value)}
-                            className={`px-3 py-1 rounded-full text-xs font-semibold border-0 ${getStatusColor(lead.status)}`}
-                          >
-                            <option value="new">New</option>
-                            <option value="contacted">Contacted</option>
-                            <option value="qualified">Qualified</option>
-                            <option value="closed">Closed</option>
-                            <option value="lost">Lost</option>
-                          </select>
-                        </td>
-                        <td className="px-6 py-4">
-                          <div className="text-sm text-gray-600">{lead.lastContact}</div>
-                        </td>
-                        <td className="px-6 py-4">
-                          <div className="flex gap-2">
-                            <button
-                              onClick={() => deleteLead(lead.id)}
-                              className="text-red-600 hover:text-red-700"
-                            >
-                              <Trash2 size={18} />
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+            
+            <div class="footer-bottom">
+                <p class="disclosure">Licensed in Pennsylvania (DOI #1268820, NIPR #21638507). Independent contractor with <a href="https://www.globalfinancialimpact.com" target="_blank" style="color: var(--gold-light); text-decoration: none; font-weight: 600;">Global Financial Impact</a>. Products offered through appointed carriers. For educational purposes only; not tax or legal advice.</p>
+                <p>&copy; 2026 Latimore Life & Legacy LLC. All rights reserved.</p>
             </div>
-          </div>
-        )}
+        </div>
+    </footer>
 
-        {activeTab === 'agents' && (
-          <div className="space-y-6">
-            <div className="bg-white rounded-xl shadow-md overflow-hidden">
-              <div className="p-6 border-b">
-                <h2 className="text-xl font-bold text-gray-900">Agent Recruitment Pipeline</h2>
-              </div>
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Name</th>
-                      <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Contact</th>
-                      <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Source</th>
-                      <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Status</th>
-                      <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Licensed</th>
-                      <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Created</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-200">
-                    {agents.map(agent => (
-                      <tr key={agent.id} className="hover:bg-gray-50">
-                        <td className="px-6 py-4">
-                          <div className="font-semibold text-gray-900">{agent.name}</div>
-                        </td>
-                        <td className="px-6 py-4">
-                          <div className="text-sm text-gray-600">{agent.email}</div>
-                          <div className="text-sm text-gray-600">{agent.phone}</div>
-                        </td>
-                        <td className="px-6 py-4">
-                          <div className="text-sm text-gray-900 capitalize">{agent.source}</div>
-                        </td>
-                        <td className="px-6 py-4">
-                          <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
