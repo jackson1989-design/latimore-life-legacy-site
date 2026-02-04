@@ -95,3 +95,16 @@
 .cta-section-inline .btn-secondary {
   border-color: var(--gold-light);
 }
+/* Mobile */
+@media (max-width: 768px) {
+  .services-grid-ten {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Desktop – 5 x 2 grid */
+@media (min-width: 1100px) {
+  .services-grid-ten {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
