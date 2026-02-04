@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://jackson1989-design.github.io/latimore-life-legacy-site/sitemap.xml
