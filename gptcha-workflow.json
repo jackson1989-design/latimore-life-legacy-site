@@ -1,0 +1,340 @@
+{
+  "source": "gptcha.in",
+  "version": "3.2.0",
+  "metadata": {
+    "name": "Latimore Life & Legacy: Client Communication & Content Workflow",
+    "description": "A linear workflow for independent financial protection advisors to set brand voice, structure client snapshots, map strategies, write follow-up emails, create localized social posts, and refine messaging for clarity and compliance.",
+    "tags": [
+      "financial advisor",
+      "client communication",
+      "email follow-up",
+      "social media",
+      "compliance",
+      "gpt-chain"
+    ]
+  },
+  "workflow": {
+    "nodes": [
+      {
+        "id": "1",
+        "type": "START",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "2",
+        "type": "DEFAULT",
+        "label": "📘 Brand & Voice Setup",
+        "prompt": "You are an expert marketing and communication co-pilot for an independent financial protection advisor.\n\nYour job is to help {advisor_name} at {brand_name} clearly explain protection and wealth-building strategies to everyday families in {service_area}.\n\nHere is the brand context you should memorize:\n\n- Brand name: {brand_name}\n- Brand tagline: {brand_tagline}\n- Service area: {service_area}\n- Founder story: {founder_story}\n- Founder credentials: {founder_credentials}\n- Ideal client profile: {ideal_client_profile}\n- Core offerings: {core_offerings}\n- Ten key strategies: {strategies_menu}\n- Primary contact details: {contact_phone}, {contact_email}\n- Key links: booking ({booking_link}), quote ({quote_link}), main page ({landing_page_url})\n\nTasks:\n\n1. Create a concise BRAND_GUIDE for internal use with the following sections:\n   - Voice & tone (3–5 bullet points)\n   - Core promise in one sentence\n   - Short “About {brand_name}” paragraph (3–5 sentences)\n   - 3–4 preferred call-to-action lines using the brand’s natural voice\n\n2. Make the language:\n   - Friendly, clear, and down-to-earth\n   - Respectful and never fear-based\n   - Educational only (no legal or tax advice)\n   - Appropriate for families and professionals in {service_area}\n\n3. At the end, output a compact bullet list called “Brand Guardrails” with do’s and don’ts for future messages.\n\nDo not generate any client-specific messaging yet. Focus only on defining the brand and voice so later prompts can reference BRAND_GUIDE and Brand Guardrails.",
+        "position": {
+          "x": 200,
+          "y": 0
+        }
+      },
+      {
+        "id": "3",
+        "type": "DEFAULT",
+        "label": "🧠 Client Snapshot Structuring",
+        "prompt": "Use the BRAND_GUIDE and Brand Guardrails you previously created.\n\nYou will now take raw notes about a prospective client and turn them into a clear, structured snapshot that can be reused across emails, follow-ups, and educational content.\n\nInputs:\n\n- Client name: {client_name}\n- Raw notes: {client_profile_notes}\n- Household details: {household_details}\n- Existing coverage: {existing_coverage}\n- Financial goals: {financial_goals}\n- Time horizon(s): {time_horizon}\n- Risk tolerance: {risk_tolerance}\n\nTasks:\n\n1. Produce a “Client Snapshot” with the following sections:\n   - Who they are (1–2 sentences)\n   - Family and household context (bullets)\n   - Current financial protection picture (bullets)\n   - Top 3–5 goals in their own words (bullets)\n   - Key constraints or concerns they mentioned\n\n2. Identify 3 main “Risk & Opportunity Themes” that matter most to this family, written in plain language.\n\n3. In a final section labeled “Structured Summary for Next Steps”, rewrite the situation in 1 short paragraph that another advisor on the team could instantly understand.\n\nKeep tone empathetic and neutral. Do not recommend specific products yet. This output will be passed forward as {client_summary} into later prompts.",
+        "position": {
+          "x": 400,
+          "y": 0
+        }
+      },
+      {
+        "id": "4",
+        "type": "DEFAULT",
+        "label": "📦 Strategy Mapping",
+        "prompt": "You are now matching the client’s situation with the most relevant strategies from {brand_name}'s “10 strategies to build, protect, and transfer wealth.”\n\nUse:\n\n- BRAND_GUIDE and Brand Guardrails\n- The strategies menu: {strategies_menu}\n- The structured client summary: {client_summary}\n\nTasks:\n\n1. Choose 3–5 strategies from {strategies_menu} that best fit this client’s needs. For each selected strategy, provide:\n   - A simple name you would say out loud to a non-expert\n   - One-sentence explanation in everyday language\n   - How it connects to one of the client’s goals or concerns\n   - A gentle benefit statement that is balanced and does not over-promise\n\n2. Create a section called “How I’d Explain This at the Kitchen Table” where you:\n   - Draft a short, conversational script (8–12 sentences total) that walks the client through the selected strategies in a logical order\n   - Use plain examples (mortgage, kids’ college, paycheck protection, retirement income, etc.)\n   - Reinforce the idea of preparedness, not fear\n\n3. End with a short list titled “Questions to Ask {client_name} Next Time” with 5–7 questions that help deepen understanding without sounding salesy.\n\nAvoid specific product names or carriers unless they were explicitly referenced in the inputs. Focus on strategies and education that prepare the client for an eventual recommendation.",
+        "position": {
+          "x": 600,
+          "y": 0
+        }
+      },
+      {
+        "id": "5",
+        "type": "DEFAULT",
+        "label": "✉️ Follow-Up Email",
+        "prompt": "Using the strategy mapping you just created, draft a follow-up email that {advisor_name} can send to {client_name} after a meeting or phone call.\n\nInputs:\n\n- Client name: {client_name}\n- Brand context from BRAND_GUIDE\n- Structured client summary: {client_summary}\n- Selected strategies and explanations from the previous step\n- Primary call to action: {call_to_action_primary}\n- Secondary call to action: {call_to_action_secondary}\n- Booking link: {booking_link}\n- Quote link: {quote_link}\n- Contact details: {contact_phone}, {contact_email}\n- Jurisdiction: {jurisdiction}\n\nTasks:\n\n1. Write a complete email with:\n   - Clear subject line in plain language\n   - Warm, appreciative opening that references one or two specifics from the conversation\n   - 2–3 short paragraphs recapping:\n     - What you discussed\n     - The key strategies that seem most relevant\n     - How these strategies support their goals and family\n   - A concise summary of “what happens next”\n\n2. Weave in the theme of preparedness rather than fear, echoing the brand’s protection-first philosophy, without retelling the full founder story unless it feels natural.\n\n3. Add a closing section that:\n   - Repeats the main call to action (for example, scheduling another call or sharing documents) with {call_to_action_primary} and {booking_link} or {quote_link} as appropriate\n   - Provides a lighter secondary option using {call_to_action_secondary}\n\n4. End with a short, clear disclosure paragraph that:\n   - Notes that the message is for educational purposes only\n   - Mentions that products and availability depend on {jurisdiction}\n   - Reminds the client to review details and formal documents before making decisions\n\nKeep the email concise, conversational, and aligned with Brand Guardrails.",
+        "position": {
+          "x": 800,
+          "y": 0
+        }
+      },
+      {
+        "id": "6",
+        "type": "DEFAULT",
+        "label": "📣 Local Social Posts",
+        "prompt": "Create social content that helps {brand_name} stay visible and helpful to families and professionals in {county_or_city}, while staying aligned with BRAND_GUIDE and Brand Guardrails.\n\nInputs:\n\n- Target audience segment: {target_audience}\n- Platform: {platform}\n- County or city reference: {county_or_city}\n- One core theme drawn from the brand or current campaign (for example, mortgage protection, college funding, or legacy planning)\n- Landing page URL: {landing_page_url}\n- Booking link: {booking_link}\n\nTasks:\n\n1. Generate 3 variations of a post tailored to {platform}. For each variation, include:\n   - A strong first line that would make a busy person in {county_or_city} stop scrolling\n   - 2–4 short lines that:\n     - Name a relatable problem or “what if” scenario\n     - Offer a simple high-level solution frame (not product-specific)\n     - Emphasize preparedness and family protection\n   - A clear call to action pointing to {landing_page_url} or {booking_link}\n\n2. Adapt tone to the chosen {platform}:\n   - LinkedIn: slightly more professional and insight-driven\n   - Facebook: community-oriented and friendly\n   - Instagram: concise and visual-friendly (include suggestions for a simple accompanying image)\n\n3. At the end, output a bullet list of 3 hashtag sets that are:\n   - Local-friendly (for example, region or county)\n   - Aligned with financial protection and legacy\n   - Not spammy or overly broad\n\nDo not include any guarantees, specific product rates, or carrier names. Keep everything educational and invitation-based.",
+        "position": {
+          "x": 1000,
+          "y": 0
+        }
+      },
+      {
+        "id": "7",
+        "type": "DEFAULT",
+        "label": "📕 Compliance & Clarity",
+        "prompt": "You are now acting as a compliance-aware clarity editor for {brand_name}.\n\nYour input is a draft message that has already been written (email, social post, script, one-pager, etc.). Your job is to keep the human, empathetic tone while making sure the content is balanced, clear, and appropriate for {jurisdiction} and the product categories involved.\n\nInputs:\n\n- Draft content to refine (label this clearly at the top of your response)\n- Jurisdiction: {jurisdiction}\n- Product types mentioned: {product_types}\n- Carrier or compliance notes: {carrier_requirements}\n- BRAND_GUIDE and Brand Guardrails\n\nTasks:\n\n1. Rewrite the draft content so that it:\n   - Uses plain language that a busy parent or professional can understand on first read\n   - Avoids promising or implying guaranteed investment performance\n   - Avoids specific tax or legal advice\n   - Clearly distinguishes general education from specific recommendations\n\n2. Add a short “Balanced Language Check” section where you:\n   - Call out any phrases that might sound too absolute or promise-like\n   - Show the original phrase and the revised, more balanced version\n\n3. Append a brief “Disclosure” paragraph appropriate for {jurisdiction}, {product_types}, and typical carrier expectations, based on the input {carrier_requirements}. Keep it generic enough that it can be reused, but specific enough to be meaningful.\n\n4. Output only the refined version plus the two short meta sections:\n   - Balanced Language Check\n   - Disclosure\n\nPreserve the emotional warmth and story-driven elements of the original content while improving clarity and compliance alignment.",
+        "position": {
+          "x": 1200,
+          "y": 0
+        }
+      },
+      {
+        "id": "8",
+        "type": "END",
+        "position": {
+          "x": 1400,
+          "y": 0
+        }
+      }
+    ],
+    "edges": [
+      {
+        "sourceNode": "1",
+        "targetNode": "2"
+      },
+      {
+        "sourceNode": "2",
+        "targetNode": "3"
+      },
+      {
+        "sourceNode": "3",
+        "targetNode": "4"
+      },
+      {
+        "sourceNode": "4",
+        "targetNode": "5"
+      },
+      {
+        "sourceNode": "5",
+        "targetNode": "6"
+      },
+      {
+        "sourceNode": "6",
+        "targetNode": "7"
+      },
+      {
+        "sourceNode": "7",
+        "targetNode": "8"
+      }
+    ],
+    "state": {
+      "keys": [
+        {
+          "name": "advisor_name",
+          "type": "INPUT",
+          "values": [
+            "Jackson M. Latimore Sr."
+          ]
+        },
+        {
+          "name": "brand_name",
+          "type": "INPUT",
+          "values": [
+            "Latimore Life & Legacy"
+          ]
+        },
+        {
+          "name": "brand_tagline",
+          "type": "INPUT",
+          "values": [
+            "Protecting What Matters Most to Pennsylvania Families"
+          ]
+        },
+        {
+          "name": "service_area",
+          "type": "INPUT",
+          "values": [
+            "Schuylkill, Luzerne & Northumberland Counties, PA"
+          ]
+        },
+        {
+          "name": "founder_story",
+          "type": "INPUT",
+          "values": [
+            "In 2018, I survived a sudden cardiac arrest at an airport and was saved by a nearby AED, which inspired my mission to help families and communities be better prepared financially and practically."
+          ]
+        },
+        {
+          "name": "founder_credentials",
+          "type": "INPUT",
+          "values": [
+            "Pennsylvania Licensed Insurance Producer, Global Financial Impact Advisor, Community Volunteer"
+          ]
+        },
+        {
+          "name": "ideal_client_profile",
+          "type": "INPUT",
+          "values": [
+            "Working families and professionals who want to protect their income, their home, and their children’s future."
+          ]
+        },
+        {
+          "name": "core_offerings",
+          "type": "INPUT",
+          "values": [
+            "Life insurance, mortgage protection, income protection, retirement income planning, college funding strategies, estate and legacy planning education."
+          ]
+        },
+        {
+          "name": "strategies_menu",
+          "type": "INPUT",
+          "values": [
+            "Ten practical strategies to build, protect, and transfer wealth, such as term coverage, permanent coverage, living benefits, annuity-based income, debt payoff planning, emergency funds, college funding plans, legacy gifts, and more."
+          ]
+        },
+        {
+          "name": "client_name",
+          "type": "INPUT",
+          "values": [
+            "The Johnson Family"
+          ]
+        },
+        {
+          "name": "client_profile_notes",
+          "type": "INPUT",
+          "values": [
+            "Two working parents in their mid-30s, two young kids, just bought a home, worried about making sure kids are okay if something happens."
+          ]
+        },
+        {
+          "name": "household_details",
+          "type": "INPUT",
+          "values": [
+            "Parents 35 and 33, kids 6 and 3, combined income around $115,000, new 30-year mortgage."
+          ]
+        },
+        {
+          "name": "existing_coverage",
+          "type": "INPUT",
+          "values": [
+            "Basic group life through work for each parent, no individual policies, no disability coverage."
+          ]
+        },
+        {
+          "name": "financial_goals",
+          "type": "INPUT",
+          "values": [
+            "Protect the mortgage, fund kids’ college, build retirement savings, and avoid leaving a financial burden."
+          ]
+        },
+        {
+          "name": "time_horizon",
+          "type": "INPUT",
+          "values": [
+            "Short-term (next 1-3 years) and long-term (20-30 years)."
+          ]
+        },
+        {
+          "name": "risk_tolerance",
+          "type": "INPUT",
+          "values": [
+            "Moderate and cautious, prefer stable, predictable plans."
+          ]
+        },
+        {
+          "name": "client_summary",
+          "type": "INPUT",
+          "values": [
+            "Summary of the Johnson family’s situation, goals, risks, and opportunities based on discovery call."
+          ]
+        },
+        {
+          "name": "target_audience",
+          "type": "INPUT",
+          "values": [
+            "Young families with new mortgages"
+          ]
+        },
+        {
+          "name": "county_or_city",
+          "type": "INPUT",
+          "values": [
+            "Schuylkill County, PA"
+          ]
+        },
+        {
+          "name": "platform",
+          "type": "INPUT",
+          "values": [
+            "Facebook"
+          ]
+        },
+        {
+          "name": "landing_page_url",
+          "type": "INPUT",
+          "values": [
+            "https://latimorelifeandlegacy.com"
+          ]
+        },
+        {
+          "name": "booking_link",
+          "type": "INPUT",
+          "values": [
+            "https://calendly.com/latimore-life-legacy/consultation"
+          ]
+        },
+        {
+          "name": "quote_link",
+          "type": "INPUT",
+          "values": [
+            "https://latimorelifeandlegacy.com/instant-quote"
+          ]
+        },
+        {
+          "name": "contact_phone",
+          "type": "INPUT",
+          "values": [
+            "(570) 555-1234"
+          ]
+        },
+        {
+          "name": "contact_email",
+          "type": "INPUT",
+          "values": [
+            "jackson@latimorelifeandlegacy.com"
+          ]
+        },
+        {
+          "name": "call_to_action_primary",
+          "type": "INPUT",
+          "values": [
+            "Schedule your follow-up planning session"
+          ]
+        },
+        {
+          "name": "call_to_action_secondary",
+          "type": "INPUT",
+          "values": [
+            "Reply with any questions or documents you’d like me to review"
+          ]
+        },
+        {
+          "name": "jurisdiction",
+          "type": "INPUT",
+          "values": [
+            "Pennsylvania"
+          ]
+        },
+        {
+          "name": "product_types",
+          "type": "INPUT",
+          "values": [
+            "Life insurance, annuities, and related protection products."
+          ]
+        },
+        {
+          "name": "carrier_requirements",
+          "type": "INPUT",
+          "values": [
+            "Avoid performance guarantees, avoid specific tax or legal advice, and include a general educational-use disclosure."
+          ]
+        }
+      ]
+    }
+  }
+}
