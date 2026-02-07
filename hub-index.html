@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Latimore Legacy Social Hub</title>
+    <meta
+      name="description"
+      content="Manage your legacy outreach and marketing efforts in one place. Plan content, track appointments and access resources with the Latimore Legacy Social Hub."
+    />
+    <!-- Tailwind via CDN for quick styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                navy: '#0B0F17',
+                gold: '#C9A25F',
+                slate: '#64748b'
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif']
+            }
+          }
+        }
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- React and Babel -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body class="bg-gray-50 font-sans text-brand-navy">
+    <div id="hub-root"></div>
+    <!-- Hub App -->
+    <script type="text/babel">
+      const { useState } = React;
+
+      // Simple tab content components
+      const Dashboard = () => (
+        <div className="p-6 space-y-4 animate-fadeIn">
+          <h2 className="text-2xl font-bold">Dashboard</h2>
+          <p className="text-slate-600">
+            Welcome to your Social Hub! This dashboard will eventually provide a snapshot of
+            upcoming posts, recent interactions and quick metrics. For now, explore the
+            placeholders in each section to get a feel for the future features.
+          </p>
+        </div>
+      );
+      const ContentCreator = () => (
+        <div className="p-6 space-y-4 animate-fadeIn">
+          <h2 className="text-2xl font-bold">Content Creator</h2>
+          <p className="text-slate-600">
+            In the full version of the hub, this tool will help you craft engaging social posts,
+            articles and newsletters. AI-powered prompts and templates will make it easy to
+            maintain your digital presence. Stay tuned!
+          </p>
+        </div>
+      );
+      const CRM = () => (
+        <div className="p-6 space-y-4 animate-fadeIn">
+          <h2 className="text-2xl font-bold">CRM</h2>
+          <p className="text-slate-600">
+            Keep track of your clients and prospects. In future releases you will be able to
+            view contact information, recent interactions and manage follow‑ups—all in one
+            place.
+          </p>
+        </div>
+      );
+      const Calendar = () => (
+        <div className="p-6 space-y-4 animate-fadeIn">
+          <h2 className="text-2xl font-bold">Calendar</h2>
+          <p className="text-slate-600">
+            The calendar will sync scheduled posts, consultations and events. For now,
+            imagine seeing all your commitments neatly organized here.
+          </p>
+        </div>
+      );
+      const Resources = () => (
+        <div className="p-6 space-y-4 animate-fadeIn">
+          <h2 className="text-2xl font-bold">Resources</h2>
+          <p className="text-slate-600">
+            Access marketing templates, scripts and compliance guidance. As we build out this
+            hub, this section will house downloadable assets and guides tailored to financial
+            professionals.
+          </p>
+        </div>
+      );
+
+      function HubApp() {
+        const [activeTab, setActiveTab] = useState('dashboard');
+        const tabs = {
+          dashboard: { label: 'Dashboard', emoji: '📊', component: <Dashboard /> },
+          creator: { label: 'Creator', emoji: '✍️', component: <ContentCreator /> },
+          crm: { label: 'CRM', emoji: '👥', component: <CRM /> },
+          calendar: { label: 'Calendar', emoji: '📆', component: <Calendar /> },
+          resources: { label: 'Resources', emoji: '📂', component: <Resources /> }
+        };
+        return (
+          <div className="min-h-screen flex flex-col">
+            {/* Header */}
+            <header className="bg-brand-navy text-brand-gold px-6 py-4 flex items-center justify-between shadow">
+              <h1 className="text-xl font-black">Latimore Social Hub</h1>
+              <button
+                onClick={() => (window.location.href = '/')}
+                className="text-sm underline hover:text-white"
+              >
+                ← Back to Main Site
+              </button>
+            </header>
+            <div className="flex flex-1">
+              {/* Sidebar */}
+              <nav className="w-48 bg-white border-r border-gray-100 py-6">
+                <ul className="space-y-3">
+                  {Object.keys(tabs).map((key) => (
+                    <li key={key}>
+                      <button
+                        className={`w-full flex items-center gap-2 px-4 py-3 rounded-r-full text-left text-sm font-medium transition-colors ${
+                          activeTab === key
+                            ? 'bg-brand-gold text-brand-navy'
+                            : 'text-brand-navy hover:bg-gray-50'
+                        }`}
+                        onClick={() => setActiveTab(key)}
+                      >
+                        <span>{tabs[key].emoji}</span>
+                        <span>{tabs[key].label}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+              {/* Content */}
+              <main className="flex-1 bg-gray-50">{tabs[activeTab].component}</main>
+            </div>
+            {/* Footer / CTA */}
+            <footer className="bg-white border-t border-gray-100 p-6 text-center text-xs text-gray-500">
+              <p>
+                Need help with your marketing? Schedule a consultation and let us show you how
+                the Social Hub can power your legacy. <br />
+                <a
+                  href="https://globalfinancialimpact.fillout.com/latimorelifelegacy"
+                  className="text-brand-navy font-semibold underline hover:text-brand-gold"
+                >
+                  Book a Consultation
+                </a>
+              </p>
+              <p className="mt-4">
+                &copy; {new Date().getFullYear()} Latimore Life & Legacy LLC. All rights reserved.
+              </p>
+            </footer>
+          </div>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById('hub-root')).render(<HubApp />);
+    </script>
+    <style>
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      .animate-fadeIn { animation: fadeIn 0.5s ease-out; }
+    </style>
+    <!-- Auto-append UTM and referrer values to the consultation links -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const utmParams = new URLSearchParams(window.location.search);
+        const ref = document.referrer;
+        const landing = 'hub';
+        const links = document.querySelectorAll('a[href^="https://globalfinancialimpact.fillout.com/latimorelifelegacy"]');
+        links.forEach((link) => {
+          const url = new URL(link.href);
+          utmParams.forEach((value, key) => url.searchParams.set(key, value));
+          url.searchParams.set('landing_page', landing);
+          if (ref) url.searchParams.set('referrer', ref);
+          link.href = url.toString();
+        });
+      });
+    </script>
+  </body>
+</html>
