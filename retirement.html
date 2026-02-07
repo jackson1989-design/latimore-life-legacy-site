@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retirement Income Planning – Latimore Life & Legacy</title>
+  <meta name="description" content="Discover how Latimore Life & Legacy helps pre‑retirees and retirees build guaranteed income, protect savings and secure their legacy in Pennsylvania." />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              gold: '#C9A25F',
+              navy: '#0B0F17'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- React & Babel -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    body {
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #F7F7F5;
+      color: #0B0F17;
+    }
+    /* Define CSS variables for brand colors so Tailwind arbitrary value classes referencing var(--brand-gold) and var(--brand-navy) work correctly */
+    :root {
+      --brand-gold: #C9A25F;
+      --brand-navy: #0B0F17;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+    const apiKey = "";
+    // Shared components
+    const Section = ({ id, className = "", children }) => (
+      <section id={id} className={`py-20 px-4 md:px-8 max-w-7xl mx-auto ${className}`}>
+        {children}
+      </section>
+    );
+    const Button = ({ children, onClick, variant = 'primary', className = '', disabled = false, type = 'button' }) => {
+      const base = 'px-6 py-3 rounded-full font-bold transition-all duration-300 transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-center';
+      const variants = {
+        primary: 'bg-[var(--brand-gold)] text-[var(--brand-navy)] hover:shadow-lg hover:shadow-[var(--brand-gold)]/20',
+        secondary: 'border-2 border-[var(--brand-gold)] text-[var(--brand-gold)] hover:bg-[var(--brand-gold)] hover:text-[var(--brand-navy)]',
+        navy: 'bg-[var(--brand-navy)] text-[var(--brand-gold)] border border-[var(--brand-gold)]/20 hover:border-[var(--brand-gold)]',
+        white: 'bg-white text-[var(--brand-navy)] hover:bg-gray-100 shadow-md',
+        ghost: 'text-[var(--brand-navy)] hover:bg-gray-100'
+      };
+      return (
+        <button type={type} onClick={onClick} disabled={disabled} className={`${base} ${variants[variant]} ${className}`}>
+          {children}
+        </button>
+      );
+    };
+    const Card = ({ children, className = '' }) => (
+      <div className={`bg-white rounded-2xl p-6 md:p-8 shadow-xl border border-gray-100 h-full flex flex-col ${className}`}>
+        {children}
+      </div>
+    );
+    const Badge = ({ children, className = '' }) => (
+      <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase ${className}`}> 
+        {children}
+      </span>
+    );
+    // AI helpers (placeholders)
+    async function callGemini(prompt, systemInstruction = "") {
+      // Placeholder: returns dummy text for offline usage
+      return "Our assistant is currently unavailable. Please check back later.";
+    }
+    async function generateImage(prompt) {
+      return null;
+    }
+    // Feature components
+    const VisionBoard = () => {
+      const [vision, setVision] = useState('');
+      const [imageUrl, setImageUrl] = useState(null);
+      const [loading, setLoading] = useState(false);
+      const handleVisualize = async () => {
+        if (!vision.trim()) return;
+        setLoading(true);
+        const url = await generateImage(vision);
+        setImageUrl(url);
+        setLoading(false);
+      };
+      return (
+        <Card className="border-l-4 border-[var(--brand-gold)] bg-gradient-to-br from-white to-[#FDFBF7]">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="p-3 bg-[var(--brand-navy)] rounded-full text-[var(--brand-gold)] text-xl">🎨</div>
+            <div>
+              <h3 className="text-xl font-bold text-[var(--brand-navy)]">Legacy Vision Board</h3>
+              <p className="text-gray-500 text-xs">Visualize your "Why".</p>
+            </div>
+          </div>
+          <div className="space-y-4 flex-grow">
+            <p className="text-sm text-gray-600">What does financial freedom look like for your retirement? Describe your dream legacy.</p>
+            <textarea
+              className="w-full p-3 rounded-xl border border-gray-200 bg-white focus:ring-2 focus:ring-[var(--brand-gold)] outline-none text-[var(--brand-navy)] h-24 resize-none text-sm"
+              placeholder="e.g. A comfortable lakeside home with stable income and travel opportunities..."
+              value={vision}
+              onChange={(e) => setVision(e.target.value)}
+            />
+          </div>
+          <Button onClick={handleVisualize} disabled={loading || !vision} className="w-full mt-6">
+            {loading ? <span className="animate-pulse">Creating Vision...</span> : 'Visualize Legacy'}
+          </Button>
+          {imageUrl && (
+            <div className="mt-6 animate-in zoom-in-95 fade-in duration-500">
+              <img src={imageUrl} alt="Vision" className="w-full rounded-xl shadow-lg border-2 border-white" />
+              <p className="mt-2 text-center text-xs text-gray-400 italic">"This is what we protect."</p>
+            </div>
+          )}
+        </Card>
+      );
+    };
+    const RetirementMatchmaker = () => {
+      const [goal, setGoal] = useState('');
+      const [timeline, setTimeline] = useState('10-20 years');
+      const [budget, setBudget] = useState('Moderate');
+      const [result, setResult] = useState(null);
+      const [loading, setLoading] = useState(false);
+      const handleAnalyze = async () => {
+        if (!goal) return;
+        setLoading(true);
+        const prompt = `Act as an expert retirement planner. Analyze: Goal: ${goal}, Timeline: ${timeline}, Budget: ${budget}. Recommend ONE specific product (Fixed Annuity, Indexed Annuity, IUL, or Whole Life). Explain WHY in 2 sentences. List 2 pros/1 con. Use HTML with <h3>Recommended: [Product]</h3>.`;
+        const response = await callGemini(prompt, "Helpful retirement guide.");
+        setResult(response);
+        setLoading(false);
+      };
+      return (
+        <Card className="border-l-4 border-[var(--brand-gold)]">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="p-3 bg-[var(--brand-navy)] rounded-full text-[var(--brand-gold)] text-xl">🎯</div>
+            <div>
+              <h3 className="text-xl font-bold text-[var(--brand-navy)]">Retirement Matchmaker</h3>
+              <p className="text-gray-500 text-xs">Find the right tool for your goals.</p>
+            </div>
+          </div>
+          <div className="space-y-4 mb-6 flex-grow">
+            <select className="w-full p-3 rounded-lg border border-gray-200 bg-gray-50 text-sm" value={goal} onChange={(e) => setGoal(e.target.value)}>
+              <option value="">Select a primary goal...</option>
+              <option value="Guaranteed Lifetime Income">Generate guaranteed lifetime income</option>
+              <option value="Tax-Free Growth">Build tax-free retirement savings</option>
+              <option value="Leave a Legacy">Leave a legacy for heirs</option>
+              <option value="Safe Growth">Grow money without market losses</option>
+            </select>
+            <div className="grid grid-cols-2 gap-4">
+              <select className="w-full p-3 rounded-lg border border-gray-200 bg-gray-50 text-sm" value={timeline} onChange={(e) => setTimeline(e.target.value)}>
+                <option>5-10 years</option>
+                <option>10-20 years</option>
+                <option>Lifetime</option>
+              </select>
+              <select className="w-full p-3 rounded-lg border border-gray-200 bg-gray-50 text-sm" value={budget} onChange={(e) => setBudget(e.target.value)}>
+                <option>Economy</option>
+                <option>Moderate</option>
+                <option>High / Invest</option>
+              </select>
+            </div>
+          </div>
+          <Button onClick={handleAnalyze} disabled={loading || !goal} className="w-full mt-auto">
+            {loading ? 'Analyzing...' : 'Find My Match'}
+          </Button>
+          {result && <div className="mt-6 p-4 bg-[#F4F1EA] rounded-xl border border-[var(--brand-gold)]/20 text-sm" dangerouslySetInnerHTML={{ __html: result }} />}
+        </Card>
+      );
+    };
+    const JargonBuster = () => {
+      const [text, setText] = useState('');
+      const [result, setResult] = useState(null);
+      const [loading, setLoading] = useState(false);
+      const handleSimplify = async () => {
+        if (!text) return;
+        setLoading(true);
+        const prompt = `Translate this complex financial or insurance text into plain English that a 5th grader could understand. Text: "${text}"`;
+        const response = await callGemini(prompt);
+        setResult(response);
+        setLoading(false);
+      };
+      return (
+        <Card className="border-l-4 border-[var(--brand-navy)]">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="p-3 bg-[var(--brand-gold)] rounded-full text-[var(--brand-navy)] text-xl">📄</div>
+            <div>
+              <h3 className="text-xl font-bold text-[var(--brand-navy)]">Jargon Buster</h3>
+              <p className="text-gray-500 text-xs">Clarify the fine print.</p>
+            </div>
+          </div>
+          <textarea className="w-full p-3 rounded-lg border border-gray-200 bg-gray-50 text-sm h-32 resize-none" placeholder="Paste confusing text here..." value={text} onChange={(e) => setText(e.target.value)} />
+          <Button onClick={handleSimplify} disabled={loading || !text} variant="navy" className="w-full mt-6">
+            {loading ? 'Simplifying...' : 'Translate to English'}
+          </Button>
+          {result && <div className="mt-6 p-4 bg-gray-50 rounded-xl border border-gray-200 text-sm">{result}</div>}
+        </Card>
+      );
+    };
+    const LegacyLetterWriter = () => {
+      const [recipient, setRecipient] = useState('');
+      const [values, setValues] = useState('');
+      const [result, setResult] = useState(null);
+      const [loading, setLoading] = useState(false);
+      const handleDraft = async () => {
+        if (!recipient || !values) return;
+        setLoading(true);
+        const prompt = `Write a touching legacy letter to ${recipient}. Values: ${values}. Loving, wise, max 150 words. HTML with <p>.`;
+        const response = await callGemini(prompt);
+        setResult(response);
+        setLoading(false);
+      };
+      return (
+        <Card className="border-l-4 border-[var(--brand-gold)]">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="p-3 bg-[var(--brand-navy)] rounded-full text-[var(--brand-gold)] text-xl">❤️</div>
+            <div>
+              <h3 className="text-xl font-bold text-[var(--brand-navy)]">Legacy Letter</h3>
+              <p className="text-gray-500 text-xs">More than just money.</p>
+            </div>
+          </div>
+          <div className="space-y-4 flex-grow">
+            <input className="w-full p-3 rounded-lg border border-gray-200 bg-gray-50 text-sm" placeholder="Recipient (e.g. My daughter)" value={recipient} onChange={(e) => setRecipient(e.target.value)} />
+            <textarea className="w-full p-3 rounded-lg border border-gray-200 bg-gray-50 text-sm h-20 resize-none" placeholder="What values do you want to share?" value={values} onChange={(e) => setValues(e.target.value)} />
+          </div>
+          <Button onClick={handleDraft} disabled={loading || !recipient || !values} className="w-full mt-6">
+            {loading ? 'Drafting...' : 'Write Letter'}
+          </Button>
+          {result && <div className="mt-6 p-4 bg-[#Fdfbf7] rounded-xl border border-[var(--brand-gold)]/10 italic text-sm text-gray-700 leading-relaxed" dangerouslySetInnerHTML={{ __html: result }} />}
+        </Card>
+      );
+    };
+    // Chat widget
+    const ChatWidget = () => {
+      const [isOpen, setIsOpen] = useState(false);
+      const [messages, setMessages] = useState([{ role: 'ai', text: "Hello! I'm Jackson's digital assistant. How can I help you prepare for a secure retirement today?" }]);
+      const [input, setInput] = useState('');
+      const [typing, setTyping] = useState(false);
+      const endRef = useRef(null);
+      useEffect(() => { endRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages, isOpen]);
+      const handleSend = async () => {
+        if (!input.trim()) return;
+        const userMsg = input;
+        setMessages(prev => [...prev, { role: 'user', text: userMsg }]);
+        setInput('');
+        setTyping(true);
+        const aiResponse = await callGemini(userMsg, "Represent Jackson Latimore. Empathetic, concise, professional. Mention you can help with retirement income planning and tax-free strategies.");
+        setMessages(prev => [...prev, { role: 'ai', text: aiResponse }]);
+        setTyping(false);
+      };
+      return (
+        <>
+          <button onClick={() => setIsOpen(!isOpen)} className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-[var(--brand-gold)] text-[var(--brand-navy)] shadow-xl hover:scale-110 transition-transform border-2 border-white">
+            {isOpen ? '✖️' : '💬'}
+          </button>
+          {isOpen && (
+            <div className="fixed bottom-24 right-6 z-50 w-[90vw] md:w-[380px] h-[550px] bg-white rounded-3xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden animate-in slide-in-from-bottom-10">
+              <div className="bg-[var(--brand-navy)] p-5 flex items-center gap-3 border-b-2 border-[var(--brand-gold)]">
+                <div className="w-10 h-10 rounded-full bg-[var(--brand-gold)] flex items-center justify-center text-[var(--brand-navy)] font-bold">L</div>
+                <div>
+                  <h4 className="text-white font-bold text-sm">Latimore AI Assistant</h4>
+                  <p className="text-[var(--brand-gold)] text-[10px] uppercase font-bold tracking-widest">Always Online</p>
+                </div>
+              </div>
+              <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#F8F9FA]">
+                {messages.map((m, i) => (
+                  <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}> 
+                    <div className={`max-w-[85%] p-3 rounded-2xl text-sm ${m.role === 'user' ? 'bg-[var(--brand-navy)] text-white rounded-br-none' : 'bg-white text-[var(--brand-navy)] shadow-sm border border-gray-100 rounded-bl-none'}`}> 
+                      {m.text}
+                    </div>
+                  </div>
+                ))}
+                {typing && <div className="text-gray-400 text-[10px] animate-pulse">Assistant is thinking...</div>}
+                <div ref={endRef} />
+              </div>
+              <div className="p-4 bg-white border-t border-gray-100 flex gap-2">
+                <input className="flex-1 p-2 bg-gray-50 rounded-xl text-sm outline-none border focus:border-[var(--brand-gold)]" placeholder="Ask anything..." value={input} onChange={(e) => setInput(e.target.value)} onKeyPress={(e) => { if (e.key === 'Enter') handleSend(); }} />
+                <button onClick={handleSend} className="p-2 bg-[var(--brand-navy)] text-[var(--brand-gold)] rounded-xl">➤</button>
+              </div>
+            </div>
+          )}
+        </>
+      );
+    };
+    // Consultation Modal
+    const ConsultationModal = ({ isOpen, onClose }) => {
+      if (!isOpen) return null;
+      return (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300">
+          <div className="bg-white w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300">
+            <div className="p-8 space-y-6">
+              <div className="flex justify-between items-start">
+                <div>
+                  <h2 className="text-2xl font-bold text-[var(--brand-navy)]">Let's Plan Your Retirement</h2>
+                  <p className="text-gray-500 mt-1">Book a free 15-minute discovery call with Jackson.</p>
+                </div>
+                <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors">✖️</button>
+              </div>
+              <div className="space-y-4">
+                <div className="flex items-center gap-4 p-4 rounded-xl bg-gray-50 border border-gray-100">
+                  <span className="text-[var(--brand-gold)]">⏰</span>
+                  <div>
+                    <p className="text-sm font-bold">Discovery Consultation</p>
+                    <p className="text-xs text-gray-500">15–30 Minutes • Video or Phone</p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col gap-3">
+                <Button onClick={() => window.open('https://globalfinancialimpact.fillout.com/latimorelifelegacy', '_blank')} className="w-full">
+                  Confirm Booking via Fillout
+                </Button>
+                <p className="text-[10px] text-center text-gray-400">By booking, you agree to receive follow-up information about retirement strategies.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    };
+    // Main App
+    function App() {
+      const [isConsultOpen, setIsConsultOpen] = useState(false);
+      const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+      return (
+        <div className="min-h-screen bg-[#F7F7F5] font-sans text-[var(--brand-navy)] selection:bg-[var(--brand-gold)]/30">
+          <ConsultationModal isOpen={isConsultOpen} onClose={() => setIsConsultOpen(false)} />
+          {/* Navigation */}
+          <nav className="sticky top-0 z-40 bg-[var(--brand-navy)] text-white shadow-lg border-b border-white/5">
+            <div className="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
+              <div className="flex items-center gap-3 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                <div className="w-10 h-10 bg-[var(--brand-gold)] rounded-lg flex items-center justify-center text-[var(--brand-navy)] font-black text-xl group-hover:rotate-6 transition-transform">L</div>
+                <span className="font-bold text-lg tracking-tight">LATIMORE <span className="text-[var(--brand-gold)]">LIFE & LEGACY</span></span>
+              </div>
+              <div className="hidden md:flex items-center gap-8">
+                {['AI Tools', 'Life Stages'].map(item => (
+                  <a key={item} href={`#${item.toLowerCase().replace(' ', '')}`} className="text-sm font-semibold hover:text-[var(--brand-gold)] transition-colors">{item}</a>
+                ))}
+                <Button variant="primary" className="!py-2 !px-5 !text-xs" onClick={() => setIsConsultOpen(true)}>Book Discovery</Button>
+              </div>
+              <button className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>{mobileMenuOpen ? '✖️' : '☰'}</button>
+            </div>
+            {mobileMenuOpen && (
+              <div className="md:hidden bg-[var(--brand-navy)] p-6 border-t border-white/10 space-y-4">
+                <a href="#aitools" className="block py-2" onClick={() => setMobileMenuOpen(false)}>AI Tools</a>
+                <a href="#lifestages" className="block py-2" onClick={() => setMobileMenuOpen(false)}>Life Stages</a>
+                <Button className="w-full" onClick={() => { setIsConsultOpen(true); setMobileMenuOpen(false); }}>Book Call</Button>
+              </div>
+            )}
+          </nav>
+          {/* Hero */}
+          <section className="relative bg-[var(--brand-navy)] pt-20 pb-32 overflow-hidden">
+            <div className="absolute top-0 right-0 w-1/2 h-full bg-[var(--brand-gold)]/5 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2"></div>
+            <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 items-center">
+              <div className="space-y-8 animate-in slide-in-from-left-8 duration-700">
+                <Badge className="bg-[var(--brand-gold)]/20 text-[var(--brand-gold)]">Retirement Income Planning</Badge>
+                <h1 className="text-5xl md:text-7xl font-bold text-white leading-[1.1]">
+                  Your Retirement Starts Here.<br />
+                  <span className="text-[var(--brand-gold)]">Guarantee Your Income.</span>
+                </h1>
+                <p className="text-xl text-gray-400 max-w-xl leading-relaxed">
+                  We help pre-retirees and retirees in Pennsylvania build tax-free income streams and secure lifelong protection without the fear of market losses.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button onClick={() => setIsConsultOpen(true)} className="px-8">Get Your Blueprint</Button>
+                  <Button variant="secondary" onClick={() => window.open('https://agents.ethoslife.com/invite/29ad1', '_blank')}>Instant Term Quote</Button>
+                </div>
+                <div className="flex items-center gap-6 pt-4 border-t border-white/10">
+                  <div>
+                    <p className="text-white font-bold text-2xl">4.9/5</p>
+                    <p className="text-gray-500 text-xs">Client Satisfaction</p>
+                  </div>
+                  <div className="h-10 w-[1px] bg-white/10"></div>
+                  <div>
+                    <p className="text-white font-bold text-2xl">30+</p>
+                    <p className="text-gray-500 text-xs">A-Rated Carriers</p>
+                  </div>
+                </div>
+              </div>
+              <div className="relative group animate-in slide-in-from-right-8 duration-700">
+                <div className="absolute -inset-1 bg-gradient-to-r from-[var(--brand-gold)] to-[var(--brand-navy)] rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+                <div className="relative bg-[#1a2535] rounded-3xl overflow-hidden border border-white/10 aspect-square md:aspect-[4/5] flex items-center justify-center">
+                  <div className="text-center p-8">
+                    <div className="text-[var(--brand-gold)] mx-auto mb-6 text-6xl">🛡️</div>
+                    <h3 className="text-white text-2xl font-bold mb-4">Securing What Matters</h3>
+                    <p className="text-gray-400 text-sm">Jackson Latimore, MBA Candidate & PA Licensed Specialist, crafts custom retirement and legacy strategies for families and professionals.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          {/* AI Tools */}
+          <Section id="aitools" className="scroll-mt-20">
+            <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+              <Badge className="bg-[var(--brand-navy)] text-[var(--brand-gold)]">Interactive Planning</Badge>
+              <h2 className="text-3xl md:text-5xl font-bold">AI‑Powered Retirement Toolkit</h2>
+              <p className="text-gray-600">Complex financial concepts, simplified. Use our proprietary AI tools to visualize your future and audit your current protection.</p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <VisionBoard />
+              <RetirementMatchmaker />
+              <LegacyLetterWriter />
+              <JargonBuster />
+            </div>
+          </Section>
+          {/* Life Stages */}
+          <section id="lifestages" className="bg-white py-24 scroll-mt-20">
+            <div className="max-w-7xl mx-auto px-4 md:px-8">
+              <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+                <div className="max-w-xl">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4">Protection for Every Season</h2>
+                  <p className="text-gray-600">Whether you're still working or already enjoying your golden years, we have a strategy for you.</p>
+                </div>
+              </div>
+              <div className="grid md:grid-cols-3 gap-8">
+                {[
+                  { emoji: '🏃‍♂️', title: 'Pre‑Retirement', desc: 'Maximize contributions, reduce taxes and plan your income stream before leaving work.', color: 'bg-blue-50' },
+                  { emoji: '🌅', title: 'Early Retirement', desc: 'Optimize social security, create guaranteed income and protect against inflation.', color: 'bg-orange-50' },
+                  { emoji: '👨‍👩‍👧‍👦', title: 'Legacy Phase', desc: 'Plan efficient wealth transfer to heirs and charities while preserving your lifestyle.', color: 'bg-green-50' }
+                ].map((stage, i) => (
+                  <div key={i} className={`p-8 rounded-3xl ${stage.color} border border-transparent hover:border-[var(--brand-gold)] transition-all group cursor-default`}>
+                    <div className="p-4 bg-white rounded-2xl w-fit mb-6 shadow-sm group-hover:scale-110 transition-transform">
+                      <span className="text-[var(--brand-navy)] text-3xl">{stage.emoji}</span>
+                    </div>
+                    <h3 className="text-2xl font-bold mb-3">{stage.title}</h3>
+                    <p className="text-gray-600 text-sm leading-relaxed">{stage.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+          {/* CTA */}
+          <section className="bg-[var(--brand-gold)] py-20">
+            <div className="max-w-5xl mx-auto px-4 text-center space-y-8">
+              <h2 className="text-4xl md:text-5xl font-bold text-[var(--brand-navy)]">Your retirement deserves a professional touch.</h2>
+              <p className="text-xl text-[var(--brand-navy)]/80 font-medium">No sales pitch. Just a conversation about your future.</p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Button variant="navy" onClick={() => setIsConsultOpen(true)} className="px-10 py-4 shadow-xl">Book Free Consultation</Button>
+                <Button variant="white" onClick={() => { window.location.href = 'tel:8568951457'; }} className="px-10 py-4">Call Jackson Directly</Button>
+              </div>
+            </div>
+          </section>
+          {/* Footer */}
+          <footer className="bg-[var(--brand-navy)] text-gray-500 py-20">
+            <div className="max-w-7xl mx-auto px-4 md:px-8 grid md:grid-cols-3 gap-12">
+              <div className="space-y-6">
+                <h4 className="text-white font-bold text-lg">Latimore Life & Legacy</h4>
+                <p className="text-sm leading-relaxed">Serving Schuylkill, Luzerne, and Northumberland counties in Pennsylvania. Providing clarity in a confusing financial world.</p>
+                <div className="flex gap-4">
+                  <a href="https://www.linkedin.com/in/startwithjacksongfi" className="hover:text-[var(--brand-gold)] transition-colors" target="_blank" rel="noopener noreferrer">🔗</a>
+                  <a href="https://hihello.me/p/1ac94c21-813c-48c0-a270-49f5b2cc31e7" className="hover:text-[var(--brand-gold)] transition-colors" target="_blank" rel="noopener noreferrer">👥</a>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <h4 className="text-white font-bold uppercase text-xs tracking-widest">Connect</h4>
+                <div className="space-y-2 text-sm">
+                  <p className="flex items-center gap-2">📞 (856) 895‑1457</p>
+                  <p className="flex items-center gap-2 text-xs">jackson1989@latimorelegacy.com</p>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <h4 className="text-white font-bold uppercase text-xs tracking-widest">Licensing</h4>
+                <p className="text-[10px] leading-relaxed">Licensed in Pennsylvania (DOI #1268820, NIPR #21638507). Independent contractor affiliated with Global Financial Impact. Strategies vary by state and carrier approval.</p>
+              </div>
+            </div>
+            <div className="max-w-7xl mx-auto px-4 md:px-8 mt-16 pt-8 border-t border-white/5 text-center text-[10px]">
+              &copy; 2026 Latimore Life & Legacy LLC. Built for the future.
+            </div>
+          </footer>
+          <ChatWidget />
+        </div>
+      );
+    }
+    // Render
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+  <!-- Dynamic Fillout Link Modification -->
+  <script>
+    // On page load, append UTM params, landing page and referrer to Fillout URLs
+    (function() {
+      function getQuery() {
+        const params = new URLSearchParams(window.location.search);
+        const keys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+        const query = [];
+        keys.forEach(key => {
+          const value = params.get(key);
+          if (value) query.push(`${key}=${encodeURIComponent(value)}`);
+        });
+        return query.join('&');
+      }
+      const queryStr = getQuery();
+      const ref = encodeURIComponent(document.referrer || '');
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('a[href^="https://globalfinancialimpact.fillout.com/latimorelifelegacy"]').forEach((link) => {
+          let url = 'https://globalfinancialimpact.fillout.com/latimorelifelegacy';
+          const extras = [];
+          if (queryStr) extras.push(queryStr);
+          extras.push('landing_page=retirement');
+          if (ref) extras.push('referrer=' + ref);
+          url += '?' + extras.join('&');
+          link.setAttribute('href', url);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

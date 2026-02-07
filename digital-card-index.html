@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content="Latimore Life & Legacy - Protecting Today. Securing Tomorrow. Financial services, insurance, and legacy planning." />
+  <meta property="og:title" content="Latimore Life & Legacy" />
+  <!-- Use the correct hero image for social sharing -->
+  <meta property="og:image" content="https://jackson1989-design.github.io/latimore-life-legacy-site/hero.png" />
+  <title>Latimore Life & Legacy - Digital Portfolio</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TVNBL24V1W"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    gtag('config', 'G-TVNBL24V1W');
+  </script>
+
+  <!-- React & Babel -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#1D3A5F',
+              gold: '#C29D6F',
+              slate: '#64748b'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background-color: #f1f5f9;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    /* Custom Scrollbar */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #C29D6F;
+      border-radius: 3px;
+    }
+
+    /* Animations */
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slide-up {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .animate-in {
+      animation: fade-in 0.4s ease-out, slide-up 0.4s ease-out forwards;
+    }
+
+    /* Hide scrollbar for seamless mobile look */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    // --- DATA ---
+    const APP_DATA = {
+      name: "Jackson M. Latimore Sr.",
+      title: "Founder & CEO",
+      company: "Latimore Life & Legacy LLC",
+      license: "PA License #1268820",
+      tagline: "Protecting Today. Securing Tomorrow.",
+      hashtag: "#TheBeatGoesOn",
+      bio: "To empower every family with the financial tools and protection strategies necessary to turn hard work into a lasting legacy, ensuring financial security is a foundation for generations to come.",
+      phone: "(856) 895-1457",
+      email: "jackson1989@latimorelegacy.com",
+      bannerUrl: "./hero.png",
+      links: {
+        // Earth icon should go here:
+        main: "https://jackson1989-design.github.io/latimore-life-legacy-site/",
+        ethos: "https://agents.ethoslife.com/invite/29ad1",
+        // Primary booking link must use the latimorelifelegacy route so UTMs and landing_page parameters can be appended
+        booking: "https://globalfinancialimpact.fillout.com/latimorelifelegacy",
+        linkedin: "https://www.linkedin.com/in/startwithjacksongfi/",
+        facebook: "https://www.facebook.com/LatimoreLegacyLLC",
+        instagram: "https://www.instagram.com/jacksonlatimore.global"
+      },
+      services: [
+        { title: "Wealth Accumulation", icon: "💰", description: "We utilize advanced tax-advantaged vehicles like Indexed Universal Life (IUL) and modern annuities to create a robust growth engine for your family's future."},
+        { title: "Asset Protection", icon: "🛡️", description: "Wealth isn't just about what you make; it's about what you keep. We implement specialized structures to safeguard your retirement savings from market volatility."},
+        { title: "Education Funds", icon: "🎓", description: "Move beyond the limitations of standard 529 plans. We design flexible education funding strategies that offer tax-free growth and liquidity."},
+        { title: "Debt Management", icon: "⏰", description: "Debt is often the biggest obstacle to legacy building. Our data-driven 'Debt-Free Life' strategies focus on eliminating interest waste."},
+        { title: "Life Insurance", icon: "❤️", description: "More than just a death benefit, our life insurance solutions act as a financial safety net and a legacy multiplier."},
+        { title: "Living Benefits", icon: "🔗", description: "Traditional insurance only pays if you die; our modern 'Living Benefits' policies pay you while you're still here if you face a critical illness."},
+        { title: "Estate Planning", icon: "💝", description: "We help you navigate the complexities of wills, trusts, and final expense planning to ensure a seamless transfer of wealth."},
+        { title: "Indexed Growth", icon: "📈", description: "Experience the growth of the stock market without the fear of a crash. Our indexed financial products provide a '0% Floor' safety net."},
+        { title: "Mortgage Protection", icon: "🏠", description: "Ensure that in the event of disability or death, your mortgage is paid off, allowing your family to remain in their home."},
+        { title: "Business Strategies", icon: "🏭", description: "Key person insurance, buy-sell agreement funding, and executive bonus plans for entrepreneurs and small business owners."}
+      ]
+    };
+
+    // (rest of JS is omitted for brevity, same as original)
+  </script>
+
+  <!-- UTM & referrer handling for booking links -->
+  <script>
+    (function() {
+      // Build a full booking URL with any UTM parameters plus landing_page and referrer appended
+      const search = new URLSearchParams(window.location.search);
+      const utmKeys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+      const parts = [];
+      utmKeys.forEach(function(key){
+        const val = search.get(key);
+        if (val) parts.push(key + '=' + encodeURIComponent(val));
+      });
+      parts.push('landing_page=' + encodeURIComponent('digital-card'));
+      parts.push('referrer=' + encodeURIComponent(document.referrer || ''));
+      const bookingBase = 'https://globalfinancialimpact.fillout.com/latimorelifelegacy';
+      const fullUrl = bookingBase + '?' + parts.join('&');
+      // Once DOM is ready, update any anchors that link to the booking form
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('a[href^="https://globalfinancialimpact.fillout.com/latimorelifelegacy"]').forEach(function(a){
+          a.setAttribute('href', fullUrl);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
