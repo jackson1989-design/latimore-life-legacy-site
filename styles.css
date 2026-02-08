@@ -1,27 +1,44 @@
-.booking-section {
-    padding: 60px 0;
-    background-color: var(--white);
-    text-align: center;
+:root {
+    --navy-locked: #2C3E50;
+    --gold-locked: #C49A6C;
+    --white: #FFFFFF;
 }
 
-.calendar-wrapper {
-    max-width: 1000px;
-    margin: 40px auto;
-    border: 1px solid var(--navy-brand); /* Uses your locked Navy color */
-    border-radius: 4px;
-    overflow: hidden;
-    /* Enforcing Brand-Locked Flat Design: No shadows allowed */
-    box-shadow: none; 
+/* Enforcing Brand-Locked Flat Design */
+.logo-group, .btn-velocity, .btn-depth {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    border-radius: 0; /* Pure flat vector style */
 }
 
-.booking-header h2 {
-    color: var(--navy-brand);
-    text-transform: uppercase;
+.wordmark {
+    color: var(--navy-locked);
+    font-weight: 800;
     letter-spacing: 1px;
 }
 
-.hashtag-footer {
-    color: var(--gold-brand);
-    font-weight: bold;
-    margin-top: 20px;
+.logo-subtitle {
+    color: var(--gold-locked);
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 4px; /* Mandatory gold spaced lettering */
+}
+
+.gold-heartbeat {
+    height: 2px;
+    background: var(--gold-locked);
+    margin: 8px 0;
+    position: relative;
+    width: 100%;
+}
+
+/* Heartbeat growth arrow visual */
+.gold-heartbeat::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -4px;
+    border-left: 6px solid var(--gold-locked);
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
 }
