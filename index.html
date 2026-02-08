@@ -1,190 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Latimore Life & Legacy: Independent insurance consulting serving Schuylkill, Luzerne, and Northumberland Counties. Protection today, securing tomorrow." />
-    <title>Latimore Life & Legacy | Protecting Today. Securing Tomorrow.</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            [span_2](start_span)gold: '#C49A6C', // Exact Brand Gold[span_2](end_span)
-                            [span_3](start_span)navy: '#2C3E50'  // Exact Brand Navy[span_3](end_span)
-                        }
-                    },
-                    fontFamily: { sans: ['Inter', 'sans-serif'] }
-                }
-            }
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-    <style>
-        :root {
-            --brand-gold: #C49A6C;
-            --brand-navy: #2C3E50;
-        }
-        body { font-family: 'Inter', sans-serif; color: var(--brand-navy); background-color: #FFFFFF; }
-        
-        [span_4](start_span)[span_5](start_span)/* Brand-Locked Flat Design (No Shadows/Gradients)[span_4](end_span)[span_5](end_span) */
-        .flat-design { box-shadow: none !important; filter: none !important; text-shadow: none !important; }
-        
-        [span_6](start_span)[span_7](start_span)/* Heartbeat Line Styling[span_6](end_span)[span_7](end_span) */
-        .heartbeat-line {
-            height: 2px;
-            background: var(--brand-gold);
-            width: 100%;
-            position: relative;
-            margin: 4px 0;
-        }
-        .heartbeat-line::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: -4px;
-            border-left: 6px solid var(--brand-gold);
-            border-top: 4px solid transparent;
-            border-bottom: 4px solid transparent;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latimore Life & Legacy - Financial Protection for Pennsylvania Families</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="root"></div>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">L</div>
+                <span>Latimore Life & Legacy</span>
+            </a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" class="btn-primary-small">Book Consultation</a></li>
+                <li><a href="https://agents.ethoslife.com/invite/29ad1" target="_blank" class="btn-quote-small">Get Quote</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <script type="text/babel">
-        const { useState } = React;
-
-        const App = () => {
-            return (
-                <div className="min-h-screen flex flex-col">
-                    [span_8](start_span)[span_9](start_span){/* 1. BRAND-LOCKED NAVIGATION [cite: 50-54, 64] */}
-                    <nav className="sticky top-0 z-50 bg-white border-b border-gray-100 py-4 flat-design">
-                        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-                            <div className="logo-lock">
-                                <div className="text-2xl font-black tracking-tighter">
-                                    L<span className="text-brand-gold">↑↑</span>TIMORE
-                                </div>
-                                <div className="text-[10px] font-bold tracking-[0.3em] text-brand-gold uppercase">
-                                    Life & Legacy LLC
-                                </div>
-                                <div className="heartbeat-line"></div>
-                                <div className="text-[9px] font-bold text-brand-navy">
-                                    Protecting Today. Securing Tomorrow. | #TheBeatGoesOn
-                                </div>
-                            </div>
-                            
-                            <div className="flex gap-4">
-                                <a href="https://agents.ethoslife.com/invite/29ad1" target="_blank" 
-                                   className="bg-brand-gold text-brand-navy px-6 py-2 font-bold text-sm flat-design">
-                                    Velocity Engine: Get Quote
-                                </a>
-                                <a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" 
-                                   className="border-2 border-brand-navy text-brand-navy px-6 py-2 font-bold text-sm flat-design">
-                                    Depth Engine: Book Strategy
-                                </a>
-                            </div>
-                        </div>
-                    </nav>
-
-                    [cite_start]{/* 2. CANONICAL HERO SECTION[span_8](end_span)[span_9](end_span) */}
-                    <header className="bg-brand-navy text-white py-20 px-6">
-                        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-                            <div className="space-y-6">
-                                <h1 className="text-5xl font-black leading-tight">
-                                    Protecting What Matters Most to <span className="text-brand-gold">Pennsylvania Families.</span>
-                                </h1>
-                                <p className="text-xl text-gray-300">
-                                    Independent insurance consulting for Schuylkill, Luzerne, and Northumberland Counties. 
-                                    [span_10](start_span)[span_11](start_span)Building legacies that outlive you—without fear-based messaging.[span_10](end_span)[span_11](end_span)
-                                </p>
-                                <div className="flex gap-4">
-                                    <button className="bg-brand-gold text-brand-navy px-8 py-4 font-black flat-design">
-                                        Start Your Legacy Plan
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="hidden md:block border-l-4 border-brand-gold p-8 bg-white/5">
-                                <p className="italic text-lg text-gray-300">
-                                    [span_12](start_span)"Preparedness is a practical form of love."[span_12](end_span)
-                                </p>
-                            </div>
-                        </div>
-                    </header>
-
-                    [span_13](start_span){/* 3. FOUNDER ORIGIN (CANONICAL) [cite: 4, 76-81] */}
-                    <section className="py-20 px-6 bg-gray-50">
-                        <div className="max-w-4xl mx-auto text-center space-y-8">
-                            <h2 className="text-3xl font-black text-brand-navy uppercase tracking-widest">Our Story</h2>
-                            <div className="h-1 w-20 bg-brand-gold mx-auto"></div>
-                            <p className="text-lg leading-relaxed">
-                                In 2000, 15-year-old Greg Moyer collapsed during a basketball game. [cite_start]There was no AED available.[span_13](end_span) 
-                                [span_14](start_span)Ten years later, in December 2010, Jackson M. Latimore Sr. collapsed while playing at ESU.[span_14](end_span) 
-                                [span_15](start_span)Because an AED was available—placed there by the Gregory W. Moyer Defibrillator Fund—his heart was restarted.[span_15](end_span)
-                            </p>
-                            <p className="font-bold text-brand-navy">
-                                Tragedy became preparation. Preparation became survival. [span_16](start_span)That is the foundation of Latimore Life & Legacy.[span_16](end_span)
-                            </p>
-                        </div>
-                    </section>
-
-                    [span_17](start_span)[span_18](start_span)[span_19](start_span)[span_20](start_span){/* 4. THE 10 STRATEGIES GRID [cite: 162-165, 272] */}
-                    <section className="py-20 px-6 bg-white">
-                        <div className="max-w-7xl mx-auto">
-                            <h2 className="text-3xl font-black text-center mb-12">10 Strategies to Build, Protect, & Transfer Wealth</h2>
-                            <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
-                                {[
-                                    "Tax-Advantaged Accumulation", "Asset Protection & Rollovers", 
-                                    "College Education Funding", "Debt Management", 
-                                    "Life Insurance & Living Benefits", "Estate & Legacy Planning", 
-                                    "Indexed Growth Strategies", "Mortgage Protection", 
-                                    "Key-Person Insurance", "Retirement Income Strategies"
-                                ].map((s, i) => (
-                                    <div key={i} className="border border-gray-200 p-6 flex flex-col justify-between flat-design">
-                                        <h3 className="font-bold text-brand-navy text-sm mb-4">{i+1}. {s}</h3>
-                                        <div className="h-[2px] w-8 bg-brand-gold"></div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </section>
-
-                    [cite_start]{/* 5. BRAND-LOCKED FOOTER[span_17](end_span)[span_18](end_span)[span_19](end_span)[span_20](end_span) */}
-                    <footer className="bg-brand-navy text-white py-16 px-6 mt-auto">
-                        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12">
-                            <div className="space-y-4">
-                                <div className="font-black text-xl">LATIMORE LIFE & LEGACY LLC</div>
-                                <p className="text-xs text-gray-400">Jackson M. Latimore Sr., CEO & Founder</p>
-                                <p className="text-xs text-gray-400">MPA, East Stroudsburg University | MBA Candidate 2026</p>
-                                <p className="text-brand-gold font-bold">#TheBeatGoesOn</p>
-                            </div>
-                            <div className="space-y-2 text-sm">
-                                <p><strong>Phone:</strong> 856-895-1457</p>
-                                <p><strong>Email:</strong> Jackson1989@latimorelegacy.com</p>
-                                <p><strong>Region:</strong> Schuylkill, Luzerne, & Northumberland Counties, PA</p>
-                            </div>
-                            <div className="space-y-4 text-[10px] text-gray-500 leading-tight">
-                                <p>PA DOI License #1268820 | [span_21](start_span)NIPR #21638507[span_21](end_span)</p>
-                                [span_22](start_span)<p>Independent insurance consultant affiliated with Global Financial Impact.[span_22](end_span) 
-                                [span_23](start_span)Information provided is for educational purposes only and does not constitute tax or legal advice.[span_23](end_span)</p>
-                                <p>&copy; 2026 Latimore Life & Legacy LLC. All Rights Reserved.</p>
-                            </div>
-                        </div>
-                    </footer>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Protecting What Matters Most to <span class="gold-text">Pennsylvania Families</span></h1>
+                <p class="hero-tagline">Father | Survivor | Leader</p>
+                <p class="hero-subtitle">Independent insurance consultant serving Schuylkill, Luzerne & Northumberland Counties with life insurance, annuities, and financial protection strategies.</p>
+                
+                <div class="credentials">
+                    <div class="badge">✓ PA Licensed (DOI #1268820)</div>
+                    <div class="badge">✓ Global Financial Impact</div>
+                    <div class="badge">✓ MBA Candidate</div>
+                    <div class="badge">✓ 3 Counties Served</div>
                 </div>
-            );
-        };
+                
+                <div class="cta-buttons">
+                    <a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" class="btn btn-primary">
+                        Book Free Consultation
+                    </a>
+                    <a href="https://agents.ethoslife.com/invite/29ad1" target="_blank" class="btn btn-quote">
+                        Get Instant Quote
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-image">
+                <img src="jackson-headshot.jpg" alt="Jackson M. Latimore Sr." class="profile-photo">
+                <div class="profile-card">
+                    <h3>Jackson M. Latimore Sr.</h3>
+                    <p class="title">CEO & Founder</p>
+                    <p class="subtitle">In affiliation with Global Financial Impact</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
+    <!-- Services Grid - 10 Services -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Comprehensive Financial Protection</h2>
+            <p class="section-subtitle">10 strategies to build, protect, and transfer wealth</p>
+            
+            <div class="services-grid-ten">
+                <div class="service-card-compact">
+                    <h3>Tax-Advantaged Wealth Accumulation</h3>
+                    <p>Build wealth using tax-deferred and tax-free growth strategies</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>Asset Protection & Plan Rollovers</h3>
+                    <p>Protect wealth and roll over 401(k), 403(b), pension plans strategically</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>College Education Funding</h3>
+                    <p>Strategic funding for higher education without crippling debt</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>Debt Management</h3>
+                    <p>Consolidation strategies to eliminate high-interest debt</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>Life Insurance & Living Benefits</h3>
+                    <p>Income replacement, critical illness, and final expense coverage</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>Estate & Legacy Planning</h3>
+                    <p>Wealth transfer strategies and estate tax solutions</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>Indexed Growth Strategies</h3>
+                    <p>Market-linked growth with downside protection</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>Mortgage Protection</h3>
+                    <p>Ensure your family keeps the home if something happens to you</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>Business & Key-Person Insurance</h3>
+                    <p>Protect your business from loss of critical personnel</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>Retirement Income Strategies</h3>
+                    <p>Guaranteed lifetime income with annuities and safe-money vehicles</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Story with Images -->
+    <section class="story">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">My Story: Why Protection Matters</h2>
+            
+            <div class="story-images">
+                <div class="story-image-item">
+                    <img src="hospital-recovery.jpg" alt="Jackson recovering in hospital">
+                    <p>December 2010 - Pocono Medical Center</p>
+                </div>
+                <div class="story-image-item">
+                    <img src="news-headline.jpg" alt="Pocono Record coverage">
+                    <p>Local news coverage of the life-saving event</p>
+                </div>
+            </div>
+            
+            <div class="story-text-center">
+                <p>During a college basketball game on December 7, 2010, my heart stopped. I went into sudden cardiac arrest at East Stroudsburg University. I was 22 years old.</p>
+                
+                <p>I survived because athletic trainers had immediate access to an AED - placed there by the Gregory W. Moyer Defibrillator Fund after 15-year-old Greg Moyer died of cardiac arrest in 2000.</p>
+                
+                <p class="story-highlight">That experience taught me that preparedness is everything. Financial protection isn't about selling policies - it's about ensuring families have what they need when the unexpected happens.</p>
+                
+                <div class="cta-buttons">
+                    <a href="about.html" class="btn btn-secondary">Read Full Story</a>
+                    <a href="contact.html" class="btn btn-primary">Work With Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Protect Your Family's Future?</h2>
+            <p>Let's discuss your financial protection strategy</p>
+            <div class="cta-buttons">
+                <a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" class="btn btn-primary">
+                    Book Free Consultation
+                </a>
+                <a href="tel:8568951457" class="btn btn-secondary">
+                    Call (856) 895-1457
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Latimore Life & Legacy</h4>
+                    <p>Protection-first strategies for working families, professionals, and local organizations across Central Pennsylvania.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/LatimoreLegacyLLC" target="_blank">Facebook</a>
+                        <a href="https://www.instagram.com/jacksonlatimore.global" target="_blank">Instagram</a>
+                        <a href="https://www.linkedin.com/in/startwithjacksongfi" target="_blank">LinkedIn</a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="about.html">About Jackson</a>
+                    <a href="products.html">Products</a>
+                    <a href="services.html">Services</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p><strong>Phone:</strong> (856) 895-1457</p>
+                    <p><strong>Email:</strong> jackson1989@latimorelegacy.com</p>
+                    <p><strong>Service Area:</strong> Schuylkill, Luzerne & Northumberland Counties, PA</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Get Started</h4>
+                    <a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" class="footer-cta">Book Consultation</a>
+                    <a href="https://agents.ethoslife.com/invite/29ad1" target="_blank" class="footer-cta">Instant Quote</a>
+                    <a href="https://hihello.me/p/1ac94c21-813c-48c0-a270-49f5b2cc31e7" target="_blank" class="footer-cta">Save My Contact</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="disclosure">Licensed in Pennsylvania (DOI #1268820, NIPR #21638507). Independent contractor with <a href="https://www.globalfinancialimpact.com" target="_blank" style="color: var(--gold-light); text-decoration: none; font-weight: 600;">Global Financial Impact</a>. Products offered through appointed carriers. For educational purposes only; not tax or legal advice.</p>
+                <p>&copy; 2026 Latimore Life & Legacy LLC. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
     </script>
 </body>
 </html>
