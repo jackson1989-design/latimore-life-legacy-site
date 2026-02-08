@@ -1,19 +1,296 @@
-<section class="booking-section">
-    <div class="container">
-        <header class="booking-header">
-            <h2 class="gold-text">Schedule Your Strategic Consultation</h2>
-            <p>Select a time for a no-pressure educational session on protecting your legacy.</p>
-            <div class="heartbeat-line"></div> </header>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jackson Latimore • Legacy Strategy Engine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-        <div class="calendar-wrapper">
-            <iframe src='https://outlook.office.com/book/JACKSONLATGLOBELIFECOMCopy@live.aiuniv.edu/?ismsaljsauthenabled' 
-                width='100%' 
-                height='800px' 
-                scrolling='yes' 
-                style='border:0'
-                title="Latimore Life & Legacy Booking Calendar">
-            </iframe>
-        </div>
-        
-        <p class="hashtag-footer">#TheBeatGoesOn</p> </div>
-</section>
+    <style>
+      .custom-scrollbar::-webkit-scrollbar { width: 5px; }
+      .custom-scrollbar::-webkit-scrollbar-thumb { background: #C29D6F; border-radius: 10px; }
+      @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+      .animate-slide-up { animation: slideUp 0.3s ease-out; }
+      .strategy-gradient { background: linear-gradient(135deg, #1D3A5F 0%, #0F2036 100%); }
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+  </head>
+
+  <body class="bg-slate-100 font-sans antialiased">
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const { useState, useEffect, useRef } = React;
+
+      // --- 1. STRATEGIC KNOWLEDGE REPOSITORY ---
+      const KNOWLEDGE_BASE = {
+        "Wealth Accumulation": {
+          title: "THE 0% TAX BRACKET STRATEGY",
+          content: "Most families save in Tax-Later accounts, which essentially gives the government a lien on your retirement harvest. We focus on the Tax-Never bucket. By utilizing specialized accumulation vehicles, we aim to get you to a 0% tax bracket in retirement. This protects your purchasing power from future tax hikes and ensures your harvest remains 100% yours.",
+          next: "Ask me about the Tax Bucket Audit."
+        },
+        "Asset Protection": {
+          title: "THE VOLATILITY SHIELD & 0% FLOOR",
+          content: "Market volatility is the primary threat to a successful retirement. We utilize the Power of Indexing to provide a 0% Floor. This means when the market drops, your principal and previous gains are 100% protected. You participate in the growth without ever having to earn back a loss. Zero is your Hero.",
+          next: "Ask how a 0% floor prevents Sequence of Returns risk."
+        },
+        "Living Benefits": {
+          title: "MODERN PROTECTION FOR THE LIVING",
+          content: "Modern planning has moved beyond death benefits to life preservation. If you face a major health crisis like a heart attack or stroke, you can access your benefit while alive. This provides the liquidity needed for home care or lost income without exhausting your family's savings. Your health is your currency.",
+          next: "Ask about the conditions covered by Living Benefits."
+        },
+        "Debt Management": {
+          title: "THE PRIVATE FAMILY BANK",
+          content: "Debt creates an interest drag on your legacy. Our strategy redirects the interest you pay to banks back into your own Private Bank. By utilizing high-liquidity strategies, you can pay off high-interest debt and long-term mortgages in nearly half the time while simultaneously building a retirement fund.",
+          next: "Run your Financial Score to see your Debt-Free date."
+        },
+        "Estate Planning": {
+          title: "THE LEGACY PORTRAIT",
+          content: "Estate planning ensures your values and assets transition to the next generation without the delay of probate. We provide access to legal documentation tools to help you design your Legacy Portrait. This is about ensuring clarity, stewardship, and the legal protection of your family's future.",
+          next: "Access the Planning Portal to start your documentation."
+        },
+        "Mortgage Protection": {
+          title: "SECURE HOUSING & THE DIME METHOD",
+          content: "Your home is likely your family's biggest liability. We use the DIME Method—Debt, Income, Mortgage, and Education—to calculate the exact amount needed to clear your deed. This ensures your family stays in their home regardless of health or life events.",
+          next: "Ask me to explain the DIME calculation."
+        },
+        "College Funding": {
+          title: "GENERATIONAL WEALTH START",
+          content: "Traditional college funds are often restrictive. We utilize tax-advantaged accumulation tools to create a tax-free cash pile for your children. This funds education or a first home, and guarantees their insurability for life. It gives your children a financial head start that compounds for decades.",
+          next: "Ask how this grows over 20 years."
+        },
+        "Indexed Growth": {
+          title: "THE POWER OF ANNUAL RESET",
+          content: "Indexing provides market-linked growth without market-linked risk. Through the Annual Reset feature, your gains are locked in every year. If the index drops, you stay at your current level. You participate in the upside of the market while the institution absorbs the downside risk.",
+          next: "Ask about the difference between indexing and investing."
+        },
+        "Business Strategies": {
+          title: "BUSINESS CONTINUITY & KEY PERSON",
+          content: "We protect business owners from the risk of losing vital leadership. If a partner passes, the business can collapse. We design continuity agreements that provide immediate liquidity, allowing surviving owners to buy out heirs fairly and keep the doors open smoothly.",
+          next: "Ask about strategies to retain your top talent."
+        },
+        "Final Expense": {
+          title: "PLANNING FOR FAMILY DIGNITY",
+          content: "Planning for final costs is an act of love. We offer simplified plans that provide immediate coverage for burial and medical bills. This ensures your legacy is defined by peace and preparedness, rather than leaving a financial burden for those you love most.",
+          next: "Ask about instant-decision planning."
+        }
+      };
+
+      const APP_DATA = {
+        name: "Jackson M. Latimore Sr.",
+        title: "Founder & CEO",
+        company: "Latimore Life & Legacy LLC",
+        license: "PA License #1268820",
+        nipr: "NIPR #21638507",
+        phone: "(856) 895-1457",
+        email: "jackson1989@latimorelegacy.com",
+        links: {
+          main: window.location.href,
+          scorecard: "https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus",
+          portal: "https://globalfinancialimpact.fillout.com/latimorelifelegacy",
+          verification: "https://www.insurance.pa.gov/Licensing/CheckLicStatus/Pages/default.aspx",
+          linkedin: "https://www.linkedin.com/in/startwithjacksongfi/",
+          facebook: "https://www.facebook.com/LatimoreLegacyLLC",
+          instagram: "https://www.instagram.com/jacksonlatimore.global"
+        }
+      };
+
+      // --- 2. COMPONENTS ---
+
+      const Assistant = ({ onClose, initialQuery }) => {
+        const [messages, setMessages] = useState([
+          { role: "assistant", content: "Hi, I'm Legacy AI. 👋 \n\nI am Jackson's expert strategy engine. I specialize in the Rule of 72, the X-Curve Theory, and the DIME Method. Select a card or ask me a strategy question." }
+        ]);
+        const [isTyping, setIsTyping] = useState(false);
+        const scrollRef = useRef(null);
+
+        useEffect(() => {
+          if (initialQuery) handleSend(initialQuery);
+        }, [initialQuery]);
+
+        const handleSend = (text) => {
+          if (!text.trim()) return;
+          setMessages(prev => [...prev, { role: "user", content: text }]);
+          setIsTyping(true);
+
+          setTimeout(() => {
+            let foundKey = Object.keys(KNOWLEDGE_BASE).find(k => text.toLowerCase().includes(k.toLowerCase()));
+            let data = foundKey ? KNOWLEDGE_BASE[foundKey] : null;
+
+            if (text.toLowerCase().includes("dime")) {
+              data = {
+                title: "THE DIME METHOD",
+                content: "DIME is the framework for protection: Debt (total payoff), Income replacement (10x salary), Mortgage (home balance), and Education (funding for children). This formula determines your exact protection gap.",
+                next: "Run your Financial Score to calculate your DIME total."
+              };
+            } else if (text.toLowerCase().includes("x-curve") || text.toLowerCase().includes("x curve")) {
+              data = {
+                title: "THE X-CURVE THEORY",
+                content: "The X-Curve shows your financial life in two lines: 1. Decreasing Responsibility (mortgage, kids) and 2. Increasing Wealth (retirement). We use specific strategies to protect the first line and build the second.",
+                next: "Ask about the 3 Rules of Money to see how we build the wealth line."
+              };
+            }
+
+            if (!data) {
+              data = {
+                title: "STRATEGY INSIGHT",
+                content: "I am programmed with the Rule of 72, the Volatility Shield, and Private Banking strategies. Which would you like to master today?",
+                next: "Type a strategy name above to begin."
+              };
+            }
+
+            setMessages(prev => [...prev, { role: "assistant", content: `${data.title}\n\n${data.content}\n\nNext Step: ${data.next}` }]);
+            setIsTyping(false);
+            scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
+          }, 800);
+        };
+
+        return (
+          <div className="flex flex-col h-full bg-white">
+            <div className="p-5 strategy-gradient text-white flex justify-between items-center border-b-4 border-[#C29D6F]">
+              <div>
+                <h3 className="font-black text-sm uppercase tracking-widest leading-none">Legacy AI</h3>
+                <p className="text-[10px] text-[#C29D6F] font-bold uppercase mt-1">Expert Strategy Engine</p>
+              </div>
+              <button onClick={onClose} className="w-8 h-8 flex items-center justify-center bg-white/10 rounded-full text-xl">×</button>
+            </div>
+            <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar bg-slate-50">
+              {messages.map((m, i) => (
+                <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                  <div className={`max-w-[90%] p-4 rounded-2xl text-sm shadow-sm leading-relaxed ${m.role === 'user' ? 'bg-[#1D3A5F] text-white rounded-tr-none' : 'bg-white border border-slate-200 text-slate-800 rounded-tl-none'}`}>
+                    <span className="whitespace-pre-wrap">{m.content}</span>
+                  </div>
+                </div>
+              ))}
+              {isTyping && <div className="text-[10px] text-slate-400 animate-pulse px-2 font-bold uppercase italic">Analyzing...</div>}
+            </div>
+            <div className="p-4 bg-white border-t flex flex-col gap-2">
+               <div className="flex overflow-x-auto gap-2 pb-2 no-scrollbar">
+                  {["Rule of 72", "DIME Method", "X-Curve", "Tax Buckets"].map(tag => (
+                    <button key={tag} onClick={() => handleSend(tag)} className="whitespace-nowrap px-3 py-1 bg-slate-100 rounded-full text-[10px] font-bold text-[#1D3A5F] border border-slate-200 uppercase tracking-tighter">
+                      {tag}
+                    </button>
+                  ))}
+               </div>
+               <div className="flex gap-2">
+                  <input id="chatInput" placeholder="Ask a strategy question..." className="flex-1 bg-slate-100 p-3 rounded-xl text-sm outline-none border focus:border-[#C29D6F]" onKeyDown={(e)=>e.key==='Enter' && handleSend(e.target.value)} />
+                  <button onClick={() => {const el=document.getElementById('chatInput'); handleSend(el.value); el.value='';}} className="bg-[#1D3A5F] text-white px-5 rounded-xl font-bold">➡️</button>
+               </div>
+            </div>
+          </div>
+        );
+      };
+
+      const QRCodeModal = ({ onClose }) => {
+        useEffect(() => {
+          new QRCode(document.getElementById("qrcode"), { text: APP_DATA.links.main, width: 200, height: 200, colorDark : "#1D3A5F", colorLight : "#ffffff", });
+        }, []);
+        return (
+          <div className="fixed inset-0 z-50 bg-[#1D3A5F]/90 backdrop-blur-md flex items-center justify-center p-6" onClick={onClose}>
+            <div className="bg-white p-8 rounded-[3rem] text-center animate-slide-up" onClick={e=>e.stopPropagation()}>
+              <h3 className="font-black text-[#1D3A5F] mb-2 uppercase tracking-widest text-sm">Share My Legacy Card</h3>
+              <div id="qrcode" className="mx-auto border-8 border-slate-50 p-2 rounded-2xl mb-4"></div>
+              <button onClick={onClose} className="mt-6 w-full py-3 bg-slate-100 rounded-xl text-[#1D3A5F] font-black text-xs uppercase tracking-widest">Close</button>
+            </div>
+          </div>
+        );
+      };
+
+      // --- 3. MAIN APP ---
+
+      const App = () => {
+        const [view, setView] = useState(null); 
+        const [query, setQuery] = useState(null);
+
+        return (
+          <div className="min-h-screen flex flex-col items-center sm:py-10 bg-slate-100 selection:bg-[#C29D6F]/30">
+            <div className="w-full max-w-[440px] bg-white sm:rounded-[3rem] shadow-2xl relative border border-slate-200 min-h-screen sm:min-h-[850px] overflow-visible">
+              
+              {/* Header */}
+              <div className="w-full h-72 relative bg-[#1D3A5F] sm:rounded-t-[3rem] overflow-hidden">
+                <img src="https://jackson1989-design.github.io/latimore-life-legacy-site/hero.jpg" className="w-full h-full object-cover opacity-50" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1D3A5F] via-[#1D3A5F]/40 to-transparent" />
+                <div className="absolute bottom-6 px-8">
+                  <p className="text-[#C29D6F] text-[10px] font-black uppercase tracking-[0.3em] mb-1">Preparedness Is Everything</p>
+                  <h2 className="text-white text-[11px] font-medium italic leading-relaxed opacity-90 uppercase">
+                    My life was saved because someone else planned ahead. I build legacies so your family never has to scramble.
+                  </h2>
+                </div>
+              </div>
+
+              {/* Profile Card */}
+              <div className="text-center px-6 -mt-16 relative z-10">
+                <div className="w-32 h-32 mx-auto rounded-full bg-white p-1 shadow-2xl mb-4 border-4 border-white">
+                  <div className="w-full h-full rounded-full bg-[#1D3A5F] flex items-center justify-center text-3xl text-white font-black">JL</div>
+                </div>
+                <h1 className="text-2xl font-black text-[#1D3A5F] tracking-tighter uppercase">{APP_DATA.name}</h1>
+                <p className="text-[#C29D6F] font-bold text-[10px] uppercase tracking-[0.2em] mt-1">{APP_DATA.title}</p>
+                
+                <div className="flex flex-col items-center mt-1">
+                   <a href={APP_DATA.links.verification} target="_blank" className="text-slate-400 text-[9px] font-bold uppercase hover:text-[#C29D6F] transition-colors underline decoration-dotted underline-offset-2">
+                     {APP_DATA.license}
+                   </a>
+                   <p className="text-slate-400 text-[9px] font-bold uppercase mt-0.5">{APP_DATA.nipr}</p>
+                </div>
+              </div>
+
+              {/* ACTION FUNNEL */}
+              <div className="px-6 py-8 space-y-4">
+                <a href={APP_DATA.links.scorecard} target="_blank" className="flex flex-col items-center justify-center w-full py-5 bg-[#C29D6F] text-white rounded-3xl shadow-xl hover:scale-[1.02] transition-all">
+                  <span className="font-black text-sm uppercase tracking-widest leading-none">🏆 Get Your Financial Score</span>
+                  <span className="text-[9px] font-bold opacity-80 uppercase mt-1 tracking-tighter">Start Free Assessment</span>
+                </a>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <a href={APP_DATA.links.portal} target="_blank" className="flex items-center justify-center py-4 bg-[#1D3A5F] text-white rounded-2xl font-bold text-[10px] uppercase tracking-widest shadow-lg">Strategic Portal</a>
+                  <button onClick={() => setView('qr')} className="flex items-center justify-center py-4 bg-slate-800 text-white rounded-2xl font-bold text-[10px] uppercase tracking-widest shadow-lg">Share Card</button>
+                </div>
+              </div>
+
+              {/* SERVICE GRID (10 CARDS) */}
+              <div className="px-6 mb-24">
+                <div className="bg-slate-50 rounded-[2.5rem] p-6 border border-slate-100">
+                   <h2 className="text-[#1D3A5F] text-center font-black text-[10px] uppercase tracking-[0.25em] mb-6">Expert Consulting Services</h2>
+                   <div className="grid grid-cols-2 gap-3">
+                      {Object.keys(KNOWLEDGE_BASE).map(service => (
+                        <button key={service} onClick={() => {setQuery(service); setView('ai');}} className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 text-center hover:border-[#C29D6F] transition-all active:scale-95">
+                           <div className="text-[9px] font-black text-[#1D3A5F] uppercase leading-tight">{service}</div>
+                           <div className="text-[8px] text-slate-400 mt-2 font-bold uppercase tracking-tighter">Master Strategy →</div>
+                        </button>
+                      ))}
+                   </div>
+                </div>
+              </div>
+
+              {/* STICKY CHAT */}
+              <div className="sticky bottom-6 flex justify-end px-6 z-20 pointer-events-none pb-6">
+                <button onClick={() => setView('ai')} className="bg-[#1D3A5F] px-6 py-4 rounded-full text-white shadow-2xl border-2 border-[#C29D6F] pointer-events-auto flex items-center gap-2">
+                  <span className="text-xs font-black tracking-widest">💬 LEGACY AI</span>
+                </button>
+              </div>
+
+              {/* MODALS */}
+              {view === 'ai' && (
+                <div className="fixed inset-0 z-50 bg-[#1D3A5F]/60 backdrop-blur-sm p-4 flex items-center justify-center" onClick={() => setView(null)}>
+                  <div className="bg-white w-full max-w-sm h-[600px] rounded-[3rem] overflow-hidden shadow-2xl animate-slide-up" onClick={e=>e.stopPropagation()}>
+                    <Assistant onClose={() => {setView(null); setQuery(null);}} initialQuery={query} />
+                  </div>
+                </div>
+              )}
+
+              {view === 'qr' && <QRCodeModal onClose={() => setView(null)} />}
+
+            </div>
+            <p className="text-[10px] text-slate-400 mt-8 font-bold uppercase tracking-[0.4em]">#TheBeatGoesOn</p>
+          </div>
+        );
+      };
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>
