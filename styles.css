@@ -1,30 +1,32 @@
 :root {
+    /* Brand-Locked Colors */
     --navy-locked: #2C3E50;
     --gold-locked: #C49A6C;
     --white: #FFFFFF;
 }
 
-/* Enforcing Brand-Locked Flat Design */
-.logo-group, .btn-velocity, .btn-depth {
+/* Enforcing Non-Negotiable Flat Design */
+.logo-lock, .btn-velocity, .btn-depth {
     box-shadow: none !important;
     text-shadow: none !important;
-    border-radius: 0; /* Pure flat vector style */
+    filter: none !important;
 }
 
 .wordmark {
     color: var(--navy-locked);
-    font-weight: 800;
+    font-weight: 900;
     letter-spacing: 1px;
+    font-family: 'Arial', sans-serif;
 }
 
-.logo-subtitle {
+.gold-lettering {
     color: var(--gold-locked);
+    letter-spacing: 4px; [span_6](start_span)/* Gold spaced lettering requirement[span_6](end_span) */
+    font-size: 0.75rem;
     display: block;
-    font-size: 0.7rem;
-    letter-spacing: 4px; /* Mandatory gold spaced lettering */
 }
 
-.gold-heartbeat {
+.heartbeat-arrow {
     height: 2px;
     background: var(--gold-locked);
     margin: 8px 0;
@@ -32,13 +34,13 @@
     width: 100%;
 }
 
-/* Heartbeat growth arrow visual */
-.gold-heartbeat::after {
+[span_7](start_span)/* Upward growth arrow at the end of heartbeat[span_7](end_span) */
+.heartbeat-arrow::after {
     content: '';
     position: absolute;
     right: 0;
     top: -4px;
-    border-left: 6px solid var(--gold-locked);
-    border-top: 4px solid transparent;
-    border-bottom: 4px solid transparent;
+    border-left: 7px solid var(--gold-locked);
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
 }
