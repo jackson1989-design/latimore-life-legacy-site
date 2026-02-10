@@ -1,239 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Life Insurance & Annuities in Schuylkill County | Latimore Life & Legacy LLC</title>
-
-  <meta name="description" content="Latimore Life & Legacy LLC provides life insurance, annuities, mortgage protection, retirement income planning, and financial solutions for families and businesses in Schuylkill County, Pennsylvania." />
-
-  <link rel="stylesheet" href="blueprint.css" />
-
-  <!-- Google Analytics (GA4) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-521880238"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-521880238');
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latimore Life & Legacy - Financial Protection for Pennsylvania Families</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-  <!-- TOP BAR -->
-  <div class="top-bar">
-    <div class="top-bar-inner">
-      <span>Latimore Life & Legacy LLC · Protecting Today. Securing Tomorrow.</span>
-      <span>#TheBeatGoesOn</span>
-    </div>
-  </div>
-
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="header-inner">
-      <div class="logo-area">
-        <!-- If you want to use the image logo, replace this with <img src="logo.png" alt="Latimore Life & Legacy LLC" /> -->
-        <div class="logo-text">
-          <span class="logo-main">LATIMORE</span>
-          <span class="logo-sub">LIFE &amp; LEGACY LLC</span>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">L</div>
+                <span>Latimore Life & Legacy</span>
+            </a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" class="btn-primary-small">Book Consultation</a></li>
+                <li><a href="https://agents.ethoslife.com/invite/29ad1" target="_blank" class="btn-quote-small">Get Quote</a></li>
+            </ul>
         </div>
-      </div>
-      <nav class="main-nav">
-        <ul>
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="education.html">Education</a></li>
-          <li><a href="products.html">Services</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      <div class="header-cta">
-        <a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" class="btn-primary">Book Your Free Consultation</a>
-      </div>
-    </div>
-  </header>
+    </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-copy">
-        <h1>Life Insurance and Annuities in Schuylkill County</h1>
-        <p>
-          Protecting families, securing legacies, and creating financial clarity for Schuylkill, Luzerne, and Northumberland County.
-          We engineer solutions that protect today and secure tomorrow—without fear-based messaging.
-        </p>
-        <div class="hero-cta-group">
-          <a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" class="btn-primary">Start Your Plan</a>
-          <a href="education.html" class="btn-secondary">Explore Educational Resources</a>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Protecting What Matters Most to <span class="gold-text">Pennsylvania Families</span></h1>
+                <p class="hero-tagline">Father | Survivor | Leader</p>
+                <p class="hero-subtitle">Independent insurance consultant serving Schuylkill, Luzerne & Northumberland Counties with life insurance, annuities, and financial protection strategies.</p>
+                
+                <div class="credentials">
+                    <div class="badge">✓ PA Licensed (DOI #1268820)</div>
+                    <div class="badge">✓ MBA Candidate</div>
+                    <div class="badge">✓ 3 Counties Served</div>
+                </div>
+                
+                <div class="cta-buttons">
+                    <a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" class="btn btn-primary">
+                        Book Free Consultation
+                    </a>
+                    <a href="https://agents.ethoslife.com/invite/29ad1" target="_blank" class="btn btn-quote">
+                        Get Instant Quote
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-image">
+                <img src="jackson-headshot.jpg" alt="Jackson M. Latimore Sr." class="profile-photo">
+                <div class="profile-card">
+                    <h3>Jackson M. Latimore Sr.</h3>
+                    <p class="title">CEO & Founder</p>
+                    <p class="subtitle">Independent Financial Consultant</p>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="hero-aside">
-        <div class="hero-card">
-          <h2>Protecting Today. Securing Tomorrow.</h2>
-          <ul>
-            <li>Life insurance with living benefits</li>
-            <li>Retirement income &amp; annuities</li>
-            <li>Mortgage protection &amp; debt strategies</li>
-            <li>College funding &amp; legacy planning</li>
-          </ul>
-          <a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" class="btn-primary full-width">Book Your Free Consultation</a>
+    </section>
+
+    <!-- Services Grid - 10 Services -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Comprehensive Financial Protection</h2>
+            <p class="section-subtitle">10 strategies to build, protect, and transfer wealth</p>
+            
+            <div class="services-grid-ten">
+                <div class="service-card-compact">
+                    <h3>Tax-Advantaged Wealth Accumulation</h3>
+                    <p>Build wealth using tax-deferred and tax-free growth strategies</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>Asset Protection & Plan Rollovers</h3>
+                    <p>Protect wealth and roll over 401(k), 403(b), pension plans strategically</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>College Education Funding</h3>
+                    <p>Strategic funding for higher education without crippling debt</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>Debt Management</h3>
+                    <p>Consolidation strategies to eliminate high-interest debt</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>Life Insurance & Living Benefits</h3>
+                    <p>Income replacement, critical illness, and final expense coverage</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>Estate & Legacy Planning</h3>
+                    <p>Wealth transfer strategies and estate tax solutions</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>Indexed Growth Strategies</h3>
+                    <p>Market-linked growth with downside protection</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>Mortgage Protection</h3>
+                    <p>Ensure your family keeps the home if something happens to you</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>Business & Key-Person Insurance</h3>
+                    <p>Protect your business from loss of critical personnel</p>
+                </div>
+                
+                <div class="service-card-compact">
+                    <h3>Retirement Income Strategies</h3>
+                    <p>Guaranteed lifetime income with annuities and safe-money vehicles</p>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SERVICES OVERVIEW -->
-  <section class="section">
-    <div class="section-inner">
-      <h2>Financial Solutions for Every Stage of Life</h2>
-      <p class="section-intro">
-        Latimore Life &amp; Legacy LLC serves families, working professionals, pre-retirees, and business owners
-        across Schuylkill County with problem-first, engineered financial solutions.
-      </p>
-
-      <div class="services-grid">
-
-        <a href="tax-advantaged-wealth-accumulation.html" class="service-card">
-          <h3>Tax-Advantaged Wealth Accumulation</h3>
-          <p>Use the tax code to grow and access cash value tax-advantaged for supplemental retirement income.</p>
-        </a>
-
-        <a href="asset-protection-rollovers.html" class="service-card">
-          <h3>Asset Protection &amp; Qualified Plan Rollovers</h3>
-          <p>Shield 401(k) and IRA assets from market loss and create predictable retirement income.</p>
-        </a>
-
-        <a href="college-education-funding.html" class="service-card">
-          <h3>College Education Funding</h3>
-          <p>Flexible, tax-advantaged strategies to fund education and launch the next generation.</p>
-        </a>
-
-        <a href="debt-management.html" class="service-card">
-          <h3>Debt Management &amp; Consolidation</h3>
-          <p>Use policy liquidity to eliminate high-interest debt and protect your home and income.</p>
-        </a>
-
-        <a href="life-insurance-living-benefits-final-expense.html" class="service-card">
-          <h3>Living Benefits &amp; Final Expense</h3>
-          <p>Access benefits while living and ensure loved ones are not burdened by final expenses.</p>
-        </a>
-
-        <a href="estate-legacy-planning.html" class="service-card">
-          <h3>Estate &amp; Legacy Planning</h3>
-          <p>Protect the family home and transfer assets efficiently with wills, trusts, and insurance.</p>
-        </a>
-
-        <a href="indexed-growth-strategies.html" class="service-card">
-          <h3>Indexed Growth Strategies</h3>
-          <p>Capture market-linked growth with downside protection for retirement assets.</p>
-        </a>
-
-        <a href="mortgage-protection.html" class="service-card">
-          <h3>Mortgage Protection</h3>
-          <p>Ensure your family can keep the home if a primary income earner passes away.</p>
-        </a>
-
-        <a href="business-owner-key-person.html" class="service-card">
-          <h3>Business Owner &amp; Key Person Strategies</h3>
-          <p>Protect your business from key person loss and design retention-focused compensation.</p>
-        </a>
-
-        <a href="retirement-income-annuities.html" class="service-card">
-          <h3>Retirement Income &amp; Annuities</h3>
-          <p>Create guaranteed income you cannot outlive and protect against market volatility.</p>
-        </a>
-
-      </div>
-
-      <div class="section-cta-center">
-        <p>Not sure where to start? We’ll diagnose the problem first, then engineer the right solution.</p>
-        <a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" class="btn-primary">Book Your Free Consultation</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- TRUST / STORY SECTION -->
-  <section class="section section-alt">
-    <div class="section-inner">
-      <h2>Why Families and Businesses Choose Latimore Life &amp; Legacy</h2>
-      <div class="two-column">
-        <div>
-          <h3>Advanced Sales Engineering</h3>
-          <p>
-            We don’t lead with products—we lead with your problems. Every recommendation is engineered
-            to solve a specific financial challenge, from income protection to legacy planning.
-          </p>
-          <h3>Local, Relational, By-Appointment</h3>
-          <p>
-            Based in Schuylkill County, we serve families and organizations through focused, by-appointment
-            consultations—both virtual and in-person.
-          </p>
+    <!-- My Story with Images -->
+    <section class="story">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">My Story: Why Protection Matters</h2>
+            
+            <div class="story-images">
+                <div class="story-image-item">
+                    <img src="hospital-recovery.jpg" alt="Jackson recovering in hospital">
+                    <p>December 2010 - Pocono Medical Center</p>
+                </div>
+                <div class="story-image-item">
+                    <img src="news-headline.jpg" alt="Pocono Record coverage">
+                    <p>Local news coverage of the life-saving event</p>
+                </div>
+            </div>
+            
+            <div class="story-text-center">
+                <p>During a college basketball game on December 7, 2010, my heart stopped. I went into sudden cardiac arrest at East Stroudsburg University. I was 22 years old.</p>
+                
+                <p>I survived because athletic trainers had immediate access to an AED - placed there by the Gregory W. Moyer Defibrillator Fund after 15-year-old Greg Moyer died of cardiac arrest in 2000.</p>
+                
+                <p class="story-highlight">That experience taught me that preparedness is everything. Financial protection isn't about selling policies - it's about ensuring families have what they need when the unexpected happens.</p>
+                
+                <div class="cta-buttons">
+                    <a href="about.html" class="btn btn-secondary">Read Full Story</a>
+                    <a href="contact.html" class="btn btn-primary">Work With Me</a>
+                </div>
+            </div>
         </div>
-        <div>
-          <h3>A Story of Survival &amp; Purpose</h3>
-          <p>
-            Latimore Life &amp; Legacy LLC was born from surviving sudden cardiac arrest. Our mission is to help
-            families and organizations protect what matters and build legacies that outlive them—without fear-based messaging.
-          </p>
-          <p class="tagline">#TheBeatGoesOn</p>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Protect Your Family's Future?</h2>
+            <p>Let's discuss your financial protection strategy</p>
+            <div class="cta-buttons">
+                <a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" class="btn btn-primary">
+                    Book Free Consultation
+                </a>
+                <a href="tel:8568951457" class="btn btn-secondary">
+                    Call (856) 895-1457
+                </a>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FINAL CTA -->
-  <section class="section section-cta">
-    <div class="section-inner section-cta-inner">
-      <div>
-        <h2>Ready to Protect Today and Secure Tomorrow?</h2>
-        <p>
-          Whether you’re protecting your family, planning for retirement, or securing your business,
-          we’ll help you design a plan that fits your life and your goals.
-        </p>
-      </div>
-      <div>
-        <a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" class="btn-primary large">Start Your Plan</a>
-      </div>
-    </div>
-  </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Latimore Life & Legacy</h4>
+                    <p>Protection-first strategies for working families, professionals, and local organizations across Central Pennsylvania.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/jacksonlatimore.global" target="_blank">Instagram</a>
+                        <a href="https://www.linkedin.com/in/startwithjacksongfi" target="_blank">LinkedIn</a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="about.html">About Jackson</a>
+                    <a href="products.html">Products</a>
+                    <a href="services.html">Services</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p><strong>Phone:</strong> (856) 895-1457</p>
+                    <p><strong>Email:</strong> jackson1989@latimorelegacy.com</p>
+                    <p><strong>Service Area:</strong> Schuylkill, Luzerne & Northumberland Counties, PA</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Get Started</h4>
+                    <a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus" target="_blank" class="footer-cta">Book Consultation</a>
+                    <a href="https://agents.ethoslife.com/invite/29ad1" target="_blank" class="footer-cta">Instant Quote</a>
+                    <a href="https://hihello.me/p/1ac94c21-813c-48c0-a270-49f5b2cc31e7" target="_blank" class="footer-cta">Save My Contact</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="disclosure">Licensed in Pennsylvania (DOI #1268820, NIPR #21638507). Independent contractor affiliated with Global Financial Impact. Products offered through appointed carriers. For educational purposes only; not tax or legal advice.</p>
+                <p>&copy; 2026 Latimore Life & Legacy LLC. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-column">
-        <h4>Latimore Life &amp; Legacy LLC</h4>
-        <p>Protecting Today. Securing Tomorrow.</p>
-        <p>#TheBeatGoesOn</p>
-      </div>
-      <div class="footer-column">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="retirement-income-annuities.html">Retirement Income &amp; Annuities</a></li>
-          <li><a href="mortgage-protection.html">Mortgage Protection</a></li>
-          <li><a href="life-insurance-living-benefits-final-expense.html">Life Insurance &amp; Final Expense</a></li>
-          <li><a href="business-owner-key-person.html">Business Owner Strategies</a></li>
-        </ul>
-      </div>
-      <div class="footer-column">
-        <h4>Connect</h4>
-        <ul>
-          <li><a href="about.html">About Jackson M. Latimore Sr.</a></li>
-          <li><a href="education.html">Education &amp; Resources</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="https://globalfinancialimpact.fillout.com/t/tMz7ZcqpaZus">Book a Consultation</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© <span id="year"></span> Latimore Life &amp; Legacy LLC · All Rights Reserved · PA DOI License #1268820</p>
-    </div>
-  </footer>
-
-  <script>
-    // Set current year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
