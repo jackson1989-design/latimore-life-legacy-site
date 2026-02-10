@@ -8,7 +8,7 @@
       name="description"
       content="Manage your legacy outreach and marketing efforts in one place. Plan content, track appointments and access resources with the Latimore Legacy Social Hub."
     />
-    <!-- Tailwind via CDN for quick styling -->
+    <!-- Tailwind via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -17,12 +17,27 @@
             colors: {
               brand: {
                 navy: '#0B0F17',
+                dark: '#111827',
+                card: '#1A1F2E',
+                cardHover: '#222838',
                 gold: '#C9A25F',
-                slate: '#64748b'
+                goldMuted: '#8B7340',
+                coral: '#E85D5D',
+                green: '#4ADE80',
+                pink: '#F472B6',
+                blue: '#60A5FA',
+                purple: '#A78BFA',
+                slate: '#64748B',
+                textMuted: '#9CA3AF',
+                textDim: '#6B7280',
+                sidebar: '#0D1117',
+                sidebarHover: '#161B22',
+                sidebarActive: '#C9A25F',
+                border: '#1E293B'
               }
             },
             fontFamily: {
-              sans: ['Inter', 'sans-serif']
+              sans: ['Inter', 'system-ui', 'sans-serif']
             }
           }
         }
@@ -39,124 +54,406 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   </head>
-  <body class="bg-gray-50 font-sans text-brand-navy">
+  <body class="bg-brand-navy font-sans text-white m-0 overflow-hidden">
     <div id="hub-root"></div>
-    <!-- Hub App -->
     <script type="text/babel">
-      const { useState } = React;
+      const { useState, useEffect, useRef } = React;
 
-      // Simple tab content components
-      const Dashboard = () => (
-        <div className="p-6 space-y-4 animate-fadeIn">
-          <h2 className="text-2xl font-bold">Dashboard</h2>
-          <p className="text-slate-600">
-            Welcome to your Social Hub! This dashboard will eventually provide a snapshot of
-            upcoming posts, recent interactions and quick metrics. For now, explore the
-            placeholders in each section to get a feel for the future features.
-          </p>
-        </div>
-      );
-      const ContentCreator = () => (
-        <div className="p-6 space-y-4 animate-fadeIn">
-          <h2 className="text-2xl font-bold">Content Creator</h2>
-          <p className="text-slate-600">
-            In the full version of the hub, this tool will help you craft engaging social posts,
-            articles and newsletters. AI-powered prompts and templates will make it easy to
-            maintain your digital presence. Stay tuned!
-          </p>
-        </div>
-      );
-      const CRM = () => (
-        <div className="p-6 space-y-4 animate-fadeIn">
-          <h2 className="text-2xl font-bold">CRM</h2>
-          <p className="text-slate-600">
-            Keep track of your clients and prospects. In future releases you will be able to
-            view contact information, recent interactions and manage follow‑ups—all in one
-            place.
-          </p>
-        </div>
-      );
-      const Calendar = () => (
-        <div className="p-6 space-y-4 animate-fadeIn">
-          <h2 className="text-2xl font-bold">Calendar</h2>
-          <p className="text-slate-600">
-            The calendar will sync scheduled posts, consultations and events. For now,
-            imagine seeing all your commitments neatly organized here.
-          </p>
-        </div>
-      );
-      const Resources = () => (
-        <div className="p-6 space-y-4 animate-fadeIn">
-          <h2 className="text-2xl font-bold">Resources</h2>
-          <p className="text-slate-600">
-            Access marketing templates, scripts and compliance guidance. As we build out this
-            hub, this section will house downloadable assets and guides tailored to financial
-            professionals.
-          </p>
-        </div>
-      );
+      /* ─── Icon Components ─── */
+      const Icons = {
+        Dashboard: () => (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+        ),
+        CRM: () => (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+        ),
+        Strategy: () => (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+        ),
+        AssetVault: () => (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+          </svg>
+        ),
+        Content: () => (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+          </svg>
+        ),
+        Marketing: () => (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        ),
+        Legacy: () => (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        ),
+        Campaigns: () => (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        ),
+        Connectors: () => (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/>
+          </svg>
+        ),
+        Settings: () => (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        ),
+        Facebook: () => (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        ),
+        LinkedIn: () => (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+          </svg>
+        ),
+        Eye: () => (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+          </svg>
+        ),
+        Heart: () => (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        ),
+        Click: () => (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+            <path d="M13 2l-1.5 9.5L21 10l-14 12 1.5-9.5L0 14z"/>
+          </svg>
+        ),
+        Share: () => (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+            <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" stroke="currentColor" strokeWidth="2"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" stroke="currentColor" strokeWidth="2"/>
+          </svg>
+        ),
+        Trash: () => (
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+          </svg>
+        ),
+        TrendUp: () => (
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.3">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+          </svg>
+        ),
+        Shield: () => (
+          <svg width="120" height="140" viewBox="0 0 120 140" fill="none">
+            <defs>
+              <linearGradient id="shieldGrad" x1="60" y1="0" x2="60" y2="140" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="#4B5EAA" stopOpacity="0.6"/>
+                <stop offset="100%" stopColor="#2D3A6A" stopOpacity="0.3"/>
+              </linearGradient>
+            </defs>
+            <path d="M60 5 L110 25 L110 70 Q110 110 60 135 Q10 110 10 70 L10 25 Z" fill="url(#shieldGrad)" stroke="#4B5EAA" strokeWidth="1.5" strokeOpacity="0.5"/>
+            <path d="M60 25 L95 40 L95 70 Q95 100 60 118 Q25 100 25 70 L25 40 Z" fill="none" stroke="#5B6EBA" strokeWidth="0.8" strokeOpacity="0.3"/>
+            <circle cx="60" cy="65" r="8" fill="#5B6EBA" fillOpacity="0.4"/>
+            <path d="M56 65 L59 68 L65 62" stroke="#8B9EDA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        )
+      };
 
-      function HubApp() {
-        const [activeTab, setActiveTab] = useState('dashboard');
-        const tabs = {
-          dashboard: { label: 'Dashboard', emoji: '📊', component: <Dashboard /> },
-          creator: { label: 'Creator', emoji: '✍️', component: <ContentCreator /> },
-          crm: { label: 'CRM', emoji: '👥', component: <CRM /> },
-          calendar: { label: 'Calendar', emoji: '📆', component: <Calendar /> },
-          resources: { label: 'Resources', emoji: '📂', component: <Resources /> }
-        };
+      /* ─── Sidebar ─── */
+      const sidebarItems = [
+        { id: 'dashboard', label: 'Dashboard', icon: Icons.Dashboard },
+        { id: 'crm', label: 'Life Hub CRM', icon: Icons.CRM },
+        { id: 'strategy', label: 'Strategy Library', icon: Icons.Strategy },
+        { id: 'assets', label: 'Asset Vault', icon: Icons.AssetVault },
+        { id: 'content', label: 'Content Architect', icon: Icons.Content },
+        { id: 'marketing', label: 'Marketing Tools', icon: Icons.Marketing },
+        { id: 'legacy', label: 'Legacy Hub', icon: Icons.Legacy },
+        { id: 'campaigns', label: 'Campaigns', icon: Icons.Campaigns },
+        { id: 'connectors', label: 'Connectors', icon: Icons.Connectors },
+        { id: 'settings', label: 'Settings', icon: Icons.Settings },
+      ];
+
+      function Sidebar({ activeTab, onTabChange }) {
         return (
-          <div className="min-h-screen flex flex-col">
-            {/* Header */}
-            <header className="bg-brand-navy text-brand-gold px-6 py-4 flex items-center justify-between shadow">
-              <h1 className="text-xl font-black">Latimore Social Hub</h1>
-              <button
-                onClick={() => (window.location.href = '/')}
-                className="text-sm underline hover:text-white"
-              >
-                ← Back to Main Site
-              </button>
-            </header>
-            <div className="flex flex-1">
-              {/* Sidebar */}
-              <nav className="w-48 bg-white border-r border-gray-100 py-6">
-                <ul className="space-y-3">
-                  {Object.keys(tabs).map((key) => (
-                    <li key={key}>
+          <aside className="w-40 bg-brand-sidebar flex flex-col border-r border-brand-border min-h-screen shrink-0">
+            <div className="px-4 py-5">
+              <div className="flex items-center gap-2">
+                <div className="w-7 h-7 rounded-lg bg-brand-gold flex items-center justify-center">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#0B0F17" stroke="none">
+                    <path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-white leading-tight">Latimore Hub</div>
+                  <div className="text-[10px] text-brand-textDim leading-tight">Social Manager</div>
+                </div>
+              </div>
+            </div>
+            <nav className="flex-1 px-2 pb-6">
+              <ul className="space-y-0.5">
+                {sidebarItems.map((item) => {
+                  const isActive = activeTab === item.id;
+                  const IconComp = item.icon;
+                  return (
+                    <li key={item.id}>
                       <button
-                        className={`w-full flex items-center gap-2 px-4 py-3 rounded-r-full text-left text-sm font-medium transition-colors ${
-                          activeTab === key
-                            ? 'bg-brand-gold text-brand-navy'
-                            : 'text-brand-navy hover:bg-gray-50'
+                        className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-left text-xs transition-all duration-150 ${
+                          isActive
+                            ? 'bg-brand-gold text-brand-navy font-semibold'
+                            : 'text-brand-textMuted hover:bg-brand-sidebarHover hover:text-white'
                         }`}
-                        onClick={() => setActiveTab(key)}
+                        onClick={() => onTabChange(item.id)}
                       >
-                        <span>{tabs[key].emoji}</span>
-                        <span>{tabs[key].label}</span>
+                        <IconComp />
+                        <span>{item.label}</span>
                       </button>
                     </li>
-                  ))}
-                </ul>
-              </nav>
-              {/* Content */}
-              <main className="flex-1 bg-gray-50">{tabs[activeTab].component}</main>
+                  );
+                })}
+              </ul>
+            </nav>
+            <div className="px-4 py-4 text-[9px] text-brand-textDim">
+              &copy; {new Date().getFullYear()} Latimore Life & Legacy LLC
             </div>
-            {/* Footer / CTA */}
-            <footer className="bg-white border-t border-gray-100 p-6 text-center text-xs text-gray-500">
-              <p>
-                Need help with your marketing? Schedule a consultation and let us show you how
-                the Social Hub can power your legacy. <br />
-                <a
-                  href="https://globalfinancialimpact.fillout.com/latimorelifelegacy"
-                  className="text-brand-navy font-semibold underline hover:text-brand-gold"
-                >
-                  Book a Consultation
-                </a>
-              </p>
-              <p className="mt-4">
-                &copy; {new Date().getFullYear()} Latimore Life & Legacy LLC. All rights reserved.
-              </p>
-            </footer>
+          </aside>
+        );
+      }
+
+      /* ─── Top Header Bar ─── */
+      function TopBar() {
+        return (
+          <header className="h-14 bg-brand-dark border-b border-brand-border flex items-center justify-between px-5 shrink-0">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-brand-gold to-yellow-700 flex items-center justify-center text-xs font-bold text-brand-navy">
+                JL
+              </div>
+              <div>
+                <div className="text-sm font-semibold text-white leading-tight">Jackson M. Latimore Sr.</div>
+                <div className="text-[10px] text-brand-textDim uppercase tracking-wider">Founder & CEO &bull; Schuylkill Focus</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <button className="text-brand-textMuted hover:text-white transition-colors" title="Facebook">
+                <Icons.Facebook />
+              </button>
+              <button className="text-brand-textMuted hover:text-white transition-colors" title="LinkedIn">
+                <Icons.LinkedIn />
+              </button>
+              <button className="ml-2 bg-brand-gold text-brand-navy text-[10px] font-bold px-3 py-1.5 rounded-md uppercase tracking-wider hover:bg-yellow-500 transition-colors">
+                Account Management
+              </button>
+            </div>
+          </header>
+        );
+      }
+
+      /* ─── Metric Card ─── */
+      function MetricCard({ icon, label, value, change, changeColor, bgAccent }) {
+        return (
+          <div className={`bg-brand-card rounded-lg p-4 border border-brand-border hover:border-opacity-50 transition-all`}>
+            <div className="flex items-center justify-between mb-3">
+              <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${bgAccent}`}>
+                {icon}
+              </div>
+              <span className={`text-xs font-bold ${changeColor}`}>{change}</span>
+            </div>
+            <div className="text-[11px] text-brand-textMuted mb-1">{label}</div>
+            <div className="text-xl font-bold text-white">{value}</div>
+          </div>
+        );
+      }
+
+      /* ─── Regional Focus Row ─── */
+      function RegionalRow({ name, stat, statLabel }) {
+        return (
+          <div className="flex items-center justify-between py-3 border-b border-brand-border last:border-b-0">
+            <span className="text-sm font-semibold text-white">{name}</span>
+            <span className="text-xs text-brand-gold">{stat} <span className="text-brand-textDim">{statLabel}</span></span>
+          </div>
+        );
+      }
+
+      /* ─── Dashboard View ─── */
+      function DashboardView() {
+        const [metrics, setMetrics] = useState({
+          impressions: 0,
+          engagement: 0,
+          clicks: 0,
+          shares: 0
+        });
+
+        const handleResetMetrics = () => {
+          setMetrics({ impressions: 0, engagement: 0, clicks: 0, shares: 0 });
+        };
+
+        return (
+          <div className="p-5 space-y-5 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 3.5rem)' }}>
+            {/* Legacy Pulse Header */}
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-2xl font-bold text-white">Legacy Pulse</h1>
+                <p className="text-xs text-brand-textMuted mt-0.5">Protecting Today. Securing Tomorrow. #TheBeatGoesOn</p>
+              </div>
+              <button
+                onClick={handleResetMetrics}
+                className="flex items-center gap-1.5 bg-red-900/30 text-red-400 text-[10px] font-semibold px-3 py-1.5 rounded-md border border-red-900/50 hover:bg-red-900/50 transition-colors"
+              >
+                <Icons.Trash />
+                Reset Metrics
+              </button>
+            </div>
+
+            {/* Mission Grounding */}
+            <div className="bg-brand-card rounded-lg border border-brand-border p-5 relative overflow-hidden">
+              <div className="flex items-start gap-6">
+                <div className="flex-1">
+                  <div className="text-[10px] uppercase tracking-[0.2em] text-brand-gold font-semibold mb-3">Mission Grounding</div>
+                  <h2 className="text-xl font-bold text-white leading-snug mb-4">
+                    Protecting what matters. Building<br/>legacies that outlive them.
+                  </h2>
+                  <p className="text-[11px] text-brand-textMuted leading-relaxed italic max-w-md">
+                    "Jackson M. Latimore Sr. survived sudden cardiac arrest on December 7, 2010, while playing basketball at East Stroudsburg University. An AED was available and used by trainers to restart his heart. This life-altering event, combined with the story of Greg Moyer (who passed away in 2000 due to the lack of an AED), became the foundation for Latimore Life & Legacy LLC."
+                  </p>
+                  <div className="flex items-center gap-3 mt-4">
+                    <div className="flex -space-x-2">
+                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-gray-600 to-gray-800 border-2 border-brand-card"></div>
+                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-blue-600 to-blue-800 border-2 border-brand-card"></div>
+                    </div>
+                    <span className="text-[10px] text-brand-gold font-semibold uppercase tracking-wider">540,000 Lives Served in Central PA</span>
+                  </div>
+                </div>
+                <div className="shrink-0 opacity-70">
+                  <Icons.Shield />
+                </div>
+              </div>
+            </div>
+
+            {/* Regional Focus */}
+            <div className="bg-brand-card rounded-lg border border-brand-border p-5">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-brand-textDim font-semibold mb-4">Regional Focus</div>
+              <RegionalRow name="Schuylkill" stat="42%" statLabel="Growth" />
+              <RegionalRow name="Luzerne" stat="28%" statLabel="Reach" />
+              <RegionalRow name="Northumberland" stat="15%" statLabel="New Leads" />
+            </div>
+
+            {/* Metrics Grid */}
+            <div className="grid grid-cols-2 gap-3">
+              <MetricCard
+                icon={<span className="text-blue-400"><Icons.Eye /></span>}
+                label="Impressions"
+                value={metrics.impressions}
+                change="+12%"
+                changeColor="text-green-400"
+                bgAccent="bg-blue-900/40"
+              />
+              <MetricCard
+                icon={<span className="text-pink-400"><Icons.Heart /></span>}
+                label="Engagement"
+                value={metrics.engagement}
+                change="+24%"
+                changeColor="text-green-400"
+                bgAccent="bg-pink-900/40"
+              />
+              <MetricCard
+                icon={<span className="text-yellow-400"><Icons.Click /></span>}
+                label="Clicks"
+                value={metrics.clicks}
+                change="-3%"
+                changeColor="text-red-400"
+                bgAccent="bg-yellow-900/40"
+              />
+              <MetricCard
+                icon={<span className="text-purple-400"><Icons.Share /></span>}
+                label="Shares"
+                value={metrics.shares}
+                change="+48%"
+                changeColor="text-green-400"
+                bgAccent="bg-purple-900/40"
+              />
+            </div>
+
+            {/* Engagement Trajectory */}
+            <div className="bg-brand-card rounded-lg border border-brand-border p-5">
+              <div className="flex items-center justify-between mb-1">
+                <div>
+                  <h3 className="text-sm font-bold text-white">Engagement Trajectory</h3>
+                  <p className="text-[10px] uppercase tracking-[0.15em] text-brand-textDim mt-0.5">Measuring the Beat of the Community</p>
+                </div>
+                <div className="flex items-center gap-3 text-[10px]">
+                  <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-green-400 inline-block"></span> Likes</span>
+                  <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-blue-400 inline-block"></span> Clicks</span>
+                </div>
+              </div>
+              <div className="flex flex-col items-center justify-center py-12 text-brand-textDim">
+                <Icons.TrendUp />
+                <span className="text-[11px] uppercase tracking-wider mt-3 font-medium">No Signal Detected</span>
+              </div>
+            </div>
+          </div>
+        );
+      }
+
+      /* ─── Placeholder Views for Other Tabs ─── */
+      function PlaceholderView({ title, description }) {
+        return (
+          <div className="p-6 flex flex-col items-center justify-center" style={{ minHeight: 'calc(100vh - 3.5rem)' }}>
+            <div className="bg-brand-card rounded-lg border border-brand-border p-8 text-center max-w-md">
+              <h2 className="text-xl font-bold text-white mb-3">{title}</h2>
+              <p className="text-sm text-brand-textMuted leading-relaxed">{description}</p>
+              <div className="mt-4 text-[10px] text-brand-textDim uppercase tracking-wider">Coming Soon</div>
+            </div>
+          </div>
+        );
+      }
+
+      /* ─── Main Hub App ─── */
+      function HubApp() {
+        const [activeTab, setActiveTab] = useState('dashboard');
+
+        const renderContent = () => {
+          switch (activeTab) {
+            case 'dashboard':
+              return <DashboardView />;
+            case 'crm':
+              return <PlaceholderView title="Life Hub CRM" description="Keep track of your clients and prospects. View contact information, recent interactions, and manage follow-ups — all in one place." />;
+            case 'strategy':
+              return <PlaceholderView title="Strategy Library" description="Access proven financial strategies, client presentation templates, and educational frameworks tailored to your practice." />;
+            case 'assets':
+              return <PlaceholderView title="Asset Vault" description="Store and organize your marketing assets, brand materials, compliance documents, and approved content for quick access." />;
+            case 'content':
+              return <PlaceholderView title="Content Architect" description="Craft engaging social posts, articles, and newsletters. AI-powered prompts and templates make it easy to maintain your digital presence." />;
+            case 'marketing':
+              return <PlaceholderView title="Marketing Tools" description="Design campaigns, track performance, and optimize your outreach with integrated marketing automation tools." />;
+            case 'legacy':
+              return <PlaceholderView title="Legacy Hub" description="Build and manage your personal legacy dashboard. Track community impact, mentorship milestones, and generational wealth initiatives." />;
+            case 'campaigns':
+              return <PlaceholderView title="Campaigns" description="Plan, launch, and monitor marketing campaigns across all your channels. Track engagement and conversion metrics in real time." />;
+            case 'connectors':
+              return <PlaceholderView title="Connectors" description="Integrate with third-party platforms and tools. Connect your CRM, email marketing, social media accounts, and more." />;
+            case 'settings':
+              return <PlaceholderView title="Settings" description="Configure your hub preferences, notification settings, account details, and team management options." />;
+            default:
+              return <DashboardView />;
+          }
+        };
+
+        return (
+          <div className="h-screen flex overflow-hidden">
+            <Sidebar activeTab={activeTab} onTabChange={setActiveTab} />
+            <div className="flex-1 flex flex-col min-w-0">
+              <TopBar />
+              <main className="flex-1 overflow-hidden bg-brand-navy">
+                {renderContent()}
+              </main>
+            </div>
           </div>
         );
       }
@@ -164,13 +461,19 @@
       ReactDOM.createRoot(document.getElementById('hub-root')).render(<HubApp />);
     </script>
     <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; padding: 0; }
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: #0B0F17; }
+      ::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 3px; }
+      ::-webkit-scrollbar-thumb:hover { background: #334155; }
       @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
       }
-      .animate-fadeIn { animation: fadeIn 0.5s ease-out; }
+      .animate-fadeIn { animation: fadeIn 0.4s ease-out; }
     </style>
-    <!-- Auto-append UTM and referrer values to the consultation links -->
+    <!-- Auto-append UTM and referrer values to consultation links -->
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         const utmParams = new URLSearchParams(window.location.search);
